@@ -1,0 +1,49 @@
+Aplikasi ini adalah aplikasi ecommerce yang berbasis web menggunakan
+java.
+
+Tools yang di gunakan 
+======================================
+- Internet
+- Maven
+- NetBeans
+- Tomcat
+- Java 
+- Hibernate
+- Spring
+- Jasper Report
+- JQuery
+- HTML
+- MySQL
+
+
+
+Modules
+====================================
+
+1. Registerasi Member
+   Sistem registerasi member ini di gunakan untuk orang yang akan memesan
+   barang, jadi jika ada seorang yang belum menjadi member maka dia tidak
+   akan bisa memesan barang di web ini. 
+   
+   Flow
+   -----------
+   Seseorang yang akan mendaftar menjadi member di wajibkan mengisi formulir
+   pendaftaran, dengan mengisi : 
+       - username 
+       - password
+       - nama lengkap
+       - alamat lengkap
+       - email
+       - no telp
+   data-data tersebut wajib di isi karena nanti data tersebut di butuhkan
+   untuk konfirmasi pesanan dan juga untuk tujuan alamat pengiriman barang.
+   setelah mengisi formulir pendaftaran makan orang tersebut akan mendapatkan
+   aktivasi member melalui email.
+   
+2. Flow Pemesanan
+   Ada beberapa tahapan yang harus di selesaikan oleh member jika 
+   melakukan pemesanan barang. 
+   
+   1. Memilih barang yang akan dipesan
+   2. Melakukan konfirmasi pemesanan (terutama pada alamat)
+      

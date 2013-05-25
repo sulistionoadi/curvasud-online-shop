@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+
+    <logger name="id.ac.bsi.adi.ta.ecommerce" level="WARN">
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="FILE" />
+    </root>
+
+</included>
+
