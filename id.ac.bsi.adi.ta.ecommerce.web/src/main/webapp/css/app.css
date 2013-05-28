@@ -1,0 +1,80 @@
+/* GLOBAL STYLES
+    -------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    background-image: url('../img/background_body.png'); 
+}
+
+.navbar-inverse .navbar-inner {
+    background-image: none;
+    background-color: #ffba00;
+    background-repeat: repeat-x;
+    border: 0px solid #E39802;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a,
+.navbar-inverse .nav-collapse .dropdown-menu a {
+    color: #f80909;
+    background-color: #ffba00;
+    font-weight: normal;
+}
+
+.navbar-inverse .nav-collapse .nav > li > a:hover,
+.navbar-inverse .nav-collapse .nav > li > a:focus,
+.navbar-inverse .nav-collapse .dropdown-menu a:hover,
+.navbar-inverse .nav-collapse .dropdown-menu a:focus {
+    color: #e3dd02;
+    background-color: #ff1e00;
+    text-decoration: underline;
+}
+
+.panel {
+	width: auto;
+	height: auto;
+	background-color: #ffffff;
+}
+
+.panel-header {
+	height: 30px;
+	background-color: #ffba00;
+	color: #f80909;
+	-webkit-border-radius: 6px 6px 0px 0px;
+    -moz-border-radius: 6px 6px 0px 0px;
+	border-radius: 6px 6px 0px 0px;
+	font-size: 24px;
+	font-weight: bold;
+	padding-top: 6px;
+	text-align: center;
+}
+
+.panel-body  {
+	padding: 20px 10px 1px 10px;
+	height: auto;
+	-webkit-border-radius: 0px 0px 6px 6px;
+    -moz-border-radius: 0px 0px 6px 6px;
+	border-radius: 0px 0px 6px 6px;
+}
+
+.btn-primary {
+	color: #f80909;
+	background-color: #ffba00;
+	*background-color: #0044cc;
+	background-image: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.disabled,
+.btn-primary[disabled] {
+  color: #ffba00;
+  background-color: #f80909;
+  *background-color: #003bb3;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+  background-color: #f80909;
+}

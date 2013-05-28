@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <http auto-config='true'>
+        
+        <form-login login-page="/index.html" default-target-url="/html/dashboard" authentication-failure-url="/errors/401.html"/>
+    </http>
+    
+    <authentication-manager>
+        <authentication-provider user-service-ref='myUserDetailsService'>
+            <password-encoder hash="md5">
+                <salt-source user-property="username"/>
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+    
+    <beans:bean id="myUserDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="usersByUsernameQuery" value="select username, password, active as enabled from sec_user where username=?"/>
+        <beans:property name="authoritiesByUsernameQuery"
+                        value="select o_.username, p_.name  from sec_user o_ inner join ( (sec_role_permission rp_ inner join sec_permission p_ on rp_.id_permission = p_.id) inner join sec_role r_ on rp_.id_role = r_.id ) on o_.id_role = r_.id where o_.username = ?"/>
+        <beans:property name="rolePrefix" value="ROLE_"/>
+    </beans:bean>
+
+</beans:beans>

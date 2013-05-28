@@ -19,5 +19,27 @@
     <!-- sehingga tetap bisa mengakses folder selain WEB-INF, misalnya img, 
     css, js -->
     <mvc:default-servlet-handler />
+    
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/templates/velocity/" />
+    </bean>
+
+    <bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="order" value="1" />
+        <property name="prefix" value="" />
+        <property name="suffix" value=".html" />
+        <property name="dateToolAttribute" value="dateTool" />
+        <property name="numberToolAttribute" value="numberTool" />
+    </bean>
+    
+    <bean id="jasperViewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <property name="basename" value="views" />
+        <property name="order" value="0" />
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="10000000"/>
+    </bean>
 
 </beans>
