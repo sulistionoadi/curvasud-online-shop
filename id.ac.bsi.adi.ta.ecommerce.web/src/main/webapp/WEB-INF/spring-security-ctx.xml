@@ -9,9 +9,10 @@
 
     <http auto-config='true'>
         
-        <form-login login-page="/index.html" default-target-url="/html/dashboard" authentication-failure-url="/errors/401.html"/>
+        <form-login login-page="/index.html" default-target-url="/html/home" authentication-failure-url="/errors/401.html"/>
     </http>
     
+    <!--
     <authentication-manager>
         <authentication-provider user-service-ref='myUserDetailsService'>
             <password-encoder hash="md5">
@@ -27,5 +28,13 @@
                         value="select o_.username, p_.name  from sec_user o_ inner join ( (sec_role_permission rp_ inner join sec_permission p_ on rp_.id_permission = p_.id) inner join sec_role r_ on rp_.id_role = r_.id ) on o_.id_role = r_.id where o_.username = ?"/>
         <beans:property name="rolePrefix" value="ROLE_"/>
     </beans:bean>
-
+    -->
+    
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="adi" password="123" authorities="ROLE_ADMIN"  />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
 </beans:beans>
