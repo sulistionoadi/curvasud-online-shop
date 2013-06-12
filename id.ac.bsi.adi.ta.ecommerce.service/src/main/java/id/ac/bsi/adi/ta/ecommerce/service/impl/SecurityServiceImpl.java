@@ -4,6 +4,9 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
+import id.ac.bsi.adi.ta.ecommerce.dao.PermissionDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.RoleDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.UserDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Permission;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
@@ -12,6 +15,8 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,22 +29,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SecurityServiceImpl implements SecurityService {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @Autowired private UserDao userDao;
+    @Autowired private RoleDao roleDao;
+    @Autowired private PermissionDao permissionDao;
     
     @Override
     public void save(User user) {
-        sessionFactory.getCurrentSession().saveOrUpdate(user);
+        userDao.save(user);
     }
 
     @Override
     public void delete(User user) {
-        sessionFactory.getCurrentSession().delete(user);
+        userDao.delete(user);
     }
 
     @Override
     public User findUserById(String id) {
-        User user = (User) sessionFactory.getCurrentSession().get(User.class, id);
+        User user = userDao.findOne(id);
         
         if(user.getRole()!=null){
             Hibernate.initialize(user.getRole().getPermissionSet());
@@ -51,10 +57,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public User findUserByUsername(String username) {
-        User user = (User) sessionFactory.getCurrentSession()
-                .createQuery("from User u where u.username = :username")
-                .setParameter("username", username)
-                .uniqueResult();
+        User user = userDao.findUserByUsername(username);
         
         if(user.getRole()!=null){
             Hibernate.initialize(user.getRole().getPermissionSet());
@@ -65,39 +68,32 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public List<User> findAllUsers(Integer start, Integer rows) {
-        if(start==null) start=0;
-        if(rows==null) rows=20;
+    public Page<User> findAllUsers(Pageable pageable) {
+        Page<User> pageUser = userDao.findAll(pageable);
         
-        List<User> users = sessionFactory.getCurrentSession()
-                .createQuery("from User u order by u.username")
-                .setFirstResult(start)
-                .setMaxResults(rows)
-                .list();
-        
-        for (User u : users) {
+        for (User u : pageUser.getContent()) {
             if(u.getRole()!=null){
                 Hibernate.initialize(u.getRole().getPermissionSet());
                 Hibernate.initialize(u.getRole().getMenuSet());
             }
         }
         
-        return users;
+        return pageUser;
     }
 
     @Override
     public void save(Role role) {
-        sessionFactory.getCurrentSession().saveOrUpdate(role);
+        roleDao.save(role);
     }
 
     @Override
     public void delete(Role role) {
-        sessionFactory.getCurrentSession().delete(role);
+        roleDao.delete(role);
     }
 
     @Override
     public Role findRoleById(String id) {
-        Role r = (Role) sessionFactory.getCurrentSession().get(Role.class, id);
+        Role r = roleDao.findOne(id);
         
         if(r!=null){
             Hibernate.initialize(r.getPermissionSet());
@@ -108,41 +104,44 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public List<Role> findAllRoles(Integer start, Integer rows) {
-        if(start==null) start=0;
-        if(rows==null) rows=20;
+    public Page<Role> findAllRoles(Pageable pageable) {
+        Page<Role> pageRole = roleDao.findAll(pageable);
         
-        List<Role> roles = sessionFactory.getCurrentSession()
-                .createQuery("from Role r order by r.name")
-                .setFirstResult(start)
-                .setMaxResults(rows)
-                .list();
-        
-        for (Role r : roles) {
+        for (Role r : pageRole.getContent()) {
             if(r!=null){
                 Hibernate.initialize(r.getPermissionSet());
                 Hibernate.initialize(r.getMenuSet());
             }
         }
         
-        return roles;
+        return pageRole;
     }
 
     @Override
     public Long countAllUsers() {
-        return (Long) sessionFactory.getCurrentSession().createQuery("select count(u) from User u").uniqueResult();
+        return userDao.count();
     }
 
     @Override
     public Long countAllRoles() {
-        return (Long) sessionFactory.getCurrentSession().createQuery("select count(r) from Role r").uniqueResult();
+        return roleDao.count();
     }
 
     @Override
     public List<Permission> findAllPermissions() {
-        return sessionFactory.getCurrentSession()
-                .createQuery("from Permission p order by p.label")
-                .list();
+        return permissionDao.findAll();
+    }
+
+    @Override
+    public Role findRoleByName(String name) {
+        Role r = roleDao.findRoleByName(name);
+        
+        if(r!=null){
+            Hibernate.initialize(r.getPermissionSet());
+            Hibernate.initialize(r.getMenuSet());
+        }
+        
+        return r;
     }
     
 }

@@ -24,7 +24,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@Table(name="sec_permission")
+@Table(name="sec_role")
 public class Role extends BaseEntity {
     
     @NotNull

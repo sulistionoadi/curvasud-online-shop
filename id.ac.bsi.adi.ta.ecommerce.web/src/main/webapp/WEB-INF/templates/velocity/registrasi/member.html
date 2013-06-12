@@ -1,0 +1,112 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form Pendaftaran Anggota</title>
+    </head>
+    <body>
+        <form id="formRegisterasiMember" method="POST">  
+            <table>  
+                <tr>  
+                    <td colspan="3"><h3>IDENTITAS</h3></td>
+                </tr>  
+                <tr>  
+                    <td>Nama Depan : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="firstname" value="$!member.firstname" data-options="required:true"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.firstname") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>  
+                <tr>  
+                    <td>Nama Belakang : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="lastname" value="$!member.lastname"/></td>  
+                </tr>  
+                <tr>  
+                    <td>E-mail : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="email" data-options="required:true, validType:'email'" value="$!member.email"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.email") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Alamat : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="address" data-options="required:true" value="$!member.address" /></td> 
+                    <td><p class="text-error">
+                        #springBind("member.address") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Propinsi : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="province" data-options="required:true" value="$!member.province"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.province")
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Kota : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="city" data-options="required:true" value="$!member.city"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.city")
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Kode Pos : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="zipCode" value="$!member.zipCode"/></td>  
+                </tr>
+                <tr>  
+                    <td>No. Handphone : </td>  
+                    <td><input class="easyui-numberbox" type="text" name="mobile" value="$!member.mobile" data-options="required:true,validType:'length[11,14]'" /></td>
+                    <td><p class="text-error">
+                        #springBind("member.mobile") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>No. Telepon : </td>  
+                    <td><input class="easyui-numberbox" type="text" name="phone" value="$!member.phone"/></td>
+                </tr>
+                <tr>  
+                    <td colspan="3"><h3>ACCOUNT</h3></td>
+                </tr>  
+                <tr>  
+                    <td>Username : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="username" value="$!member.username" data-options="required:true,validType:'minLength[6]'" /></td>
+                    <td><p class="text-error">
+                        #springBind("member.username")
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>  
+                <tr>  
+                    <td>Password : </td>  
+                    <td><input id="txtPassword" class="easyui-validatebox" type="password" name="password" value="$!member.password" data-options="required:true,validType:'minLength[8]'" /></td>
+                    <td><p class="text-error">
+                        #springBind("member.password") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>  
+                <tr>  
+                    <td>Konfirmasi Password : </td>  
+                    <td><input class="easyui-validatebox" type="password" name="confirmPassword" required="required" validType="passwordEquals['#txtPassword']" /></td>
+                    <td><p class="text-error">
+                        #springBind("member.confirmPassword") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr colspan="3">  
+                    <td>
+                        <input type="submit" value="Register" class="btn-primary"/>
+                        <input type="reset" value="Clear" class="btn-primary"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

@@ -5,8 +5,11 @@
 package id.ac.bsi.adi.ta.ecommerce.service;
 
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
-import java.util.List;
+import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -19,14 +22,19 @@ public interface MasterService {
     public CategoryProduct findCategoryProductById(String id);
     public CategoryProduct findCategoryProductByKode(String kode);
     public Long countAllCategoryProuducts();
-    public List<CategoryProduct> findAllCategoryProducts(Integer start, Integer rows);
+    public Page<CategoryProduct> findAllCategoryProducts(Pageable pageable);
     
     public void save(Product product);
     public void delete(Product product);
     public Product findProductById(String id);
     public Product findProductByKode(String kode);
     public Long countAllProuducts();
-    public List<Product> findAllProducts(Integer start, Integer rows);
+    public Page<Product> findAllProducts(Pageable pageable);
     
+    public void register(Member member, User user);
+    public void delete(Member member);
+    public Member findMemberById(String id);
+    public Long countAllMembers();
+    public Page<Member> findAllMembers(Pageable pageable);
     
 }

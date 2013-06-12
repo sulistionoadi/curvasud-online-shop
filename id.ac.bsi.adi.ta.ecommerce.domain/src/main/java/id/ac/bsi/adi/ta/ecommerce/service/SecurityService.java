@@ -4,11 +4,12 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service;
 
-import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Permission;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  *
@@ -21,13 +22,14 @@ public interface SecurityService {
     public User findUserById(String id);
     public User findUserByUsername(String username);
     public Long countAllUsers();
-    public List<User> findAllUsers(Integer start, Integer rows);
+    public Page<User> findAllUsers(Pageable pageable);
     
     public void save(Role role);
     public void delete(Role role);
     public Role findRoleById(String id);
+    public Role findRoleByName(String name);
     public Long countAllRoles();
-    public List<Role> findAllRoles(Integer start, Integer rows);
+    public Page<Role> findAllRoles(Pageable pageable);
     
     public List<Permission> findAllPermissions();
     

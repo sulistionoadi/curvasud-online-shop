@@ -13,7 +13,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.NumberFormat;
 
 /**
  *
@@ -29,6 +32,7 @@ public class Member extends BaseEntity {
     private String firstname;
     private String lastname;
     
+    @Email
     @NotNull @NotEmpty
     @Column(nullable=false)
     private String email;
@@ -49,22 +53,30 @@ public class Member extends BaseEntity {
     private String zipCode;
     
     @NotNull @NotEmpty
+    @NumberFormat @Length(min=11,max=14, message="panjang minimal 11 dan maksimal 14 karakter")
     @Column(nullable=false)
-    private String phone;
-    
     private String mobile;
+    
+    private String phone;
     
     @Column(nullable=false, name="registration_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate = new Date();
     
-    @NotNull @NotEmpty
     @Transient
+    @NotNull @NotEmpty
+    @Length(min=6, message="panjang minimal 6 karakter")
     private String username;
     
-    @NotNull @NotEmpty
     @Transient
+    @NotNull @NotEmpty
+    @Length(min=8, message="panjang minimal 8 karakter")
     private String password;
+    
+    @Transient
+    @NotNull @NotEmpty
+    @Length(min=8, message="panjang minimal 8 karakter")
+    private String confirmPassword;
 
     public String getFirstname() {
         return firstname;
@@ -160,6 +172,14 @@ public class Member extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
     
 }

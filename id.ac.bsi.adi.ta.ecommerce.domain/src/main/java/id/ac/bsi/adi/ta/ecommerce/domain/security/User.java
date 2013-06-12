@@ -6,12 +6,15 @@ package id.ac.bsi.adi.ta.ecommerce.domain.security;
 
 import id.ac.bsi.adi.ta.ecommerce.constant.StatusUser;
 import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
@@ -46,6 +49,18 @@ public class User extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "id_role", nullable = false)
     private Role role;
+    
+    @OneToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name="id_member", nullable=false)
+    private Member member;
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 
     public String getUsername() {
         return username;

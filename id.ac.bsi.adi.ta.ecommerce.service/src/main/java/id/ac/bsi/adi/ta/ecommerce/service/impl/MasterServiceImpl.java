@@ -4,14 +4,22 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
+import id.ac.bsi.adi.ta.ecommerce.dao.CategoryProductDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.MemberDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.ProductDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.UserDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
+import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,62 +32,54 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MasterServiceImpl implements MasterService {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @Autowired private CategoryProductDao categoryProductDao;
+    @Autowired private ProductDao productDao;
+    @Autowired private MemberDao memberDao;
+    @Autowired private UserDao userDao;
     
     @Override
     public void save(CategoryProduct categoryProduct) {
-        sessionFactory.getCurrentSession().saveOrUpdate(categoryProduct);
+        categoryProductDao.save(categoryProduct);
     }
 
     @Override
     public void delete(CategoryProduct categoryProduct) {
-        sessionFactory.getCurrentSession().delete(categoryProduct);
+        categoryProductDao.delete(categoryProduct);
     }
 
     @Override
     public CategoryProduct findCategoryProductById(String id) {
-        return (CategoryProduct) sessionFactory.getCurrentSession().get(CategoryProduct.class, id);
+        return categoryProductDao.findOne(id);
     }
 
     @Override
     public CategoryProduct findCategoryProductByKode(String kode) {
-        return (CategoryProduct) sessionFactory.getCurrentSession()
-                .createQuery("from CategoryProduct cp where cp.categoryCode = :code")
-                .setParameter("code", kode)
-                .uniqueResult();
+        return categoryProductDao.findCategoryProductByCategoryCode(kode);
     }
 
     @Override
     public Long countAllCategoryProuducts() {
-        return (Long) sessionFactory.getCurrentSession().createQuery("select count(cp) from CategoryProduct cp").uniqueResult();
+        return categoryProductDao.count();
     }
 
     @Override
-    public List<CategoryProduct> findAllCategoryProducts(Integer start, Integer rows) {
-        if(start==null) start=0;
-        if(rows==null) rows=20;
-        
-        return sessionFactory.getCurrentSession()
-                .createQuery("from CategoryProduct cp order by cp.description")
-                .setFirstResult(start)
-                .setMaxResults(rows)
-                .list();
+    public Page<CategoryProduct> findAllCategoryProducts(Pageable pageable) {
+        return categoryProductDao.findAll(pageable);
     }
 
     @Override
     public void save(Product product) {
-        sessionFactory.getCurrentSession().saveOrUpdate(product);
+        productDao.save(product);
     }
 
     @Override
     public void delete(Product product) {
-        sessionFactory.getCurrentSession().delete(product);
+        productDao.delete(product);
     }
 
     @Override
     public Product findProductById(String id) {
-       Product p = (Product) sessionFactory.getCurrentSession().get(Product.class, id);
+       Product p = productDao.findOne(id);
        
        if(p!=null) {
            Hibernate.initialize(p.getPictures());
@@ -90,10 +90,7 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public Product findProductByKode(String kode) {
-       Product p = (Product) sessionFactory.getCurrentSession()
-               .createQuery("from Product p where p.productCode = :kode")
-               .setParameter("kode", kode)
-               .uniqueResult();
+       Product p = productDao.findProductByProductCode(kode);
        
        if(p!=null) {
            Hibernate.initialize(p.getPictures());
@@ -104,25 +101,44 @@ public class MasterServiceImpl implements MasterService {
 
     @Override
     public Long countAllProuducts() {
-        return (Long) sessionFactory.getCurrentSession().createQuery("select count(p) from Product p").uniqueResult();
+        return productDao.count();
     }
 
     @Override
-    public List<Product> findAllProducts(Integer start, Integer rows) {
-        if(start==null) start=0;
-        if(rows==null) rows=20;
+    public Page<Product> findAllProducts(Pageable pageable) {
+        Page<Product> products = productDao.findAll(pageable);
         
-        List<Product> products = sessionFactory.getCurrentSession()
-                .createQuery("from Product p order by p.productName")
-                .setFirstResult(start)
-                .setMaxResults(rows)
-                .list();
-        
-        for (Product p : products) {
+        for (Product p : products.getContent()) {
             Hibernate.initialize(p.getPictures());
         }
         
         return products;
+    }
+
+    @Override
+    public void delete(Member member) {
+        memberDao.delete(member);
+    }
+
+    @Override
+    public Member findMemberById(String id) {
+        return memberDao.findOne(id);
+    }
+
+    @Override
+    public Long countAllMembers() {
+        return memberDao.count();
+    }
+
+    @Override
+    public Page<Member> findAllMembers(Pageable pageable) {
+        return memberDao.findAll(pageable);
+    }
+
+    @Override
+    public void register(Member member, User user) {
+        memberDao.save(member);
+        userDao.save(user);
     }
     
 }

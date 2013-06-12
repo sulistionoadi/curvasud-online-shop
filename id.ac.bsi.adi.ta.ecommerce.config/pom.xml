@@ -29,7 +29,7 @@
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
+            <version>${commons-dbcp.version}</version>
         </dependency>
 
         <dependency>
@@ -58,15 +58,35 @@
                             <goal>execute</goal>
                         </goals>
                         <configuration>
-                            <source>
-                                try {
-                                    def scmversion = 'git describe'.execute().text.trim()
-                                    project.properties.setProperty('scmVersion',scmversion)
+                            <source>try {
+                                def scmversion = 'git describe'.execute().text.trim()
+                                project.properties.setProperty('scmVersion',scmversion)
                                 } catch(Exception e){
-                                    project.properties.setProperty('scmVersion','undefined')
+                                project.properties.setProperty('scmVersion','undefined')
                                 }
                             </source>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <target>
+                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@hibernate.dialect@" value="${hibernate.dialect}"/>
+                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.driver@" value="${db.driver}"/>
+                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.url@" value="${db.url}"/>
+                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.username@" value="${db.username}"/>
+                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.password@" value="${db.password}"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
