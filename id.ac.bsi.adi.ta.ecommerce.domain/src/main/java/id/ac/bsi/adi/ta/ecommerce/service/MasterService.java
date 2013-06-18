@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
  */
 public interface MasterService {
     
-    public void save(CategoryProduct categoryProduct);
+    public CategoryProduct save(CategoryProduct categoryProduct);
     public void delete(CategoryProduct categoryProduct);
     public CategoryProduct findCategoryProductById(String id);
     public CategoryProduct findCategoryProductByKode(String kode);

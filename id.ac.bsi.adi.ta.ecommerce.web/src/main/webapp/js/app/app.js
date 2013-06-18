@@ -21,16 +21,21 @@ $.fn.serializeJSON=function() {
     return json;  
 };
 
-function submitRegisterMember(){
-   var jsonData = $("#formRegisterasiMember").serializeJSON();
+function paginationAction(pn,ps,url){
     $.ajax({
-       type: "POST",
-       url: "",
-       data: JSON.stringify(jsonData),
-       dataType: "json",
-       contentType: "application/json",
-       success: function(){
-           
-       }
-   });
+        type:"GET",
+        url: url,
+        data: {
+            'page.page':pn,
+            'page.size':ps
+        },
+        dataType:'json',
+        beforeSend: function(jqXHR, settings){
+            $('#gridCategory').datagrid('loading');
+        },success: function(data){
+            $('#gridCategory').datagrid('loadData',data);
+        },complete: function(jqXHR, textStatus){
+            $('#gridCategory').datagrid('loaded');
+        }
+    });
 }

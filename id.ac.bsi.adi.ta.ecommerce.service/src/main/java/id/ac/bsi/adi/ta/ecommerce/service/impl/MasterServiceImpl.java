@@ -38,8 +38,8 @@ public class MasterServiceImpl implements MasterService {
     @Autowired private UserDao userDao;
     
     @Override
-    public void save(CategoryProduct categoryProduct) {
-        categoryProductDao.save(categoryProduct);
+    public CategoryProduct save(CategoryProduct categoryProduct) {
+        return categoryProductDao.save(categoryProduct);
     }
 
     @Override
