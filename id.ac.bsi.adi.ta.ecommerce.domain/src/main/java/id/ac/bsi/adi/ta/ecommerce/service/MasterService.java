@@ -24,7 +24,7 @@ public interface MasterService {
     public Long countAllCategoryProuducts();
     public Page<CategoryProduct> findAllCategoryProducts(Pageable pageable);
     
-    public void save(Product product);
+    public Product save(Product product);
     public void delete(Product product);
     public Product findProductById(String id);
     public Product findProductByKode(String kode);

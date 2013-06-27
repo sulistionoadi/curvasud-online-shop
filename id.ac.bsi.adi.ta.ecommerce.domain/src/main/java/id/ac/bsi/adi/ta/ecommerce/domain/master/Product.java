@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="mst_product")
 public class Product extends BaseEntity {
     
-    @ManyToOne
+    @ManyToOne @NotNull
     @JoinColumn(name="id_category", nullable=false)
     private CategoryProduct category;
     

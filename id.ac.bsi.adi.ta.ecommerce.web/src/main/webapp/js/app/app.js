@@ -76,3 +76,28 @@ function mergeFieldError(errorResponse){
     
     return oea;
 }
+
+function formatNumber(value){
+    if(!value){
+        return value;
+    }
+    value=value+"";
+    var s1=value,s2="";
+    var _22=value.indexOf(".");
+    if(_22>=0){
+        s1=value.substring(0,_22);
+        s2=value.substring(_22+1,value.length);
+    }
+    
+    var p=/(\d+)(\d{3})/;
+
+    while(p.test(s1)){
+        s1=s1.replace(p,"$1,$2");
+    }
+    
+    if(s2){
+        return s1+"."+s2;
+    } else {
+        return s1;
+    }
+}

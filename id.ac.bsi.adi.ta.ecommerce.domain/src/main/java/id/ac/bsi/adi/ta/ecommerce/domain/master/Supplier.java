@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@Table(name="mst_product")
+@Table(name="mst_supplier")
 public class Supplier extends BaseEntity {
     
     @NotNull @NotEmpty

@@ -21,7 +21,7 @@ import javax.persistence.UniqueConstraint;
  * @author adi
  */
 @Entity
-@Table(name="trx_change_Of_stock", 
+@Table(name="trx_change_of_stock", 
         uniqueConstraints=@UniqueConstraint(columnNames={"date_of_mutation", "id_product"}))
 public class ChangeOfStock extends BaseEntity {
     

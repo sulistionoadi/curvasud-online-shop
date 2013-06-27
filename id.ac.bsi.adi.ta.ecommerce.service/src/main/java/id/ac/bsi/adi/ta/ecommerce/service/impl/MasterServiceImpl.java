@@ -68,8 +68,8 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public void save(Product product) {
-        productDao.save(product);
+    public Product save(Product product) {
+        return productDao.save(product);
     }
 
     @Override

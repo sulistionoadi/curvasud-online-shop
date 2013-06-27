@@ -33,13 +33,13 @@ function createDatagridCategory(){
         columns:[[
         {
             field:'categoryCode', 
-            title:'Kode', 
+            title:'Code', 
             width:110
         },
 
         {
             field:'description', 
-            title: 'Deskripsi', 
+            title: 'Description', 
             width:110
         } 
         ]],
@@ -52,7 +52,7 @@ function createDatagridCategory(){
             });
         },
         onLoadError:function(error){
-            console.log("error loading treegrid data " + error);
+            console.log("error loading grid data " + error);
         }
     });
 }

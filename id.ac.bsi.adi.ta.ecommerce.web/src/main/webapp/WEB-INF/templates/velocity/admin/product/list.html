@@ -16,24 +16,32 @@ and open the template in the editor.
         
         <table id="gridProduct" title="Product List" class="easyui-datagrid" toolbar="#toolbarMasterProduct"></table>
         
-        <div id="dlgFormProduct" class="easyui-dialog" style="width:300px;height:280px;padding:10px 20px" closed="true" buttons="#dlg-product-buttons">  
+        <div id="dlgFormProduct" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#dlg-product-buttons">  
             <div class="ftitle">Product</div>  
             <form id="formMasterProduct" method="post" novalidate>  
                 <div class="fitem">  
-                    <label>Kategori : </label>  
-                    <input name="category" class="easyui-validatebox">  
+                    <label>Category : </label>  
+                    <input id="product_category" name="category" class="easyui-validatebox" required="true">
                 </div>  
                 <div class="fitem">  
-                    <label>Kode Produk :</label>  
-                    <input name="productCode" class="easyui-validatebox" required="true">  
+                    <label></label>  
+                    <input id="categoryName" class="easyui-validatebox" disabled="true">  
+                </div>  
+                <div class="fitem">  
+                    <label>Product Code :</label>  
+                    <input id="product_productCode" name="productCode" class="easyui-validatebox" required="true">  
                 </div>
                 <div class="fitem">  
-                    <label>Nama Produk :</label>  
-                    <input name="productName" class="easyui-validatebox" required="true">  
+                    <label>Product Name :</label>  
+                    <input id="product_productName" name="productName" class="easyui-validatebox" required="true">  
                 </div>
                 <div class="fitem">  
-                    <label>Deskripsi :</label>  
-                    <input name="productName" class="easyui-validatebox" required="true">  
+                    <label>Description :</label>  
+                    <textarea id="product_description" name="productInfo" style="height:100px; width: 200px"></textarea>
+                </div>
+                <div class="fitem">  
+                    <label>Price :</label>  
+                    <input id="product_price" name="price" class="easyui-numberbox" required="true">  
                 </div>
             </form>  
         </div>  
