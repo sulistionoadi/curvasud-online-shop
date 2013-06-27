@@ -1,113 +1,41 @@
-/* GLOBAL STYLES
-    -------------------------------------------------- */
-/* Padding below the footer and lighter body text */
-
+*{
+	font-size:12px;
+}
 body {
-    background-image: url('../img/background_body.png'); 
+    font-family:helvetica,tahoma,verdana,sans-serif;
+    padding:20px;
+    font-size:13px;
+    margin:0;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	background:#FFFEE6;
+	color:#8F5700;
+	padding:12px;
+}
+.demo-tip{
+	width:16px;
+	height:16px;
+	margin-right:8px;
+	float:left;
 }
 
-.navbar-inverse .navbar-inner {
-    background-image: none;
-    background-color: #ffba00;
-    background-repeat: repeat-x;
-    border: 0px solid #E39802;
-}
-
-.navbar-inverse .nav-collapse .nav > li > a,
-.navbar-inverse .nav-collapse .dropdown-menu a {
-    color: #f80909;
-    background-color: #ffba00;
-    font-weight: normal;
-}
-
-.navbar-inverse .nav-collapse .nav > li > a:hover,
-.navbar-inverse .nav-collapse .nav > li > a:focus,
-.navbar-inverse .nav-collapse .dropdown-menu a:hover,
-.navbar-inverse .nav-collapse .dropdown-menu a:focus {
-    color: #e3dd02;
-    background-color: #ff1e00;
-    text-decoration: underline;
-}
-
-.navbar-inverse .nav li.dropdown.open > .dropdown-toggle, 
-.navbar-inverse .nav li.dropdown.active > .dropdown-toggle, 
-.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
-    color: #d2a400;
-    background-color: #c60606;
-}
-
-.navbar .nav > li > .dropdown-menu:after {
-    border-bottom: 6px solid #ffba00;
-}
-
-.dropdown-menu {
-    background-color: #ffba00;
-}
-
-.dropdown-menu .divider {
-    background-color: #ffba00;
-    border-bottom: 1px solid #ffba00;
-}
-
-.nav-header {
-    color: #ff0000;
-}
-
-.panel {
-    width: auto;
-    height: auto;
-    background-color: #ffffff;
-}
-
-.panel-header {
-    height: 30px;
-    background-color: #ffba00;
-    color: #f80909;
-    -webkit-border-radius: 6px 6px 0px 0px;
-    -moz-border-radius: 6px 6px 0px 0px;
-    border-radius: 6px 6px 0px 0px;
-    font-size: 24px;
+.ftitle {
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 14px;
     font-weight: bold;
-    padding-top: 6px;
-    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
 }
-
-.panel-body  {
-    padding: 20px 10px 1px 10px;
-    height: auto;
-    -webkit-border-radius: 0px 0px 6px 6px;
-    -moz-border-radius: 0px 0px 6px 6px;
-    border-radius: 0px 0px 6px 6px;
+.fitem {
+    margin-bottom: 5px;
 }
-
-.btn-primary {
-    color: #f80909;
-    background-color: #ffba00;
-    *background-color: #0044cc;
-    background-image: none;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.btn-primary.disabled,
-.btn-primary[disabled] {
-    color: #ffba00;
-    background-color: #f80909;
-    *background-color: #003bb3;
-}
-
-.btn-primary:active,
-.btn-primary.active {
-    background-color: #f80909;
-}
-
-.content {
-    background-color: #ffffff;
-    -webkit-border-radius: 6px 6px 6px 6px;
-    -moz-border-radius: 6px 6px 6px 6px;
-    border-radius: 6px 6px 6px 6px;
-    padding: 30px 10px 20px 10px;
-    min-height: 400px;
+.fitem label {
+    display: inline-block;
+    width: 80px;
 }

@@ -39,3 +39,40 @@ function paginationAction(pn,ps,url){
         }
     });
 }
+
+function updateErrorMessageTooltip(err){
+    var idcomp = "#" + err.objName + "_" + err.id;
+    var target = $(idcomp)[0];
+    $.data(target, 'validatebox').message = err.message;
+    
+    $(idcomp).validatebox({
+        name: err.field,
+        required: true,
+        invalidMessage: err.message,
+        missingMessage: err.message
+    });
+}
+
+function mergeFieldError(errorResponse){
+    
+    var oea = [];
+    
+    for(var i=0; i<errorResponse.length; i++){
+        var value = errorResponse[i];
+        var dt = oea.filter(function (val) {
+            return val.id === value.field;
+        });
+        if(dt.length < 1){
+            dt = {
+                id: value.field,
+                objName: value.objectName,
+                message: value.defaultMessage
+            };
+            oea.push(dt);
+        } else {
+            dt[0].message = dt[0].message + "<br>" + value.defaultMessage
+        }
+    }
+    
+    return oea;
+}
