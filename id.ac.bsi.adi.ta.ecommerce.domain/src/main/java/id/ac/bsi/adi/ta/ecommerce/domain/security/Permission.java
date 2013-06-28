@@ -33,5 +33,10 @@ public class Permission extends BaseEntity {
     public void setLabel(String label) {
         this.label = label;
     }
+
+    @Override
+    public String toString() {
+        return "Permission{" + "label=" + label + '}';
+    }
     
 }

@@ -34,8 +34,8 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired private PermissionDao permissionDao;
     
     @Override
-    public void save(User user) {
-        userDao.save(user);
+    public User save(User user) {
+        return userDao.save(user);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public void save(Role role) {
-        roleDao.save(role);
+    public Role save(Role role) {
+        return roleDao.save(role);
     }
 
     @Override

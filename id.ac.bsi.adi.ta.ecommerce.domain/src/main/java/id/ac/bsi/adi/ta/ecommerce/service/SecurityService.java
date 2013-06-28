@@ -17,14 +17,14 @@ import org.springframework.data.domain.Pageable;
  */
 public interface SecurityService {
     
-    public void save(User user);
+    public User save(User user);
     public void delete(User user);
     public User findUserById(String id);
     public User findUserByUsername(String username);
     public Long countAllUsers();
     public Page<User> findAllUsers(Pageable pageable);
     
-    public void save(Role role);
+    public Role save(Role role);
     public void delete(Role role);
     public Role findRoleById(String id);
     public Role findRoleByName(String name);

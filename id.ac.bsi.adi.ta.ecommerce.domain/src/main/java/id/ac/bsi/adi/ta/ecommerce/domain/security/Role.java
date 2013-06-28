@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -82,5 +84,9 @@ public class Role extends BaseEntity {
     public void setMenuSet(Set<Menu> menuSet) {
         this.menuSet = menuSet;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Role{" + "name=" + name + ", description=" + description + '}';
+    }
 }
