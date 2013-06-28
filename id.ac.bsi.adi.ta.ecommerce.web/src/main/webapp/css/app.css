@@ -40,3 +40,16 @@ h2 {
     width: 100px;
     vertical-align: top;
 }
+
+#galery {
+    float: left;
+    height: 80px;
+    width: 80px;
+}
+
+.pics {
+    height: 80px;
+    padding: 0;
+    position: relative;
+    width: 80px;
+}

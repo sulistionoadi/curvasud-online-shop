@@ -1,21 +1,19 @@
-var urlCategory = "json";
-var methodCategory = "POST";
-function createDatagridCategory(){
-    $('#categoryProduct_categoryCode').validatebox({
-        name: 'categoryCode',
+var urlSupplier = "json";
+var methodSupplier = "POST";
+function createDatagridSupplier(){
+    $('#supplier_code').validatebox({
         required: true,
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
     
-    $('#categoryProduct_description').validatebox({
-        name: 'description',
+    $('#supplier_name').validatebox({
         required: true,
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
     
-    $('#gridCategory').datagrid({
+    $('#gridSupplier').datagrid({
         style:'width:700px; height:400px',
         method:'get',
         url:'json',
@@ -32,19 +30,33 @@ function createDatagridCategory(){
         },
         columns:[[
         {
-            field:'categoryCode', 
+            field:'code', 
             title:'Code', 
             width:110
         },
-
         {
-            field:'description', 
-            title: 'Description', 
+            field:'name', 
+            title: 'Name', 
             width:110
-        } 
+        },
+        {
+            field:'address', 
+            title: 'Address', 
+            width:110
+        },
+        {
+            field:'email', 
+            title: 'E-Mail', 
+            width:110
+        },
+        {
+            field:'phone', 
+            title: 'Phone', 
+            width:110
+        }
         ]],
         onLoadSuccess:function(row,data){
-            var pager = $('#gridCategory').datagrid('getPager');
+            var pager = $('#gridSupplier').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize){
                     paginationAction(pageNumber, pageSize, 'json');
@@ -57,24 +69,24 @@ function createDatagridCategory(){
     });
 }
 
-function newCategory(){
-    $('#dlgFormCategory').dialog('open').dialog('setTitle','New Category');  
-    $('#formMasterCategory').form('clear');  
-    urlCategory = "json";
-    methodCategory = "POST";
+function newSupplier(){
+    $('#dlgFormSupplier').dialog('open').dialog('setTitle','New Supplier');  
+    $('#formMasterSupplier').form('clear');  
+    urlSupplier = "json";
+    methodSupplier = "POST";
 }
 
-function saveCategory(){
-    var data = $('#formMasterCategory').serializeJSON();
+function saveSupplier(){
+    var data = $('#formMasterSupplier').serializeJSON();
 
     $.ajax({
-        type: methodCategory,
-        url: urlCategory,
+        type: methodSupplier,
+        url: urlSupplier,
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(data){
-            $('#dlgFormCategory').dialog('close');
-            createDatagridCategory();
+            $('#dlgFormSupplier').dialog('close');
+            createDatagridSupplier();
         },
         error: function(errorResp){
             try{
@@ -94,26 +106,26 @@ function saveCategory(){
     });
 }
 
-function editCategory(){
-    var row = $('#gridCategory').datagrid('getSelected');
+function editSupplier(){
+    var row = $('#gridSupplier').datagrid('getSelected');
     if (row){
-        $('#dlgFormCategory').dialog('open').dialog('setTitle','Edit Category');
-        $('#formMasterCategory').form('load',row);
-        urlCategory = 'json/' + row.id;
-        methodCategory = 'PUT';
+        $('#dlgFormSupplier').dialog('open').dialog('setTitle','Edit Supplier');
+        $('#formMasterSupplier').form('load',row);
+        urlSupplier = 'json/' + row.id;
+        methodSupplier = 'PUT';
     }
 }
 
-function removeCategory(){
-    var row = $('#gridCategory').datagrid('getSelected');
+function removeSupplier(){
+    var row = $('#gridSupplier').datagrid('getSelected');
     if (row){
-        $.messager.confirm('Confirm','Are you sure you want to delete this category?',function(r){
+        $.messager.confirm('Confirm','Are you sure you want to delete this supplier?',function(r){
             if (r){
                 $.ajax({
                     type: 'DELETE',
                     url: 'json/' + row.id,
                     success: function(data){
-                        createDatagridCategory();
+                        createDatagridSupplier();
                     },
                     error: function(errorResp){
                         $.messager.show({

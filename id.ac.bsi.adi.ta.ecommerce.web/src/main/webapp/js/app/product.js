@@ -43,12 +43,11 @@ function createDatagridProduct(){
             return '<div id="ddv-' + index + '" style="padding:5px 0"></div>';
         },
         onExpandRow: function(index,row){
-            console.log("row -> ", row);
             $('#ddv-'+index).panel({
                 height:80,
                 border:false,
                 cache:false,
-                href:'json/'+row.id,
+                href:'info?id='+row.id,
                 onLoad:function(){
                     $('#gridProduct').datagrid('fixDetailRowHeight',index);
                 }
@@ -150,7 +149,7 @@ function saveProduct(){
 function editProduct(){
     var row = $('#gridProduct').datagrid('getSelected');
     if (row){
-        $('#dlgFormProduct').dialog('open').dialog('setTitle','Edit User');
+        $('#dlgFormProduct').dialog('open').dialog('setTitle','Edit Product');
         $('#formMasterProduct').form('load',row);
         urlProduct = 'json/' + row.id;
         methodProduct = 'PUT';
@@ -163,7 +162,7 @@ function editProduct(){
 function removeProduct(){
     var row = $('#gridProduct').datagrid('getSelected');
     if (row){
-        $.messager.confirm('Confirm','Are you sure you want to delete this category?',function(r){
+        $.messager.confirm('Confirm','Are you sure you want to delete this product?',function(r){
             if (r){
                 $.ajax({
                     type: 'DELETE',

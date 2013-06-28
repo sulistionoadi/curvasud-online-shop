@@ -5,5 +5,6 @@
     
     <excludes>
         <pattern>/index.html</pattern>
+        <pattern>/html/admin/product/info*</pattern>
     </excludes>
 </decorators>

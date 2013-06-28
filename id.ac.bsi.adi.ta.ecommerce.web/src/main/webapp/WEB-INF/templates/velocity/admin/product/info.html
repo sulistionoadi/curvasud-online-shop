@@ -1,0 +1,37 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <table class="dv-table" border="0" style="width:100%;">
+            <tr valign="top">
+                <td rowspan="3" style="width:60px">
+                    <section id="galery">
+                        <div class="pics">
+                            #foreach($pic in $product.pictures)
+                            #set($urlImg = '../../../' + $pic)
+                            <img src="$urlImg" style="width:60px;margin-right:20px" />
+                            #end
+                        </div>
+                    </section>
+
+                </td>
+                <td class="dv-label">$!product.productInfo</td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.pics').cycle({
+                    fx: 'fade',
+                    next: '#next',
+                    prev: '#prev'
+                });
+            });
+        </script>
+    </body>
+</html>

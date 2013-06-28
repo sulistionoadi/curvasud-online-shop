@@ -7,16 +7,15 @@ package id.ac.bsi.adi.ta.ecommerce.service.impl;
 import id.ac.bsi.adi.ta.ecommerce.dao.CategoryProductDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.MemberDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.ProductDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.SupplierDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.UserDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
-import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.Supplier;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
-import java.util.List;
 import org.hibernate.Hibernate;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +35,7 @@ public class MasterServiceImpl implements MasterService {
     @Autowired private ProductDao productDao;
     @Autowired private MemberDao memberDao;
     @Autowired private UserDao userDao;
+    @Autowired private SupplierDao supplierDao;
     
     @Override
     public CategoryProduct save(CategoryProduct categoryProduct) {
@@ -100,7 +100,7 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public Long countAllProuducts() {
+    public Long countAllProducts() {
         return productDao.count();
     }
 
@@ -139,6 +139,36 @@ public class MasterServiceImpl implements MasterService {
     public void register(Member member, User user) {
         memberDao.save(member);
         userDao.save(user);
+    }
+
+    @Override
+    public Supplier save(Supplier supplier) {
+        return supplierDao.save(supplier);
+    }
+
+    @Override
+    public void delete(Supplier supplier) {
+        supplierDao.delete(supplier);
+    }
+
+    @Override
+    public Supplier findSupplierById(String id) {
+        return supplierDao.findOne(id);
+    }
+
+    @Override
+    public Supplier findSupplierByKode(String kode) {
+        return supplierDao.findSupplierByCode(kode);
+    }
+
+    @Override
+    public Long countAllSupplier() {
+        return supplierDao.count();
+    }
+
+    @Override
+    public Page<Supplier> findAllSupplier(Pageable pageable) {
+        return supplierDao.findAll(pageable);
     }
     
 }

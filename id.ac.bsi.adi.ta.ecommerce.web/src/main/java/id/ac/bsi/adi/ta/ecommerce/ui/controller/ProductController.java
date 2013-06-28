@@ -49,7 +49,7 @@ public class ProductController extends ExceptionHandlerController{
     @RequestMapping(value="/json", method= RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> jsonDataProduct(Pageable pageable, HttpServletResponse httpServletResponse) {
-        Long countProduct = masterService.countAllProuducts();
+        Long countProduct = masterService.countAllProducts();
         Object[] obj = {pageable.getOffset(), pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort()};
         logger.info("DEBUG VALUE PAGEABLE -- Offset[{}] PageNumber[{}] PageSize[{}] Sort[{}]", obj);
         
@@ -83,6 +83,17 @@ public class ProductController extends ExceptionHandlerController{
             throw new IllegalStateException("Product with id [" + id + "] not found !!");
         }
         return p;
+    }
+    
+    @RequestMapping("/info")
+    @ResponseStatus(HttpStatus.OK)
+    public ModelMap infoDetail(@RequestParam(value="id", required=false) String id) {
+        Product p = masterService.findProductById(id);
+        if(p==null){
+            logger.warn("Product with id [{}] not found !!", id);
+            throw new IllegalStateException("Product with id [" + id + "] not found !!");
+        }
+        return new ModelMap().addAttribute(p);
     }
     
     @RequestMapping("/cat/{kode}")

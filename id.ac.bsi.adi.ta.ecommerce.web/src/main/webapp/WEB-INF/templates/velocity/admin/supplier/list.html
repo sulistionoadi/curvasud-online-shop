@@ -1,0 +1,53 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Supplier</title>
+    </head>
+    <body>
+        <div id="toolbarMasterSupplier">  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newSupplier()">Add</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editSupplier()">Edit</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeSupplier()">Remove</a>  
+        </div>
+        
+        <table id="gridSupplier" title="Supplier List" class="easyui-datagrid" toolbar="#toolbarMasterSupplier"></table>
+        
+        <div id="dlgFormSupplier" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#dlg-supplier-buttons">  
+            <div class="ftitle">Product</div>  
+            <form id="formMasterSupplier" method="post" novalidate>  
+                <div class="fitem">  
+                    <label>Supplier Code : </label>  
+                    <input id="supplier_code" name="code" class="easyui-validatebox" required="true">
+                </div>  
+                <div class="fitem">  
+                    <label>Supplier Name :</label>  
+                    <input id="supplier_name" name="name" class="easyui-validatebox" required="true">  
+                </div>
+                <div class="fitem">  
+                    <label>Address :</label>  
+                    <input id="supplier_address" name="address" class="easyui-validatebox">  
+                </div>
+                <div class="fitem">  
+                    <label>Email :</label>  
+                    <input id="supplier_email" class="easyui-validatebox" name="email" data-options="validType:'email'" />
+                </div>
+                <div class="fitem">  
+                    <label>Phone :</label>  
+                    <input id="supplier_phone" name="phone" class="easyui-numberbox" >
+                </div>
+            </form>  
+        </div>  
+        <div id="dlg-supplier-buttons">  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveSupplier()">Save</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgFormSupplier').dialog('close')">Cancel</a>  
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(createDatagridSupplier);
+        </script>
+    </body>
+</html>
