@@ -5,13 +5,17 @@
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
 import id.ac.bsi.adi.ta.ecommerce.dao.CategoryProductDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.CityDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.MemberDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.ProductDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.ShippingRateDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.SupplierDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.UserDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.City;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.ShippingRate;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Supplier;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
@@ -32,10 +36,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class MasterServiceImpl implements MasterService {
 
     @Autowired private CategoryProductDao categoryProductDao;
-    @Autowired private ProductDao productDao;
+    @Autowired private CityDao cityDao;
     @Autowired private MemberDao memberDao;
-    @Autowired private UserDao userDao;
+    @Autowired private ProductDao productDao;
     @Autowired private SupplierDao supplierDao;
+    @Autowired private ShippingRateDao shippingRateDao;
+    @Autowired private UserDao userDao;
     
     @Override
     public CategoryProduct save(CategoryProduct categoryProduct) {
@@ -169,6 +175,66 @@ public class MasterServiceImpl implements MasterService {
     @Override
     public Page<Supplier> findAllSupplier(Pageable pageable) {
         return supplierDao.findAll(pageable);
+    }
+
+    @Override
+    public City save(City city) {
+        return cityDao.save(city);
+    }
+
+    @Override
+    public void delete(City city) {
+        cityDao.delete(city);
+    }
+
+    @Override
+    public City findCityById(String id) {
+        return cityDao.findOne(id);
+    }
+
+    @Override
+    public City findCityByKode(String kode) {
+        return cityDao.findCityByCode(kode);
+    }
+
+    @Override
+    public Long countAllCities() {
+        return cityDao.count();
+    }
+
+    @Override
+    public Page<City> findAllCities(Pageable pageable) {
+        return cityDao.findAll(pageable);
+    }
+
+    @Override
+    public ShippingRate save(ShippingRate shippingRate) {
+        return shippingRateDao.save(shippingRate);
+    }
+
+    @Override
+    public void delete(ShippingRate shippingRate) {
+        shippingRateDao.delete(shippingRate);
+    }
+
+    @Override
+    public ShippingRate findShippingRateById(String id) {
+        return shippingRateDao.findOne(id);
+    }
+
+    @Override
+    public ShippingRate findShippingRateByCity(City city) {
+        return shippingRateDao.findShippingRateByCity(city);
+    }
+
+    @Override
+    public Long countAllShippingRates() {
+        return shippingRateDao.count();
+    }
+
+    @Override
+    public Page<ShippingRate> findAllShippingRates(Pageable pageable) {
+        return shippingRateDao.findAll(pageable);
     }
     
 }

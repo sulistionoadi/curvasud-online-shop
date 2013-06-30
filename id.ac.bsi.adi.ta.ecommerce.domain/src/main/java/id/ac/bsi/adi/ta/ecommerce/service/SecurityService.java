@@ -30,6 +30,7 @@ public interface SecurityService {
     public Role findRoleByName(String name);
     public Long countAllRoles();
     public Page<Role> findAllRoles(Pageable pageable);
+    public List<Role> findAllRoles();
     
     public List<Permission> findAllPermissions();
     

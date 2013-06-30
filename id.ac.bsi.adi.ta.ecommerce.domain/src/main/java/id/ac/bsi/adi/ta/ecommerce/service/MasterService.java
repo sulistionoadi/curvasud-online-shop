@@ -5,8 +5,10 @@
 package id.ac.bsi.adi.ta.ecommerce.service;
 
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.City;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.ShippingRate;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Supplier;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import org.springframework.data.domain.Page;
@@ -44,5 +46,19 @@ public interface MasterService {
     public Member findMemberById(String id);
     public Long countAllMembers();
     public Page<Member> findAllMembers(Pageable pageable);
+    
+    public City save(City city);
+    public void delete(City city);
+    public City findCityById(String id);
+    public City findCityByKode(String kode);
+    public Long countAllCities();
+    public Page<City> findAllCities(Pageable pageable);
+    
+    public ShippingRate save(ShippingRate shippingRate);
+    public void delete(ShippingRate shippingRate);
+    public ShippingRate findShippingRateById(String id);
+    public ShippingRate findShippingRateByCity(City city);
+    public Long countAllShippingRates();
+    public Page<ShippingRate> findAllShippingRates(Pageable pageable);
     
 }
