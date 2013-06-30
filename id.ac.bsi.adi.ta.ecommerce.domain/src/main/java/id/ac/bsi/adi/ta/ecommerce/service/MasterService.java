@@ -11,6 +11,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.ShippingRate;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Supplier;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -53,6 +54,7 @@ public interface MasterService {
     public City findCityByKode(String kode);
     public Long countAllCities();
     public Page<City> findAllCities(Pageable pageable);
+    public List<City> findAllCities();
     
     public ShippingRate save(ShippingRate shippingRate);
     public void delete(ShippingRate shippingRate);

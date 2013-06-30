@@ -19,6 +19,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.master.ShippingRate;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Supplier;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
+import java.util.List;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -235,6 +236,11 @@ public class MasterServiceImpl implements MasterService {
     @Override
     public Page<ShippingRate> findAllShippingRates(Pageable pageable) {
         return shippingRateDao.findAll(pageable);
+    }
+
+    @Override
+    public List<City> findAllCities() {
+        return cityDao.findAll();
     }
     
 }

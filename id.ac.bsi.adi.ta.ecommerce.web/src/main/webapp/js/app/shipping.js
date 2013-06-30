@@ -1,26 +1,26 @@
-var urlUser = "json";
-var methodUser = "POST";
-var roleSelected = null;
-function createDatagridUser(){
-    $('#user_username').validatebox({
+var urlShipping = "json";
+var methodShipping = "POST";
+var citySelected = null;
+function createDatagridShipping(){
+    $('#shippingRate_city').combobox({
         required: true,
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
     
-    $('#user_password').validatebox({
+    $('#shippingRate_express').validatebox({
         required: true,
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
     
-    $('#user_role').combobox({
+    $('#shippingRate_reguler').validatebox({
         required: true,
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
     
-    $('#gridUser').datagrid({
+    $('#gridShipping').datagrid({
         style:'width:400px; height:700px',
         method:'get',
         url:'json',
@@ -37,49 +37,38 @@ function createDatagridUser(){
         },
         columns:[[
         {
-            field:'username', 
-            title:'Username', 
-            width:70
-        },
-        {
-            field:'role', 
-            title: 'Role', 
+            field:'city', 
+            title: 'City', 
             width:110,
             formatter: function(value,row,index){
-                if (row.role){
-                    return row.role.name;
+                if (row.city){
+                    return row.city.name;
                 } else {
                     return value;
                 }
             }
         },
         {
-            field:'member', 
-            title: 'Member Name', 
-            width:110,
+            field:'express', 
+            title:'Express', 
+            width:100,
+            align:'right',
             formatter: function(value,row,index){
-                if (row.member){
-                    return row.member.firstname + " " + row.member.lastname;
-                } else {
-                    return value;
-                }
+                return formatNumber(value);
             }
         },
         {
-            field:'active', 
-            title: 'Active', 
-            width:50,
+            field:'reguler', 
+            title:'Reguler', 
+            width:100,
+            align:'right',
             formatter: function(value,row,index){
-                if (value){
-                    return "yes";
-                } else {
-                    return "no";
-                }
+                return formatNumber(value);
             }
-        } 
+        }
         ]],
         onLoadSuccess:function(row,data){
-            var pager = $('#gridUser').datagrid('getPager');
+            var pager = $('#gridShipping').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize){
                     paginationAction(pageNumber, pageSize, 'json');
@@ -92,15 +81,15 @@ function createDatagridUser(){
     });
 }
 
-function getObjectRole(){
-    var idr = $('#user_role').combobox('getValue');
-    console.log("call method getObjectRole : ", idr);
+function getObjectCity(){
+    var idr = $('#shippingRate_city').combobox('getValue');
+    console.log("call method getObjectCity : ", idr);
     $.ajax({
         type: 'GET',
-        url: '../role/json/'+ idr,
+        url: '../city/json/'+ idr,
         contentType: 'application/json',
         success: function(data){
-            roleSelected = data;
+            citySelected = data;
         },
         error: function(errorResp){
             try{
@@ -111,7 +100,7 @@ function getObjectRole(){
                 });
             } catch(e){
                 $.messager.show({
-                    title: 'Get Role Error',
+                    title: 'Get Shipping Error',
                     msg: errorResp.responseText
                 });
             }
@@ -120,32 +109,25 @@ function getObjectRole(){
     });
 }
 
-function newUser(){
-    $('#dlgFormUser').dialog('open').dialog('setTitle','New User');  
-    $('#formMasterUser').form('clear');  
-    urlUser = "json";
-    methodUser = "POST";
+function newShipping(){
+    $('#dlgFormShipping').dialog('open').dialog('setTitle','New Shipping');  
+    $('#formMasterShipping').form('clear');  
+    urlShipping = "json";
+    methodShipping = "POST";
 }
 
-function saveUser(){
-    if(!$('#user_confirm').validatebox('isValid') || roleSelected==null) {
-       return; 
-    }
-    
-    var data = $('#formMasterUser').serializeJSON();
-    data.role = roleSelected;
-    data.active = $('#user_active').is(':checked');
-    data.role.permissionSet = null;
-    data.role.menuSet = null;
+function saveShipping(){
+    var data = $('#formMasterShipping').serializeJSON();
+    data.city = citySelected;
 
     $.ajax({
-        type: methodUser,
-        url: urlUser,
+        type: methodShipping,
+        url: urlShipping,
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function(data){
-            $('#dlgFormUser').dialog('close');
-            createDatagridUser();
+            $('#dlgFormShipping').dialog('close');
+            createDatagridShipping();
         },
         error: function(errorResp){
             try{
@@ -167,30 +149,28 @@ function saveUser(){
     });
 }
 
-function editUser(){
-    var row = $('#gridUser').datagrid('getSelected');
-    console.log('row --> ', row);
+function editShipping(){
+    var row = $('#gridShipping').datagrid('getSelected');
     if (row){
-        $('#dlgFormUser').dialog('open').dialog('setTitle','Edit User');
-        $('#formMasterUser').form('load',row);
-        $('#user_role').combobox('setValue', row.role.id)
-        $('#user_active').prop("checked", row.active);
-        roleSelected = row.role;
-        urlUser = 'json/' + row.id;
-        methodUser = 'PUT';
+        $('#dlgFormShipping').dialog('open').dialog('setTitle','Edit Shipping');
+        $('#formMasterShipping').form('load',row);
+        $('#shippingRate_city').combobox('setValue', row.city.id)
+        citySelected = row.city;
+        urlShipping = 'json/' + row.id;
+        methodShipping = 'PUT';
     }
 }
 
-function removeUser(){
-    var row = $('#gridUser').datagrid('getSelected');
+function removeShipping(){
+    var row = $('#gridShipping').datagrid('getSelected');
     if (row){
-        $.messager.confirm('Confirm','Are you sure you want to delete this role?',function(r){
+        $.messager.confirm('Confirm','Are you sure you want to delete this shipping?',function(r){
             if (r){
                 $.ajax({
                     type: 'DELETE',
                     url: 'json/' + row.id,
                     success: function(data){
-                        createDatagridUser();
+                        createDatagridShipping();
                     },
                     error: function(errorResp){
                         $.messager.show({

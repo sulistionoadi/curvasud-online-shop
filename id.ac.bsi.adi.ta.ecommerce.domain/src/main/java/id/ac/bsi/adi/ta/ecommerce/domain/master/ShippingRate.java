@@ -32,8 +32,8 @@ public class ShippingRate extends BaseEntity {
     private BigDecimal express;
     
     @NotNull
-    @Column(name="regular", nullable=false)
-    private BigDecimal regular;
+    @Column(name="reguler", nullable=false)
+    private BigDecimal reguler;
 
     public City getCity() {
         return city;
@@ -51,12 +51,12 @@ public class ShippingRate extends BaseEntity {
         this.express = express;
     }
 
-    public BigDecimal getRegular() {
-        return regular;
+    public BigDecimal getReguler() {
+        return reguler;
     }
 
-    public void setRegular(BigDecimal regular) {
-        this.regular = regular;
+    public void setReguler(BigDecimal reguler) {
+        this.reguler = reguler;
     }
     
 }
