@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -29,6 +30,8 @@ public class Supplier extends BaseEntity {
     private String name;
     
     private String address;
+    
+    @Email
     private String email;
     private String phone;
 

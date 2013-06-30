@@ -1,0 +1,42 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Kota</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="toolbarMasterCity">  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newCity()">Add</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editCity()">Edit</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeCity()">Remove</a>  
+        </div>
+        
+        <table id="gridCity" title="City List" class="easyui-datagrid" toolbar="#toolbarMasterCity"></table>
+        
+        <div id="dlgFormCity" class="easyui-dialog" style="width:400px;height:200px;padding:10px 20px" closed="true" buttons="#dlg-city-buttons">  
+            <div class="ftitle">City</div>  
+            <form id="formMasterCity" method="post" novalidate>  
+                <div class="fitem">  
+                    <label>Code : </label>  
+                    <input id="city_code" name="code">  
+                </div>  
+                <div class="fitem">  
+                    <label>Name:</label>  
+                    <input id="city_name" name="name">  
+                </div>
+            </form>  
+        </div>  
+        <div id="dlg-city-buttons">  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveCity()">Save</a>  
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlgFormCity').dialog('close')">Cancel</a>  
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(createDatagridCity);
+        </script>
+    </body>
+</html>
