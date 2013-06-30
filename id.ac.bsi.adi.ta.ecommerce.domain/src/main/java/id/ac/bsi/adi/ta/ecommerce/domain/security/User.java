@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -38,6 +39,9 @@ public class User extends BaseEntity {
     @Column(nullable=false)
     private String password;
    
+    @Transient
+    private String confirm;
+    
     @Column(nullable=false)
     private Boolean active = Boolean.FALSE;
     
@@ -51,7 +55,7 @@ public class User extends BaseEntity {
     private Role role;
     
     @OneToOne(fetch= FetchType.EAGER)
-    @JoinColumn(name="id_member", nullable=false)
+    @JoinColumn(name="id_member")
     private Member member;
 
     public Member getMember() {
@@ -100,6 +104,14 @@ public class User extends BaseEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
     }
     
 }

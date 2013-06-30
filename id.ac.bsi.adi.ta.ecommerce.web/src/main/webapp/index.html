@@ -23,6 +23,7 @@
         <script type="text/javascript" src="${base}/js/app/product.js"></script>
         <script type="text/javascript" src="${base}/js/app/role.js"></script>
         <script type="text/javascript" src="${base}/js/app/supplier.js"></script>
+        <script type="text/javascript" src="${base}/js/app/user.js"></script>
 
     </head>
     <body>
@@ -53,20 +54,30 @@
         </div> <!-- end of banner wrapper -->
 
         <div id="templatemo_menu_wrapper">
-
             <div id="templatemo_menu">
+                    <ul>
+                        <li><a href="index.php?pg=beranda">Beranda</a></li>
 
-                <ul>
-                    <li><a href="#" class="current fast">Home</a></li>
-                    <li><a href="http://www.flashmo.com" target="_parent">Flash</a></li>
-                    <li><a href="http://www.templatemo.com" target="_parent">CSS</a></li>
-                    <li><a href="http://www.templatemo.com" target="_parent">Gallery</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Company</a></li>
-                </ul>
+                        <li><a href="#">Master</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="${base}/html/admin/category/list">Category</a></li>
+                                    <li><a href="${base}/html/admin/product/list">Product</a></li>
+                                    <li><a href="${base}/html/admin/supplier/list">Supplier</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
 
+                        <li><a href="#">Security</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="${base}/html/admin/user/list">User</a></li>
+                                    <li><a href="${base}/html/admin/role/list">Role</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
+                    </ul>
             </div> <!-- end of menu -->
-
         </div> <!-- end of menu wrapper -->
 
         <div id="templatemo_content">

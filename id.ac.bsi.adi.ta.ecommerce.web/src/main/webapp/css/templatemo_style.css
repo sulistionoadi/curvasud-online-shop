@@ -157,7 +157,7 @@ h4 {
 	color: #FFFF00;
 }
 
-#templatemo_site_title_bar #top_menu {
+#templatemo_site_title_bar #top_templatemo_menu {
 	float:right;
 	margin: 65px 50px 0 0;
 	padding: 0px;
@@ -299,6 +299,7 @@ h4 {
 	background: url(../img/templatemo_menu_bg.jpg) center no-repeat;
 }
 
+/*
 #templatemo_menu ul {
 	width: 720px;
 	overflow: hidden;
@@ -331,7 +332,7 @@ h4 {
 	color: #212629;
 	background: url(../img/templatemo_menu_hover.png) left center no-repeat;
 }
-
+*/
 /* end of menu */
 
 /* content */

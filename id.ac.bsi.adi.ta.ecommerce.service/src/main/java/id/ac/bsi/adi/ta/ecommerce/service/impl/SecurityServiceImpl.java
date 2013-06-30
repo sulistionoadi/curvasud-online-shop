@@ -36,7 +36,12 @@ public class SecurityServiceImpl implements SecurityService {
     
     @Override
     public User save(User user) {
-        return userDao.save(user);
+        User u = userDao.save(user);
+        if(u.getRole()!=null){
+            Hibernate.initialize(u.getRole().getPermissionSet());
+            Hibernate.initialize(u.getRole().getMenuSet());
+        }
+        return u;
     }
 
     @Override
@@ -147,8 +152,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public List<Role> findAllRoles() {
-//        return roleDao.findAll().iterator();
-        return null;
+        return roleDao.findAll();
     }
     
 }

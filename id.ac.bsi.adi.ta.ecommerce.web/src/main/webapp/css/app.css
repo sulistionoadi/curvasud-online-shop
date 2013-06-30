@@ -1,5 +1,5 @@
 *{
-	font-size:12px;
+    font-size:12px;
 }
 body {
     font-family:helvetica,tahoma,verdana,sans-serif;
@@ -14,15 +14,15 @@ h2 {
     margin-bottom:15px;
 }
 .demo-info{
-	background:#FFFEE6;
-	color:#8F5700;
-	padding:12px;
+    background:#FFFEE6;
+    color:#8F5700;
+    padding:12px;
 }
 .demo-tip{
-	width:16px;
-	height:16px;
-	margin-right:8px;
-	float:left;
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    float:left;
 }
 
 .ftitle {
@@ -52,4 +52,67 @@ h2 {
     padding: 0;
     position: relative;
     width: 80px;
+}
+
+
+/* Menu */
+
+/* remove the bullets, padding and margins from the lists */
+#templatemo_menu ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* make the top level links horizontal and position relative so that we can position the sub level */
+#templatemo_menu li{
+    float:left;
+    position:relative;
+    z-index:100;
+}
+
+/* use the table to position the dropdown list */
+#templatemo_menu table{
+    position:absolute;
+    border-collapse:collapse;
+    z-index:100;
+    left:-1px;
+    top:35px;
+}
+
+/* style all the links */
+#templatemo_menu a, .templatemo_menu :visited {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    width: 110px;
+    padding: 7px 0;
+    color: #000;
+    background: #FC9D00;
+    text-decoration: none;
+    margin-right: 0px;
+    text-align: center;
+}
+/* style the links hover */
+#templatemo_menu :hover{
+    color: #FFFFFF;
+    background: #E93301;
+}
+
+/* hide the sub level links */
+#templatemo_menu ul ul {
+    visibility:hidden;
+    position:absolute;
+    width:139px;
+    height:0;
+}
+/* make the sub level visible on hover list or link */
+#templatemo_menu ul li:hover ul,
+#templatemo_menu ul a:hover ul{
+    visibility:visible;
+}
+
+#templatemo_menu .current_page_item a {
+    background: #E93301;
+    color: #FFFFFF;
 }
