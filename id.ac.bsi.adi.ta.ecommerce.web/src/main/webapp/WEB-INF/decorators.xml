@@ -1,4 +1,13 @@
-<decorators defaultdir="/">
+<decorators defaultdir="/WEB-INF/decorators">
+
+    <decorator name="template1" page="template1.html">
+        <pattern>/customer/*</pattern>
+    </decorator>
+    
+    <decorator name="template2" page="template2.html">
+        <pattern>/admin/*</pattern>
+    </decorator>
+
     <decorator name="default" page="index.html">
         <pattern>/*</pattern>
     </decorator>
