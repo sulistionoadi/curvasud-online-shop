@@ -4,14 +4,17 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
+import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
+import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +42,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ProductController extends ExceptionHandlerController{
     
     @Autowired private MasterService masterService;
+    @Autowired private RunningNumberService runningNumberService;
     public static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     
     @RequestMapping("/list")
     public ModelMap pageDataProduct(){
         return new ModelMap();
+    }
+    
+    @RequestMapping("/code")
+    @ResponseBody
+    public Map<String, String> generateKodeProduk(){
+        String number = runningNumberService.generateProductRunningNumber(DesignationType.PRODUCT);
+        String code = "CSOS" + StringUtils.leftPad(number, 4, "0");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("code", code);
+        return map;
     }
     
     @RequestMapping(value="/json", method= RequestMethod.GET)

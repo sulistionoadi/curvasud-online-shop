@@ -62,6 +62,7 @@ public class RunningNumberServiceImpl implements RunningNumberService {
             stan = new RunningNumber();
             stan.setBussinessDate(date);
             stan.setDesignationType(designation);
+            stan.setLastNumber(1l);
             runningNumberDao.save(stan);
         } else {
             stan.setLastNumber(stan.getLastNumber() + 1);

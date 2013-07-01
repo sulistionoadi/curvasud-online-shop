@@ -110,7 +110,24 @@ function createDatagridProduct(){
 
 function newProduct(){
     $('#dlgFormProduct').dialog('open').dialog('setTitle','New Product');  
-    $('#formMasterProduct').form('clear');  
+    $('#formMasterProduct').form('clear');
+    
+    $.ajax({
+        type: 'GET',
+        url: 'code',
+        contentType: 'application/json',
+        success: function(data){
+            $("#product_productCode").val(data.code);
+        },
+        error: function(errorResp){
+            $.messager.show({
+                title: 'Get ProductCode Error',
+                msg: errorResp.responseText
+            });
+        },
+        dataType: 'json'
+    });
+    
     urlProduct = "json";
     methodProduct = "POST";
     category = null;
@@ -119,6 +136,7 @@ function newProduct(){
 function saveProduct(){
     var data = $('#formMasterProduct').serializeJSON();
     data.category = category;
+    data.productCode = $("#product_productCode").val();
     $.ajax({
         type: methodProduct,
         url: urlProduct,
