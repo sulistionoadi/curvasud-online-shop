@@ -1,19 +1,20 @@
 <decorators defaultdir="/WEB-INF/decorators">
 
-    <decorator name="template1" page="template1.html">
-        <pattern>/customer/*</pattern>
+    <decorator name="main_user" page="main_user.html">
+        <pattern>/registrasi/*</pattern>
+        <pattern>/user/*</pattern>
     </decorator>
     
-    <decorator name="template2" page="template2.html">
+    <decorator name="main_admin" page="main_admin.html">
         <pattern>/admin/*</pattern>
     </decorator>
 
-    <decorator name="default" page="index.html">
+    <decorator name="default" page="../../index.html">
         <pattern>/*</pattern>
     </decorator>
     
     <excludes>
         <pattern>/index.html</pattern>
-        <pattern>/html/admin/product/info*</pattern>
+        <pattern>/admin/product/info*</pattern>
     </excludes>
 </decorators>

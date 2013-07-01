@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>${title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="Adi Sulistiono"/>
+
+        <link href="${base}/js/themes/black/easyui.css" rel="stylesheet" />
+        <link href="${base}/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+        <link href="${base}/js/themes/icon.css" rel="stylesheet" />
+        <link href="${base}/css/app.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="${base}/js/jquery.min.js"></script>
+        <script type="text/javascript" src="${base}/js/jquery.cycle.all.js"></script>
+        <script type="text/javascript" src="${base}/js/jquery.easyui.min.js"></script>
+        <script type="text/javascript" src="${base}/js/app/app.js"></script>
+        <script type="text/javascript" src="${base}/js/app/category.js"></script>
+        <script type="text/javascript" src="${base}/js/app/city.js"></script>
+        <script type="text/javascript" src="${base}/js/app/datagrid-detailview.js"></script>
+        <script type="text/javascript" src="${base}/js/app/member.js"></script>
+        <script type="text/javascript" src="${base}/js/app/product.js"></script>
+        <script type="text/javascript" src="${base}/js/app/role.js"></script>
+        <script type="text/javascript" src="${base}/js/app/shipping.js"></script>
+        <script type="text/javascript" src="${base}/js/app/supplier.js"></script>
+        <script type="text/javascript" src="${base}/js/app/user.js"></script>
+
+    </head>
+    <body>
+
+        <div id="templatemo_site_title_bar_wrapper">
+
+            <div id="templatemo_site_title_bar">
+                <div id="site_title">
+                    <h1>Merchandise Online Store</h1>
+                    <span>Pre Order and Ready Stock Online System</span>
+                </div>
+
+                <ul id="top_menu">
+                    <li class="first"><a href="#">Home</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+
+            </div> <!-- end of site title bar -->
+        </div> <!-- end of site title bar wrapper -->
+
+        <div id="templatemo_banner_wrapper">
+
+            <div id="templatemo_banner">
+                <div id="banner_content"></div>
+            </div> <!-- end of banner-->
+
+        </div> <!-- end of banner wrapper -->
+
+        <div id="templatemo_menu_wrapper">
+            <div id="templatemo_menu">
+                    <ul>
+                        <li><a href="index.php?pg=beranda">Beranda</a></li>
+
+                        <li><a href="#">Master</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="${base}/admin/category/list">Category</a></li>
+                                    <li><a href="${base}/admin/product/list">Product</a></li>
+                                    <li><a href="${base}/admin/supplier/list">Supplier</a></li>
+                                    <li><a href="${base}/admin/city/list">City</a></li>
+                                    <li><a href="${base}/admin/shipping/list">Shipping Cost</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
+                        <li><a href="#">Transaksi</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="${base}/admin/purchase/list">Purchase</a></li>
+                                    <li><a href="${base}/admin/approve/list">App. Payment</a></li>
+                                    <li><a href="${base}/admin/invoice/">Invoice</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
+
+                        <li><a href="#">Security</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="${base}/admin/user/list">User</a></li>
+                                    <li><a href="${base}/admin/role/list">Role</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
+                        <li><a href="#">Setting</a>
+                            <table><tr>
+                                <td><ul>
+                                    <li><a href="#">Change Password</a></li>
+                                </ul></td>
+                            </tr></table>
+                        </li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+            </div> <!-- end of menu -->
+        </div> <!-- end of menu wrapper -->
+
+        <div id="templatemo_content">
+
+            <div id="main_column">
+
+                <div class="section_w560">
+                    ${body}
+                    <div class="cleaner"></div>
+                </div>
+            </div>
+
+            <div id="side_column">
+                <div class="side_column_box">
+                    menu
+                </div>
+
+                <div class="cleaner_h20"></div>
+            </div> <!-- end of side column -->
+
+            <div class="cleaner"></div>
+
+        </div> <!-- end of content -->
+
+        <div id="templatemo_footer_wrapper">
+
+            <div id="templatemo_footer">
+
+                Copyright &copy; 2013 <a href="${base}">Curvasud Online Store</a> | 
+                <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a></div> 
+            <!-- end of footer -->
+
+        </div> <!-- end of footer wrapper -->
+        <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
+</html>
