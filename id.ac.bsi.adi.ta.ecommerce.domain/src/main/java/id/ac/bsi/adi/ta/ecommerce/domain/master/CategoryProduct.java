@@ -21,11 +21,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class CategoryProduct extends BaseEntity {
     
     @NotNull @NotEmpty
-    @Column(nullable=false, name="category_code", unique=true)
+    @Column(nullable=false, name="category_code", unique=true, length=3)
     private String categoryCode;
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=100)
     private String description;
 
     public String getCategoryCode() {

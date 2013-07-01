@@ -32,7 +32,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Purchase extends BaseEntity {
    
    @NotNull @NotEmpty
-   @Column(nullable=false, name="purchase_number")
+   @Column(nullable=false, name="purchase_number", length=20)
    private String purchaseNumber;
    
    @Column(nullable=false, name="purchase_date")

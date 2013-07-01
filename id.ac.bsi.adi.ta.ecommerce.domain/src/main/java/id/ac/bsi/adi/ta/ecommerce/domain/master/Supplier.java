@@ -22,17 +22,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Supplier extends BaseEntity {
     
     @NotNull @NotEmpty
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, length=3)
     private String code;
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=25)
     private String name;
     
+    @Column(length=50)
     private String address;
     
     @Email
+    @Column(length=25)
     private String email;
+    @Column(length=15)
     private String phone;
 
     public String getCode() {

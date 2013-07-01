@@ -4,6 +4,7 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.domain;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
@@ -19,6 +20,7 @@ public class BaseEntity {
     
     @Id @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name="id", length=36)
     private String id;
 
     public String getId() {

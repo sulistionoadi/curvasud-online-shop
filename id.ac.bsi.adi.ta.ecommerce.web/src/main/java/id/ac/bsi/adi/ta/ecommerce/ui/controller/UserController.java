@@ -53,7 +53,6 @@ public class UserController extends ExceptionHandlerController {
         List<Role> roles = securityService.findAllRoles();
         for (Role r : roles) {
             r.setPermissionSet(null);
-            r.setMenuSet(null);
         }
         return roles;
     }

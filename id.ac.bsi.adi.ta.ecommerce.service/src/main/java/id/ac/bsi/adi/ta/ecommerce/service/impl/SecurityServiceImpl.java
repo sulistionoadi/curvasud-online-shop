@@ -39,7 +39,6 @@ public class SecurityServiceImpl implements SecurityService {
         User u = userDao.save(user);
         if(u.getRole()!=null){
             Hibernate.initialize(u.getRole().getPermissionSet());
-            Hibernate.initialize(u.getRole().getMenuSet());
         }
         return u;
     }
@@ -55,7 +54,6 @@ public class SecurityServiceImpl implements SecurityService {
         
         if(user.getRole()!=null){
             Hibernate.initialize(user.getRole().getPermissionSet());
-            Hibernate.initialize(user.getRole().getMenuSet());
         }
         
         return user;
@@ -67,7 +65,6 @@ public class SecurityServiceImpl implements SecurityService {
         
         if(user.getRole()!=null){
             Hibernate.initialize(user.getRole().getPermissionSet());
-            Hibernate.initialize(user.getRole().getMenuSet());
         }
         
         return user;
@@ -80,7 +77,6 @@ public class SecurityServiceImpl implements SecurityService {
         for (User u : pageUser.getContent()) {
             if(u.getRole()!=null){
                 Hibernate.initialize(u.getRole().getPermissionSet());
-                Hibernate.initialize(u.getRole().getMenuSet());
             }
         }
         
@@ -103,7 +99,6 @@ public class SecurityServiceImpl implements SecurityService {
         
         if(r!=null){
             Hibernate.initialize(r.getPermissionSet());
-            Hibernate.initialize(r.getMenuSet());
         }
         
         return r;
@@ -116,7 +111,6 @@ public class SecurityServiceImpl implements SecurityService {
         for (Role r : pageRole.getContent()) {
             if(r!=null){
                 Hibernate.initialize(r.getPermissionSet());
-                Hibernate.initialize(r.getMenuSet());
             }
         }
         
@@ -144,7 +138,6 @@ public class SecurityServiceImpl implements SecurityService {
         
         if(r!=null){
             Hibernate.initialize(r.getPermissionSet());
-            Hibernate.initialize(r.getMenuSet());
         }
         
         return r;

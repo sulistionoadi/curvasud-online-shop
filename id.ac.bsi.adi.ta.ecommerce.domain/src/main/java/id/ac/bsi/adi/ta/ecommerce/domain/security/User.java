@@ -31,12 +31,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User extends BaseEntity {
     
     @NotNull @NotEmpty
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, length=20)
     private String username;
     
     @NotNull @NotEmpty
     @Length(min=8)
-    @Column(nullable=false)
+    @Column(nullable=false, length=30)
     private String password;
    
     @Transient

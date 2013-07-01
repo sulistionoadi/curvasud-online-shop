@@ -23,7 +23,7 @@ public class Permission extends BaseEntity {
     
     @NotNull
     @NotEmpty
-    @Column(name = "label", nullable = false, unique = true)
+    @Column(name = "label", nullable = false, unique = true, length=30)
     private String label;
 
     public String getLabel() {

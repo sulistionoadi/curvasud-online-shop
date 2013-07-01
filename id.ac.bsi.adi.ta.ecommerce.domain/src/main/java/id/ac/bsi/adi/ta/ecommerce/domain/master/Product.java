@@ -34,15 +34,15 @@ public class Product extends BaseEntity {
     private CategoryProduct category;
     
     @NotNull @NotEmpty
-    @Column(nullable=false, name="product_code", unique=true)
+    @Column(nullable=false, name="product_code", unique=true, length=8)
     private String productCode;
     
     @NotNull @NotEmpty
-    @Column(nullable=false, name="product_name")
+    @Column(nullable=false, name="product_name", length=25)
     private String productName;
     
     @Lob
-    @Column(nullable=false, name="product_info")
+    @Column(nullable=false, name="product_info", length=999)
     private String productInfo;
     
     @NotNull
@@ -52,6 +52,7 @@ public class Product extends BaseEntity {
     @ElementCollection(fetch= FetchType.EAGER)
     @CollectionTable(name="mst_picture_product", 
             joinColumns=@JoinColumn(name="id_product"))
+    @Column(name="pictures", length=50)
     private List<String> pictures = new ArrayList<String>();
 
     public CategoryProduct getCategory() {

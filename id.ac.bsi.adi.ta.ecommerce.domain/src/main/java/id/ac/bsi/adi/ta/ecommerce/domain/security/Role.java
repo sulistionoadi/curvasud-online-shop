@@ -7,17 +7,13 @@ package id.ac.bsi.adi.ta.ecommerce.domain.security;
 import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -31,8 +27,10 @@ public class Role extends BaseEntity {
     
     @NotNull
     @NotEmpty
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length=20)
     private String name;
+    
+    @Column(length=100)
     private String description;
 
     @ManyToMany
@@ -42,16 +40,6 @@ public class Role extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "id_permission", nullable = false)
     )
     private Set<Permission> permissionSet = new HashSet<Permission>();
-    
-    @ManyToMany
-    @JoinTable(
-            name = "sec_role_menu",
-            joinColumns = @JoinColumn(name = "id_role", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "id_menu", nullable = false)
-    )
-    @OrderBy(value = "level,order")
-    private Set<Menu> menuSet = new TreeSet<Menu>();
-
 
     public String getName() {
         return name;
@@ -75,14 +63,6 @@ public class Role extends BaseEntity {
 
     public void setPermissionSet(Set<Permission> permissionSet) {
         this.permissionSet = permissionSet;
-    }
-
-    public Set<Menu> getMenuSet() {
-        return menuSet;
-    }
-
-    public void setMenuSet(Set<Menu> menuSet) {
-        this.menuSet = menuSet;
     }
 
     @Override

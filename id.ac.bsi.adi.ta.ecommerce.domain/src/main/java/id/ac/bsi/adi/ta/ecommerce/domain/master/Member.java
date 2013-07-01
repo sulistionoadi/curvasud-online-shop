@@ -28,35 +28,38 @@ import org.springframework.format.annotation.NumberFormat;
 public class Member extends BaseEntity {
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=10)
     private String firstname;
+    
+    @Column(length=15)
     private String lastname;
     
     @Email
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=25)
     private String email;
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=50)
     private String address;
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=20)
     private String province;
     
     @NotNull @NotEmpty
-    @Column(nullable=false)
+    @Column(nullable=false, length=20)
     private String city;
     
-    @Column(name="zip_code")
+    @Column(name="zip_code", length=5)
     private String zipCode;
     
     @NotNull @NotEmpty
-    @NumberFormat @Length(min=11,max=14, message="panjang minimal 11 dan maksimal 14 karakter")
-    @Column(nullable=false)
+    @NumberFormat @Length(min=11,max=15, message="panjang minimal 11 dan maksimal 15 karakter")
+    @Column(nullable=false, length=15)
     private String mobile;
     
+    @Column(length=15)
     private String phone;
     
     @Column(nullable=false, name="registration_date")

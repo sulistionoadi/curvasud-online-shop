@@ -21,11 +21,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class City extends BaseEntity {
     
     @NotNull @NotEmpty
-    @Column(name="city_code", nullable=false, unique=true)
+    @Column(name="city_code", nullable=false, unique=true, length=3)
     private String code;
     
     @NotNull @NotEmpty
-    @Column(name="city_name", nullable=false)
+    @Column(name="city_name", nullable=false, length=25)
     private String name;
 
     public String getCode() {
