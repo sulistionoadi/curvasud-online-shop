@@ -45,7 +45,7 @@ function createDatagridCity(){
             var pager = $('#gridCity').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize){
-                    paginationAction(pageNumber, pageSize, 'json');
+                    paginationAction(pageNumber, pageSize, 'json','#gridCity');
                 }
             });
         },

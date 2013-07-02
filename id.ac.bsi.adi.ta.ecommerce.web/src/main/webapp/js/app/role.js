@@ -45,7 +45,7 @@ function createDatagridRole(){
             var pager = $('#gridRole').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize){
-                    paginationAction(pageNumber, pageSize, 'json');
+                    paginationAction(pageNumber, pageSize, 'json','#gridRole');
                 }
             });
         },

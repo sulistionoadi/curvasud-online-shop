@@ -91,7 +91,7 @@ function createDatagridProduct(){
             var pager = $('#gridProduct').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize){
-                    paginationAction(pageNumber, pageSize, 'json');
+                    paginationAction(pageNumber, pageSize, 'json','#gridProduct');
                 }
             });
         },
