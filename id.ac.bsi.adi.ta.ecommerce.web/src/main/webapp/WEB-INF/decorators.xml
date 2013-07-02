@@ -1,7 +1,6 @@
 <decorators defaultdir="/WEB-INF/decorators">
 
     <decorator name="main_user" page="main_user.html">
-        <pattern>/registrasi/*</pattern>
         <pattern>/user/*</pattern>
     </decorator>
     
@@ -10,11 +9,15 @@
     </decorator>
 
     <decorator name="default" page="../../index.html">
+        <pattern>/registrasi/*</pattern>
         <pattern>/*</pattern>
     </decorator>
     
     <excludes>
         <pattern>/index.html</pattern>
+        <pattern>content*</pattern>
+        <pattern>/content*</pattern>
         <pattern>/admin/product/info*</pattern>
+        <pattern>/error/*</pattern>
     </excludes>
 </decorators>

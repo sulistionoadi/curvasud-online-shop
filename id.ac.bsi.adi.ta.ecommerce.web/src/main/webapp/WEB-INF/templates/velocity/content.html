@@ -1,0 +1,30 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Daftar Produk</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <input id="txtTotalContent" type="hidden" class="easyui-numberbox" value="$total" />
+        <table>
+            #foreach($p in $products)
+                <tr>
+                    <td>Iki Gambare</td>
+                    <td>
+                        $p.productCode <br>
+                        $p.productName <br>
+                        $p.productInfo <br>
+                        $p.price <br>
+                    </td>
+                </tr>
+            #end
+        </table>
+        <script language="javascript">
+            $(document).ready(refreshTotalContent);
+        </script>
+    </body>
+</html>

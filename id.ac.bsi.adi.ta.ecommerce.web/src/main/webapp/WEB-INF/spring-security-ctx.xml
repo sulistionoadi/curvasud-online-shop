@@ -8,8 +8,11 @@
              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
     <http auto-config='true'>
+        <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="/user/**" access="ROLE_USER" />
+        <intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
-        <form-login login-page="/index.html" default-target-url="/html/home" authentication-failure-url="/errors/401.html"/>
+        <form-login login-page="/home" default-target-url="/login/success" authentication-failure-url="/error/401.html"/>
     </http>
     
     <!--
@@ -34,6 +37,7 @@
         <authentication-provider>
             <user-service>
                 <user name="adi" password="123" authorities="ROLE_ADMIN"  />
+                <user name="jimmy" password="123" authorities="ROLE_USER"  />
             </user-service>
         </authentication-provider>
     </authentication-manager>

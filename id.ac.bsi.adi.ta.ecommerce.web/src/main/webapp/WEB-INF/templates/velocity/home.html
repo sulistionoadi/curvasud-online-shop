@@ -9,6 +9,15 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div>Ini content halaman utama</div>
+        <div id="content_product" class="easyui-panel" style="height:600px"  
+                data-options="href:'content?page.page=1&page.size=20', method:'POST'">  
+        </div>  
+        <div id="content_pagination" class="easyui-pagination" style="border:1px solid #ccc; background: #000;"  
+                data-options="
+                    pageSize: 20,
+                    onSelectPage: function(pageNumber, pageSize){  
+                        $('#content_product').panel('refresh', 'content?page.page='+pageNumber+'&page.size='+pageSize);  
+                    }">  
+        </div>
     </body>
 </html>
