@@ -5,13 +5,14 @@
 package id.ac.bsi.adi.ta.ecommerce.dao;
 
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author adi
  */
-public interface ProductDao extends PagingAndSortingRepository<Product, String> {
+public interface ProductDao extends PagingAndSortingRepository<Product, String>, JpaRepository<Product, String> {
     
     Product findProductByProductCode(String code);
     

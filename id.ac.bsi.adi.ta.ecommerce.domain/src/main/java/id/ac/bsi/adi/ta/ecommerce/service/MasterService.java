@@ -34,6 +34,7 @@ public interface MasterService {
     public Product findProductByKode(String kode);
     public Long countAllProducts();
     public Page<Product> findAllProducts(Pageable pageable);
+    public List<Product> findAllProducts();
     
     public Supplier save(Supplier supplier);
     public void delete(Supplier supplier);
@@ -41,6 +42,7 @@ public interface MasterService {
     public Supplier findSupplierByKode(String kode);
     public Long countAllSupplier();
     public Page<Supplier> findAllSupplier(Pageable pageable);
+    public List<Supplier> findAllSuppliers();
     
     public void register(Member member, User user);
     public void delete(Member member);

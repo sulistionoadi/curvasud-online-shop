@@ -121,6 +121,17 @@ public class MasterServiceImpl implements MasterService {
         
         return products;
     }
+    
+    @Override
+    public List<Product> findAllProducts() {
+        List<Product> products = productDao.findAll();
+        
+        for (Product p : products) {
+            Hibernate.initialize(p.getPictures());
+        }
+        
+        return products;
+    }
 
     @Override
     public void delete(Member member) {
@@ -241,6 +252,11 @@ public class MasterServiceImpl implements MasterService {
     @Override
     public List<City> findAllCities() {
         return cityDao.findAll();
+    }
+    
+    @Override
+    public List<Supplier> findAllSuppliers() {
+        return supplierDao.findAll();
     }
     
 }

@@ -25,7 +25,6 @@ import javax.validation.constraints.NotNull;
 @Table(name="trx_purchase_detail",uniqueConstraints=@UniqueConstraint(columnNames={"id_purchase", "id_product"}))
 public class PurchaseDetail extends BaseEntity{
     
-    @NotNull
     @ManyToOne
     @JoinColumn(name="id_purchase", nullable=false)
     private Purchase purchase;
