@@ -19,9 +19,10 @@ import org.springframework.data.repository.query.Param;
  */
 public interface PurchaseDao extends PagingAndSortingRepository<Purchase, String> {
     
-    @Query("select count(p) from Purchase p where p.purchaseDate between :start and :end")
-    public Long countByPurchaseDateBetween(Date start, Date end);
-    public Page<Purchase> findByPurchaseDateBetween(@Param("start") Date start, @Param("end") Date end, Pageable pageable);
+    @Query("select count(p) from Purchase p where date(p.purchaseDate) between :start and :end")
+    public Long countByPurchaseDateBetween(@Param("start") Date start, @Param("end") Date end);
+    
+    public Page<Purchase> findByPurchaseDateBetween(Date start, Date end, Pageable pageable);
     public List<Purchase> findByPurchaseNumber(String purchaseNumber);
     
 }

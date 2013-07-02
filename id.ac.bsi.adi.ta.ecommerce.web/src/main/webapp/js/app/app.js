@@ -21,7 +21,7 @@ $.fn.serializeJSON=function() {
     return json;  
 };
 
-function paginationAction(pn,ps,url){
+function paginationAction(pn,ps,url,id){
     $.ajax({
         type:"GET",
         url: url,
@@ -31,11 +31,32 @@ function paginationAction(pn,ps,url){
         },
         dataType:'json',
         beforeSend: function(jqXHR, settings){
-            $('#gridCategory').datagrid('loading');
+            $(id).datagrid('loading');
         },success: function(data){
-            $('#gridCategory').datagrid('loadData',data);
+            $(id).datagrid('loadData',data);
         },complete: function(jqXHR, textStatus){
-            $('#gridCategory').datagrid('loaded');
+            $(id).datagrid('loaded');
+        }
+    });
+}
+
+function paginationActionByDate(pn,ps,sd,ed,url,id){
+    $.ajax({
+        type:"GET",
+        url: url,
+        data: {
+            'page.page':pn,
+            'page.size':ps,
+            'startDate':sd,
+            'endDate':ed
+        },
+        dataType:'json',
+        beforeSend: function(jqXHR, settings){
+            $(id).datagrid('loading');
+        },success: function(data){
+            $(id).datagrid('loadData',data);
+        },complete: function(jqXHR, textStatus){
+            $(id).datagrid('loaded');
         }
     });
 }
@@ -99,5 +120,21 @@ function formatNumber(value){
         return s1+"."+s2;
     } else {
         return s1;
+    }
+}
+
+$.fn.datebox.defaults.formatter = function(date){
+    var y = date.getFullYear();
+    var m = date.getMonth()+1;
+    var d = date.getDate();
+    return d+'-'+m+'-'+y;
+}
+
+$.fn.datebox.defaults.parser = function(s){
+    var t = Date.parse(s);
+    if (!isNaN(t)){
+        return new Date(t);
+    } else {
+        return new Date();
     }
 }

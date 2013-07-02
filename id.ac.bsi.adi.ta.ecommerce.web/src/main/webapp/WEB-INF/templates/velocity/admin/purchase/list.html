@@ -1,0 +1,26 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Pembelian</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        
+        <div id="toolbarPurchase">
+            <div style="margin-bottom:5px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newPurchase()">Add</a>
+            </div>
+            <div>
+                Date From: <input id="pur_sdate" class="easyui-datebox" style="width:90px">
+                To: <input id="pur_edate" class="easyui-datebox" style="width:90px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="createDatagridPurchase()">Cari</a>
+            </div>
+        </div>
+        
+        <table id="gridPurchase" title="Purchase List" class="easyui-datagrid" toolbar="#toolbarPurchase"></table>
+    </body>
+</html>
