@@ -36,7 +36,7 @@ public class User extends BaseEntity {
     
     @NotNull @NotEmpty
     @Length(min=8)
-    @Column(nullable=false, length=30)
+    @Column(nullable=false, length=36)
     private String password;
    
     @Transient

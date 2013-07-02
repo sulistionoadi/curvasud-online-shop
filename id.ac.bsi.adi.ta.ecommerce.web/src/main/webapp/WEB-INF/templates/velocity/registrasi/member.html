@@ -11,7 +11,7 @@ and open the template in the editor.
         <form id="formRegisterasiMember" method="POST">  
             <table>  
                 <tr>  
-                    <td colspan="3"><h3>IDENTITAS</h3></td>
+                    <td colspan="3"><h2>IDENTITAS</h2></td>
                 </tr>  
                 <tr>  
                     <td>Nama Depan : </td>  
@@ -51,7 +51,11 @@ and open the template in the editor.
                 </tr>
                 <tr>  
                     <td>Kota : </td>  
-                    <td><input class="easyui-validatebox" type="text" name="city" data-options="required:true" value="$!member.city"/></td>
+                    <td>
+                        <input id="member_city" name="city" class="easyui-combobox" 
+                           data-options="valueField:'id',textField:'name',url:'cities'" 
+                           required="true" >
+                    </td>
                     <td><p class="text-error">
                         #springBind("member.city")
                         #springShowErrors("<br>" "")
@@ -73,8 +77,11 @@ and open the template in the editor.
                     <td>No. Telepon : </td>  
                     <td><input class="easyui-numberbox" type="text" name="phone" value="$!member.phone"/></td>
                 </tr>
+            </table>
+            <br>
+            <table>
                 <tr>  
-                    <td colspan="3"><h3>ACCOUNT</h3></td>
+                    <td colspan="3"><h2>ACCOUNT</h2></td>
                 </tr>  
                 <tr>  
                     <td>Username : </td>  
@@ -102,8 +109,8 @@ and open the template in the editor.
                 </tr>
                 <tr colspan="3">  
                     <td>
-                        <input type="submit" value="Register" class="btn-primary"/>
-                        <input type="reset" value="Clear" class="btn-primary"/>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitRegisterMember()">Save</a> 
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearRegisterMember()">Cancel</a>
                     </td>
                 </tr>
             </table>

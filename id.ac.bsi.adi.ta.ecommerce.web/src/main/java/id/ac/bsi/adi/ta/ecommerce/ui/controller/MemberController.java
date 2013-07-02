@@ -5,25 +5,28 @@
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
 import id.ac.bsi.adi.ta.ecommerce.constant.StatusUser;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.City;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
 import java.util.Date;
+import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -32,22 +35,33 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 
 @Controller
-public class MemberController {
+public class MemberController extends ExceptionHandlerController{
     
     @Autowired
     private MasterService masterService;
     @Autowired
     private SecurityService securityService;
     
+    private final Logger logger = LoggerFactory.getLogger(MemberController.class);
+    
     @RequestMapping("/registrasi/member")
     public ModelMap tampilFormRegistrasiMember(){
         return new ModelMap().addAttribute("member", new Member());
     }
     
+    @RequestMapping(value="/registrasi/cities", method= RequestMethod.POST)
+    @ResponseBody
+    public List<City> jsonCities(HttpServletResponse httpServletResponse) {
+        return masterService.findAllCities();
+    }
+    
     @RequestMapping(value="/registrasi/member", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String saveRegistrasiMember(@ModelAttribute @Valid Member member, BindingResult bindingResult){
+    public String saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult){
         
+        logger.info("VALUE OBJECT MEMBER " + member);
+        logger.info("VALUE OBJECT MEMBER.CONFIRM_PASSWORD " + member.getConfirmPassword());
+        logger.info("VALUE OBJECT MEMBER.PASSWORD " + member.getPassword());
         if(!member.getConfirmPassword().equals(member.getPassword())){
             bindingResult.rejectValue("confirmPassword", "confirmPassword.notMatch", "Konfirmasi password invalid");
         }
@@ -70,7 +84,7 @@ public class MemberController {
         member.setRegistrationDate(new Date());
         masterService.register(member, user);
         
-        return "/registrasi/sukses";
+        return "redirect:sukses";
     }
     
 }

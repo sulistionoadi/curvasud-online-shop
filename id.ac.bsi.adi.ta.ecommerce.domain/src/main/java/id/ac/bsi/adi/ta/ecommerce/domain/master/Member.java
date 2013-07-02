@@ -8,6 +8,8 @@ import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -47,9 +49,9 @@ public class Member extends BaseEntity {
     @Column(nullable=false, length=20)
     private String province;
     
-    @NotNull @NotEmpty
-    @Column(nullable=false, length=20)
-    private String city;
+    @NotNull @ManyToOne
+    @JoinColumn(name="id_city", nullable=false)
+    private City city;
     
     @Column(name="zip_code", length=5)
     private String zipCode;
@@ -121,11 +123,11 @@ public class Member extends BaseEntity {
         this.province = province;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
