@@ -20,6 +20,15 @@ public class ShoppingCartDTO {
     private Product product;
     private Integer qty;
     private BigDecimal total;
+    private BigDecimal ongkir;
+
+    public BigDecimal getOngkir() {
+        return ongkir;
+    }
+
+    public void setOngkir(BigDecimal ongkir) {
+        this.ongkir = ongkir;
+    }
 
     public Member getMember() {
         return member;

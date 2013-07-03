@@ -4,6 +4,7 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service;
 
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import java.util.Date;
 import java.util.List;
@@ -22,4 +23,5 @@ public interface TransaksiService {
     public Page<Purchase> findAllPurchaseByDate(Date startDate, Date endDate, Pageable pageable);
     public List<Purchase> findAllPurchaseByPurchaseNumber(String purchaseNumber);
     
+    public Booking save(Booking booking);
 }

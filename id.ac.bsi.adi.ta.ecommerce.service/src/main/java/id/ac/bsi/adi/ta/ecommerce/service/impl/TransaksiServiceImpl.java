@@ -4,7 +4,9 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
+import id.ac.bsi.adi.ta.ecommerce.dao.BookingDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.util.Date;
@@ -27,6 +29,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     
     @Autowired
     private PurchaseDao purchaseDao;
+    @Autowired
+    private BookingDao bookingDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -68,7 +72,10 @@ public class TransaksiServiceImpl implements TransaksiService {
     public Long countPurchaseByDate(Date startDate, Date endDate) {
         return purchaseDao.countByPurchaseDateBetween(startDate, endDate);
     }
-    
-    
+
+    @Override
+    public Booking save(Booking booking) {
+        return bookingDao.save(booking);
+    }
     
 }
