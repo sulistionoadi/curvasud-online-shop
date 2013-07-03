@@ -51,7 +51,7 @@ public class ShippingController extends ExceptionHandlerController {
     
     @RequestMapping(value="/cities", method= RequestMethod.POST)
     @ResponseBody
-    public List<City> jsonRoles(HttpServletResponse httpServletResponse) {
+    public List<City> jsonCities(HttpServletResponse httpServletResponse) {
         return masterService.findAllCities();
     }
     

@@ -12,11 +12,14 @@ and open the template in the editor.
         <input id="txtTotalContent" type="hidden" class="easyui-numberbox" value="$total" />
         <table>
             #foreach($p in $products)
+                #set($urlImg = $p.pictures.get(0))
                 <tr>
-                    <td>Iki Gambare</td>
                     <td>
-                        $p.productCode <br>
-                        $p.productName <br>
+                            <img src="$urlImg" style="width:120px; height: 120px; margin-right:20px" />
+                    </td>
+                    <td>
+                        <a href="detail-content?id=$p.id">$p.productCode</a><br>
+                        <a href="detail-content?id=$p.id">$p.productName</a><br>
                         $p.productInfo <br>
                         $p.price <br>
                     </td>

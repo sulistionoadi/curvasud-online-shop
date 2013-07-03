@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.UriTemplate;
 
@@ -55,13 +56,21 @@ public class HomeController {
     
     @RequestMapping("/content")
     public ModelMap getContent(Pageable pageable){
-        logger.info("Controller home dipanggil");
         Long countProduct = masterService.countAllProducts();
         List<Product> list = masterService.findAllProducts(pageable).getContent();
         
         ModelMap mm = new ModelMap();
         mm.put("total", countProduct);
         mm.put("products", list);
+        return mm;
+    }
+    
+    @RequestMapping("/detail-content")
+    public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct){
+        Product p = masterService.findProductById(idProduct);
+        
+        ModelMap mm = new ModelMap();
+        mm.put("product", p);
         return mm;
     }
     

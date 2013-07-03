@@ -14,7 +14,7 @@ and open the template in the editor.
                     <section id="galery">
                         <div class="pics">
                             #foreach($pic in $product.pictures)
-                            #set($urlImg = '../../../' + $pic)
+                            #set($urlImg = '../../' + $pic)
                             <img src="$urlImg" style="width:60px;margin-right:20px" />
                             #end
                         </div>

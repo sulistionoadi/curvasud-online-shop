@@ -1,0 +1,52 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <table>
+            #set($urlImg = $product.pictures.get(0))
+            <tr>
+                <td>
+                    <img src="$urlImg" style="width:200px; height: 200px; margin-right:20px" />
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td><h2>$product.category.description</h2></td>
+                        </tr>
+                        <tr>
+                            <td><h1>$product.productName</h1></td>
+                        </tr>
+                        <tr>
+                            <td><h3>&nbsp;</h3></td>
+                        </tr>
+                        <tr>
+                            <td><h3>Product Information</h3></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    $product.productInfo
+                                </p>
+                                <ul>
+                                    <li>Product Code : $product.productCode</li>
+                                    <li>Price : Rp. $product.price</li>
+                                </ul>
+                                
+                                <!--<a href="user/cart/add?id=$product.id">Add to Cart</a>-->
+                                <input type="text" class="easyui-numberbox" style="width: 30px;" id="qty_cart" />
+                                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="addCart('$product.id')">Add to Cart</a> 
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
