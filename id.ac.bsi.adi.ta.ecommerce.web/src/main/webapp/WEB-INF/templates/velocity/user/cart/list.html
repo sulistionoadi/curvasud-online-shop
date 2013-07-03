@@ -9,7 +9,8 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <table>
+        <h2>Isi Keranjang Belanja Anda :</h2>
+        <table border="1" cellspacing="0" cellpadding="3" style="border: solid 1px #ccc;">
             <thead>
                 <tr>
                     <th>Kode Produk</th>
@@ -31,5 +32,34 @@ and open the template in the editor.
                 #end
             </tbody>
         </table>
+        <br/>
+        <div class="ftitle">Total yang harus dibayar</div>
+        <div class="fitem">  
+            <label>Total Barang : </label>  
+            <label>$totalPrice</label>  
+        </div>
+        <div class="fitem">  
+            <label>Ongkos Kirim : </label>  
+            <label>$ongkos</label>  
+        </div>
+        <div class="fitem">  
+            <label>Total Dibayar: </label>  
+            <label>$totalBayar</label>  
+        </div>
+        <br/>
+        <br/>
+        <div class="ftitle">Isi dan periksa data dibawah ini untuk data pengiriman</div>
+        <div class="fitem">  
+            <label>Nama : </label>  
+            <input id="kirim_nama" class="easyui-validatebox" required="true" />
+        </div>
+        <div class="fitem">  
+            <label>Alamat : </label>
+            <textarea id="kirim_alamat" style="height:100px; width: 400px"></textarea>
+        </div>
+        <div class="fitem">  
+            <label>No. Telepon : </label>  
+            <input id="kirim_telp" class="easyui-validatebox" required="true" />
+        </div>
     </body>
 </html>

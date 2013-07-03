@@ -44,6 +44,10 @@ public class Booking extends BaseEntity{
     private Member member;
     
     @NotNull
+    @Column(name="shipping_name", nullable=false, length=50)
+    private String shippingName;
+    
+    @NotNull
     @Column(name="shipping_address", nullable=false, length=100)
     private String shippingAddress;
     
@@ -114,5 +118,12 @@ public class Booking extends BaseEntity{
     public void setShippingCost(BigDecimal shippingCost) {
         this.shippingCost = shippingCost;
     }
-    
+
+    public String getShippingName() {
+        return shippingName;
+    }
+
+    public void setShippingName(String shippingName) {
+        this.shippingName = shippingName;
+    }
 }
