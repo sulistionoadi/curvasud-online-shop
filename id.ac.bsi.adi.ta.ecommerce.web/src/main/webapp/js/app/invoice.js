@@ -1,8 +1,8 @@
 var urlCategory = "json";
 var methodCategory = "POST";
 
-function createGridApproval() {
-    $('#gridApproval').datagrid({
+function createGridInvoice() {
+    $('#gridInvoice').datagrid({
         style: 'width:700px; height:400px',
         method: 'get',
         url: 'json',
@@ -29,34 +29,54 @@ function createGridApproval() {
                     width: 110
                 },
                 {
-                    field: 'booking.bookingCode',
+                    field: 'booking',
                     title: 'Kode Booking',
-                    width: 110
+                    width: 110,
+                    formatter: function(value, row, index) {
+                        if (row.booking) {
+                            return row.booking.bookingCode;
+                        } else {
+                            return value;
+                        }
+                    }
                 },
                 {
                     field: 'paymentDate',
                     title: 'Tanggal Payment',
                     width: 110
+
+                },
+                {
+                    field: 'approveDate',
+                    title: 'Tanggal Approve',
+                    width: 120,
+                    formatter: function(value) {
+                        var result = "";
+                        if (value) {
+                            result = $.format.date(value, "dd-MM-yyyy hh:mm");
+                        }
+                        return result;
+                    }
                 },
                 {
                     field: 'action',
                     title: 'Action',
-                    width: 110,
+                    width: 50,
                     align: 'right',
                     formatter: function(value, row, index) {
                         var col;
                         if (row.id != null) {
-                            col = '<a href="do-approve/'+row.id+'">Approve</a>';
+                            col = '<a href="do-cetak/' + row.id + '">Cetak</a>';
                         }
                         return col;
                     }
                 }
             ]],
         onLoadSuccess: function(row, data) {
-            var pager = $('#gridApproval').datagrid('getPager');
+            var pager = $('#gridInvoice').datagrid('getPager');
             pager.pagination({
                 onSelectPage: function(pageNumber, pageSize) {
-                    paginationAction(pageNumber, pageSize, 'json', '#gridApproval');
+                    paginationAction(pageNumber, pageSize, 'json', '#gridInvoice');
                 }
             });
         },
