@@ -1,0 +1,93 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile Member</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <form id="formRegisterasiMember" method="POST">  
+            <table>  
+                <tr>  
+                    <td colspan="3"><h2>IDENTITAS</h2></td>
+                </tr>  
+                <tr>  
+                    <td>Nama Depan : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="firstname" value="$!member.firstname" data-options="required:true"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.firstname") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>  
+                <tr>  
+                    <td>Nama Belakang : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="lastname" value="$!member.lastname"/></td>  
+                </tr>  
+                <tr>  
+                    <td>E-mail : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="email" data-options="required:true, validType:'email'" value="$!member.email"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.email") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Alamat : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="address" data-options="required:true" value="$!member.address" /></td> 
+                    <td><p class="text-error">
+                        #springBind("member.address") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Propinsi : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="province" data-options="required:true" value="$!member.province"/></td>
+                    <td><p class="text-error">
+                        #springBind("member.province")
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Kota : </td>  
+                    <td>
+                        <input id="member_city" name="city" class="easyui-combobox" 
+                           data-options="valueField:'id',textField:'name',url:'cities'" 
+                           required="true" >
+                    </td>
+                    <td><p class="text-error">
+                        #springBind("member.city")
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>Kode Pos : </td>  
+                    <td><input class="easyui-numberbox" type="text" name="zipCode" value="$!member.zipCode"/></td>  
+                </tr>
+                <tr>  
+                    <td>No. Handphone : </td>  
+                    <td><input class="easyui-numberbox" type="text" name="mobile" value="$!member.mobile" data-options="required:true,validType:'length[11,14]'" /></td>
+                    <td><p class="text-error">
+                        #springBind("member.mobile") 
+                        #springShowErrors("<br>" "")
+                    </p></td>
+                </tr>
+                <tr>  
+                    <td>No. Telepon : </td>  
+                    <td><input class="easyui-numberbox" type="text" name="phone" value="$!member.phone"/></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr colspan="3">  
+                    <td>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitRegisterMember()">Save</a> 
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearRegisterMember()">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
