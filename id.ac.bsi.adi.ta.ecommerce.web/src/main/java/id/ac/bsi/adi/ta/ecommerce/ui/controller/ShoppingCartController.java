@@ -10,6 +10,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.master.ShippingRate;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
+import id.ac.bsi.adi.ta.ecommerce.dto.BookingStruk;
 import id.ac.bsi.adi.ta.ecommerce.dto.ShoppingCartDTO;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
@@ -160,9 +161,49 @@ public class ShoppingCartController extends ExceptionHandlerController {
     
     @RequestMapping(value="/sukses", method= RequestMethod.GET)
     public ModelMap sukses(@RequestParam(value="id", required=true) String id) throws Exception{
-        
         return new ModelMap("idBooking", id);
+    }
+    
+    @RequestMapping("/cetak")
+    public ModelMap cetakBuktiBooking(
+            @RequestParam(value="id", required=true) String idBooking) throws Exception{
         
+        String format = "pdf";
+        
+        Booking booking = transaksiService.findBookingById(idBooking);
+        
+        if(booking==null) throw new Exception("Booking not found !");
+        
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMMMM yyyy HH:mm:ss");
+        
+        ModelMap mm = new ModelMap();
+        mm.put("format", format);
+        mm.put("noBooking", booking.getBookingCode());
+        mm.put("tglBooking", booking.getTransactionDate());
+        mm.put("kodeMember", booking.getMember().getMemberCode());
+        mm.put("namaMember", booking.getMember().getFirstname().toUpperCase() + " " + booking.getMember().getLastname().toUpperCase());
+        mm.put("ongkosKirim", booking.getShippingCost());
+        mm.put("pesan", "Terima kasih telah melakukan pemesanan di toko kami. Silahkan melakukan pembayaran ke rekening 1234567890 a/n ABCDEFG");
+        mm.put("remark", booking.getId() + "/" + booking.getMember().getMemberCode() + " " + formatter.print(new DateTime()));
+        
+        int i = 0;
+        List<BookingStruk> bookingStruks = new ArrayList<BookingStruk>();
+        for(BookingDetail bd : booking.getBookingDetails()){
+            i++;
+            BookingStruk bs = new BookingStruk();
+            bs.setNo(i);
+            bs.setKode(bd.getProduct().getProductCode());
+            bs.setProduk(bd.getProduct().getProductName().toUpperCase());
+            bs.setQty(bd.getQty());
+            bs.setHarga(bd.getAmount());
+            bs.setTotal(bd.getTotalAmount());
+            
+            bookingStruks.add(bs);
+        }
+        
+        mm.put("bookingStruks", bookingStruks);
+        
+        return mm;
     }
     
 }

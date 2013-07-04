@@ -9,6 +9,7 @@
 	<parameter name="namaMember" class="java.lang.String"/>
 	<parameter name="ongkosKirim" class="java.math.BigDecimal"/>
 	<parameter name="pesan" class="java.lang.String"/>
+	<parameter name="remark" class="java.lang.String"/>
 	<field name="no" class="java.lang.Integer"/>
 	<field name="kode" class="java.lang.String"/>
 	<field name="produk" class="java.lang.String"/>
@@ -38,12 +39,12 @@
 	<pageHeader>
 		<band height="91" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="170" y="19" width="110" height="20"/>
+				<reportElement x="170" y="19" width="89" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{noBooking}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd MMMMM yyyy" isBlankWhenNull="true">
-				<reportElement x="170" y="39" width="110" height="20"/>
+				<reportElement x="170" y="39" width="89" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{tglBooking}]]></textFieldExpression>
 			</textField>
@@ -69,19 +70,24 @@
 				<text><![CDATA[Member]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="170" y="59" width="110" height="20"/>
+				<reportElement x="170" y="59" width="89" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{kodeMember}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="280" y="59" width="10" height="20"/>
+				<reportElement x="258" y="59" width="10" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<text><![CDATA[-]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="290" y="59" width="203" height="20"/>
+				<reportElement x="268" y="59" width="203" height="20"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{namaMember}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="0" width="409" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -250,60 +256,60 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="155" splitType="Stretch">
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="163" splitType="Stretch">
 			<staticText>
-				<reportElement x="493" y="10" width="100" height="20"/>
+				<reportElement x="471" y="18" width="122" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Total Pemesanan]]></text>
 			</staticText>
 			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
-				<reportElement x="599" y="10" width="135" height="20"/>
+				<reportElement x="599" y="18" width="135" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="493" y="30" width="100" height="20"/>
+				<reportElement x="471" y="38" width="122" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Biaya Pengiriman]]></text>
 			</staticText>
 			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
-				<reportElement x="599" y="30" width="135" height="20"/>
+				<reportElement x="599" y="38" width="135" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$P{ongkosKirim}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0;-#,##0" isBlankWhenNull="true">
-				<reportElement x="599" y="72" width="135" height="20"/>
+				<reportElement x="599" y="80" width="135" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{totalBayar}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="493" y="72" width="100" height="20"/>
+				<reportElement x="471" y="80" width="122" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Biaya Pengiriman]]></text>
+				<text><![CDATA[Total Bayar]]></text>
 			</staticText>
 			<line>
-				<reportElement x="471" y="6" width="263" height="1"/>
+				<reportElement x="471" y="14" width="263" height="1"/>
 			</line>
-			<textField>
-				<reportElement x="63" y="111" width="536" height="44"/>
+			<textField isBlankWhenNull="true">
+				<reportElement x="63" y="119" width="536" height="44"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$P{pesan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="471" y="60" width="263" height="1"/>
+				<reportElement x="471" y="68" width="263" height="1"/>
 			</line>
 		</band>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

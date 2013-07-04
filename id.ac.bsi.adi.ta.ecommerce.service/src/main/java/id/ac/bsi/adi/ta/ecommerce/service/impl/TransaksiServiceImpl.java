@@ -116,5 +116,15 @@ public class TransaksiServiceImpl implements TransaksiService {
     public Long countPaymentByApproved(boolean approved) {
         return paymentDao.countPaymentByApproved(approved);
     }
+
+    @Override
+    public Booking findBookingById(String id) {
+        Booking b = bookingDao.findOne(id);
+        if(b!=null){
+            Hibernate.initialize(b.getBookingDetails());
+        }
+        
+        return b;
+    }
     
 }
