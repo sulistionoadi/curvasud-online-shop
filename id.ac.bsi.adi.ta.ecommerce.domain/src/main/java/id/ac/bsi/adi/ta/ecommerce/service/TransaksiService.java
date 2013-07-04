@@ -30,4 +30,5 @@ public interface TransaksiService {
     public Page<Payment> findPaymentByApproved(boolean approved, Pageable pageable);
     
     public Booking save(Booking booking);
+    public Booking findBookingById(String id);
 }
