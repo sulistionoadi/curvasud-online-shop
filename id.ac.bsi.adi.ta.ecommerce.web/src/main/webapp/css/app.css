@@ -3,7 +3,7 @@
 }
 body {
     font-family:helvetica,tahoma,verdana,sans-serif;
-    padding:20px;
+    padding:0px;
     font-size:13px;
     margin:0;
 }
@@ -54,34 +54,37 @@ h2 {
     width: 80px;
 }
 
+a:link, a:visited {
+    color: #000000;
+}
 
 /* Menu */
 
 /* remove the bullets, padding and margins from the lists */
-#templatemo_menu ul{
+#menu ul{
     list-style-type: none;
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 /* make the top level links horizontal and position relative so that we can position the sub level */
-#templatemo_menu li{
+#menu li{
     float:left;
     position:relative;
     z-index:100;
 }
 
 /* use the table to position the dropdown list */
-#templatemo_menu table{
+#menu table{
     position:absolute;
     border-collapse:collapse;
     z-index:100;
     left:-1px;
-    top:35px;
+    top:32px;
 }
 
 /* style all the links */
-#templatemo_menu a, .templatemo_menu :visited {
+#menu a, .menu :visited {
     display: block;
     font-size: 13px;
     font-weight: bold;
@@ -94,25 +97,25 @@ h2 {
     text-align: center;
 }
 /* style the links hover */
-#templatemo_menu :hover{
+#menu :hover{
     color: #FFFFFF;
     background: #E93301;
 }
 
 /* hide the sub level links */
-#templatemo_menu ul ul {
+#menu ul ul {
     visibility:hidden;
     position:absolute;
     width:139px;
     height:0;
 }
 /* make the sub level visible on hover list or link */
-#templatemo_menu ul li:hover ul,
-#templatemo_menu ul a:hover ul{
+#menu ul li:hover ul,
+#menu ul a:hover ul{
     visibility:visible;
 }
 
-#templatemo_menu .current_page_item a {
+#menu .current_page_item a {
     background: #E93301;
     color: #FFFFFF;
 }

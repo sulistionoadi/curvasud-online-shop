@@ -49,6 +49,11 @@ public class MemberController extends ExceptionHandlerController{
         return new ModelMap().addAttribute("member", new Member());
     }
     
+    @RequestMapping("/registrasi/sukses")
+    public ModelMap tampilFormRegistrasiSukses(){
+        return new ModelMap();
+    }
+    
     @RequestMapping(value="/registrasi/cities", method= RequestMethod.POST)
     @ResponseBody
     public List<City> jsonCities(HttpServletResponse httpServletResponse) {
@@ -84,7 +89,7 @@ public class MemberController extends ExceptionHandlerController{
         member.setRegistrationDate(new Date());
         masterService.register(member, user);
         
-        return "redirect:sukses";
+        return "redirect:/registrasi/sukses";
     }
     
 }

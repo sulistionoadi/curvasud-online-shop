@@ -1,9 +1,3 @@
-function fillHomeContent(){
-    $.get('awal', function(data) {
-        console.log("home loaded");
-    });
-}
-
 function refreshTotalContent(){
     $("#content_pagination").pagination('options').total = $('#txtTotalContent').val();
     $("#content_pagination").pagination('refresh');

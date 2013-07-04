@@ -123,21 +123,22 @@ h4 {
 
 #templatemo_site_title_bar_wrapper {
 	width: 100%;
-	height: 100px;
-	margin: 0 auto;
-	background: #9E0800;
+	height: 250px;
+	margin: auto auto;
+        background: url(../img/banner-curvasud-wrapper.png) repeat-x scroll center center transparent;
 }
 
 #templatemo_site_title_bar {
 	width: 980px;
-	height: 110px;
+	height: 250px;
 	margin: 0 auto;
+        background: url(../img/banner-curvasud.png) no-repeat scroll center center transparent;
 }
 
 #templatemo_site_title_bar #site_title {
 	float: left;
-	width: 500px;
-	margin-left: 50px;
+	width: 700px;
+	margin: 150px 50px 0 10px;
 	padding: 35px 0 0 0;
 }
 
@@ -172,7 +173,7 @@ h4 {
 }
 
 #top_menu li a {
-	color: #5c5c5c;
+	color: #696969;
 }
 
 #top_menu li a:hover {
@@ -191,14 +192,14 @@ h4 {
 #templatemo_banner_wrapper {
 	clear: both;
 	width: 100%;
-	height: 10px;
+	height: 50px;
 	margin: 0 auto;
 }
 
 #templatemo_banner {
 	clear: both;
-	width: 1000px;
-	height: 10px;
+	width: 980px;
+	height: 50px;
 	margin: 0 auto;
 	background: url(../img/banner-curvasud.png) no-repeat;
 }
@@ -286,7 +287,7 @@ h4 {
 #templatemo_menu_wrapper {
 	clear: both;
 	width: 100%;
-	height: 95px;
+	height: 65px;
 	margin: 0 auto;
 	background: url(../img/templatemo_menu_wrapper_bg.jpg) repeat-x;
 }
@@ -294,7 +295,7 @@ h4 {
 #templatemo_menu {
 	clear: both;
 	width: 980px;
-	height: 95px;
+	height: 65px;
 	margin: 0 auto;
 	background: url(../img/templatemo_menu_bg.jpg) center no-repeat;
 }
@@ -346,10 +347,10 @@ h4 {
 }
 
 #templatemo_content h2 {
-	color: #c0f048;
+	color: #f98202;
 	height: 28px;
 	padding: 5px 0 0 45px;
-	margin: 0 0 25px 0;
+	margin: 0 0 10px 0;
 	font-size: 24px;
 }
 

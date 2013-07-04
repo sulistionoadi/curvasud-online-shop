@@ -17,104 +17,11 @@
         <script type="text/javascript" src="${base}/js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="${base}/js/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="${base}/js/app/app.js"></script>
-        <script type="text/javascript" src="${base}/js/app/datagrid-detailview.js"></script>
         <script type="text/javascript" src="${base}/js/app/home-content.js"></script>
-        <script type="text/javascript" src="${base}/js/app/member.js"></script>
-        <script type="text/javascript" src="${base}/js/app/cart.js"></script>
         
     </head>
     <body>
-
-        <div id="templatemo_site_title_bar_wrapper">
-
-            <div id="templatemo_site_title_bar">
-                <div id="site_title">
-                    <h1>Merchandise Online Store</h1>
-                    <span>Pre Order and Ready Stock Online System</span>
-                </div>
-
-                <ul id="top_menu">
-                    <li class="first"><a href="${base}/home">Home</a></li>
-                    <li><a href="${base}/user/cart">Shopping Cart</a></li>
-                    <li><a href="${base}/contact">Contact</a></li>
-                </ul>
-
-            </div> <!-- end of site title bar -->
-        </div> <!-- end of site title bar wrapper -->
-
-        <div id="templatemo_banner_wrapper">
-
-            <div id="templatemo_banner">
-                <div id="banner_content"></div>
-            </div> <!-- end of banner-->
-
-        </div> <!-- end of banner wrapper -->
-
-        <div id="templatemo_menu_wrapper">
-            <div id="templatemo_menu">
-                <ul>
-                    <li><a href="${base}/home">Home</a></li>
-                    <li><a href="${base}/user/cart/list">Shopping Cart</a></li>
-                    <li><a href="${base}/registrasi/member">Register</a></li>
-                    <li><a href="${base}/contact">Contact</a></li>
-                </ul>
-            </div> <!-- end of menu -->
-        </div> <!-- end of menu wrapper -->
-
-        <div id="templatemo_content">
-
-            <div id="main_column">
-
-                <div class="section_w560">
-                    ${body}
-                    <div class="cleaner"></div>
-                </div>
-            </div>
-
-            <div id="side_column">
-                <div class="side_column_box">
-                    <div class="ftitle">Login</div>  
-                    <form id="form_login" method="POST" action="${base}/j_spring_security_check">  
-                        <div class="fitem">  
-                            <label>Username: </label>
-                            <input type="text" name="j_username" class="easyui-validatebox" required="true"/>  
-                        </div>  
-                        <div class="fitem">  
-                            <label>Password: </label>
-                            <input type="text" name="j_password" class="easyui-validatebox" required="true"/>  
-                        </div>
-                        <div class="fitem">  
-                            <a href="javascript:void(0)" type="submit" class="easyui-linkbutton" onclick="login()">Login</a> 
-                            <a href="registrasi/member" type="button" class="easyui-linkbutton">Register</a>
-                        </div>
-                    </form>  
-                </div>
-
-                <div class="cleaner_h20"></div>
-            </div> <!-- end of side column -->
-
-            <div class="cleaner"></div>
-
-        </div> <!-- end of content -->
-
-        <div id="templatemo_footer_wrapper">
-
-            <div id="templatemo_footer">
-
-                <ul class="footer_menu">
-                    <li><a href="${base}/home">Home</a></li>
-                    <li><a href="${base}/user/cart">Shopping Cart</a></li>
-                    <li class="last_menu"><a href="${base}/contact">Contact</a></li>
-                </ul>
-
-                Copyright &copy; 2013 <a href="${base}">Curvasud Online Store</a> | 
-                <a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a></div> 
-            <!-- end of footer -->
-
-        </div> <!-- end of footer wrapper -->
-        <div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
-        
         <script language="javascript">
-//            $(document).ready(fillHomeContent);
+            window.location.href = "home";
         </script>
 </html>

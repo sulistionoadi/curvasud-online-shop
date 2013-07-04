@@ -12,7 +12,11 @@ function submitRegisterMember(){
         url: "member",
         data: JSON.stringify(jsonData),
         dataType: "json",
-        contentType: "application/json"
+        contentType: "application/json",
+        success: function(data){
+            console.log("register sukses ", data);
+            window.location.href = "registrasi/sukses";
+        }
     });
 }
 
