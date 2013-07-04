@@ -4,6 +4,7 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service;
 
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import java.util.Date;
