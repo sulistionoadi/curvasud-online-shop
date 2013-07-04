@@ -258,5 +258,25 @@ public class MasterServiceImpl implements MasterService {
     public List<Supplier> findAllSuppliers() {
         return supplierDao.findAll();
     }
+
+    @Override
+    public Long countAllProductsByCategory(CategoryProduct cat) {
+        return productDao.countByCategory(cat);
+    }
+
+    @Override
+    public Page<Product> findAllProductsByCategory(Pageable pageable, CategoryProduct cat) {
+        return productDao.findByCategory(cat, pageable);
+    }
+
+    @Override
+    public Long countAllProductsByKeyword(String keyword) {
+        return productDao.countByKeyword("%"+keyword+"%");
+    }
+
+    @Override
+    public Page<Product> findAllProductsByKeyword(Pageable pageable, String keyword) {
+        return productDao.findByKeyword("%"+keyword+"%", pageable);
+    }
     
 }

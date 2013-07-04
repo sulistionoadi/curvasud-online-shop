@@ -12,7 +12,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author adi
  */
 public interface CategoryProductDao extends PagingAndSortingRepository<CategoryProduct, String> {
-    
+
     CategoryProduct findCategoryProductByCategoryCode(String categoryCode);
     
 }

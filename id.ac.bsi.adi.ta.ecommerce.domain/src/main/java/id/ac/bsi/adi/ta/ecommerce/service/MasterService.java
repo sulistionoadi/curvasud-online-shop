@@ -33,7 +33,11 @@ public interface MasterService {
     public Product findProductById(String id);
     public Product findProductByKode(String kode);
     public Long countAllProducts();
+    public Long countAllProductsByCategory(CategoryProduct cat);
+    public Long countAllProductsByKeyword(String keyword);
     public Page<Product> findAllProducts(Pageable pageable);
+    public Page<Product> findAllProductsByCategory(Pageable pageable, CategoryProduct cat);
+    public Page<Product> findAllProductsByKeyword(Pageable pageable, String keyword);
     public List<Product> findAllProducts();
     
     public Supplier save(Supplier supplier);

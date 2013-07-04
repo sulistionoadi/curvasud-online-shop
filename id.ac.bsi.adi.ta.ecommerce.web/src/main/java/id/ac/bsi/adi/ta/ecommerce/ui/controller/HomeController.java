@@ -77,9 +77,9 @@ public class HomeController {
     @RequestMapping("/login/success")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin/category/list";
+            return "redirect:/admin/page/home";
         }
-        return "redirect:/registrasi/member";
+        return "redirect:/user/page/home";
     }
     
 }

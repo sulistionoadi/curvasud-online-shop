@@ -17,6 +17,8 @@
         <pattern>/index.html</pattern>
         <pattern>content*</pattern>
         <pattern>/content*</pattern>
+        <pattern>user/search/content*</pattern>
+        <pattern>/user/search/content*</pattern>
         <pattern>/admin/product/info*</pattern>
         <pattern>/error/*</pattern>
     </excludes>

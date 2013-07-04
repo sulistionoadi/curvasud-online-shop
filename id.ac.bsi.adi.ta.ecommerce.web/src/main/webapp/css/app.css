@@ -119,3 +119,19 @@ a:link, a:visited {
     background: #E93301;
     color: #FFFFFF;
 }
+
+.welcome {
+    font-size: 18px;
+    font-weight: normal;
+    font-size-adjust: 5px;
+    color: #cc0033;
+    margin: 20px 0 0 0;
+}
+
+.user {
+    font-size: 32px;
+    font-weight: bold;
+    font-size-adjust: 5px;
+    color: #ff9900;
+    margin: 20px 0 0 0;
+}

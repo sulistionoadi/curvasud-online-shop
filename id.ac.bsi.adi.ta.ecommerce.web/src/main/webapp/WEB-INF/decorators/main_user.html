@@ -17,10 +17,11 @@
         <script type="text/javascript" src="${base}/js/jquery.cycle.all.js"></script>
         <script type="text/javascript" src="${base}/js/jquery.easyui.min.js"></script>
         <script type="text/javascript" src="${base}/js/app/app.js"></script>
+        <script type="text/javascript" src="${base}/js/app/cart.js"></script>
         <script type="text/javascript" src="${base}/js/app/datagrid-detailview.js"></script>
         <script type="text/javascript" src="${base}/js/app/home-content.js"></script>
+        <script type="text/javascript" src="${base}/js/app/menubar.js"></script>
         <script type="text/javascript" src="${base}/js/app/member.js"></script>
-        <script type="text/javascript" src="${base}/js/app/cart.js"></script>
         
     </head>
     <body>
@@ -31,11 +32,12 @@
                 <div id="site_title">
                     <div id="menu">
                         <ul>
-                            <li><a href="${base}/user/home">Home</a></li>
+                            <li><a href="${base}/user/page/home">Home</a></li>
                             <li><a href="${base}/user/cart/list">Shopping Cart</a></li>
                             <li><a href="#">Settings</a>
                                 <table><tr>
                                     <td><ul>
+                                        <li><a href="${base}/user/setting/profile">Profile</a></li>
                                         <li><a href="${base}/user/setting/password">Change Password</a></li>
                                     </ul></td>
                                 </tr></table>
@@ -66,21 +68,21 @@
 
             <div id="side_column">
                 <div class="side_column_box">
-                    <div class="ftitle">Login</div>  
-                    <form id="form_login" method="POST" action="${base}/j_spring_security_check">  
-                        <div class="fitem">  
-                            <label>Username: </label>
-                            <input type="text" name="j_username" class="easyui-validatebox" required="true"/>  
+                    <div class="ftitle">Search...</div>
+                    <form method="GET" action="${base}/user/search/panel?page.page=1&page.size=20">  
+                        <div class="fitem">
+                            <input type="text" id="txtCariKey" name="key" class="easyui-validatebox" required="true"/>  
                         </div>  
-                        <div class="fitem">  
-                            <label>Password: </label>
-                            <input type="text" name="j_password" class="easyui-validatebox" required="true"/>  
+                        <div class="fitem">
+                            <input type="submit" value="Cari"/>
+                            <!--<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="cari()">Cari</a>-->
                         </div>
-                        <div class="fitem">  
-                            <a href="javascript:void(0)" type="submit" class="easyui-linkbutton" onclick="login()">Login</a> 
-                            <a href="registrasi/member" type="button" class="easyui-linkbutton">Register</a>
-                        </div>
-                    </form>  
+                    </form>
+                </div>
+                
+                <div class="side_column_box">
+                    <div class="ftitle">Category</div>
+                    <div id="listCategoryMenu"></div>
                 </div>
 
                 <div class="cleaner_h20"></div>
@@ -93,7 +95,7 @@
         <div id="templatemo_footer_wrapper">
             <div id="templatemo_footer">
                 <ul class="footer_menu">
-                    <li><a href="${base}/user/home">Home</a></li>
+                    <li><a href="${base}/user/page/home">Home</a></li>
                     <li><a href="${base}/user/cart/list">Shopping Cart</a></li>
                     <li><a href="${base}/user/setting/password">Change Password</a></li>
                     <li class="last_menu"><a href="${base}/j_spring_security_logout">Logout</a></li>
@@ -104,4 +106,7 @@
             <!-- end of footer -->
 
         </div> <!-- end of footer wrapper --> 
+        <script language="javascript">
+            $(document).ready(getListCategoryMenu);
+        </script>
 </html>
