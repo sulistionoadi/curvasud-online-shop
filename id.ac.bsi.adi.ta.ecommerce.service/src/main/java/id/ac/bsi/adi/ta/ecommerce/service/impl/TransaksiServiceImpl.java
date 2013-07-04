@@ -4,7 +4,9 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
+import id.ac.bsi.adi.ta.ecommerce.dao.PaymentDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.util.Date;
@@ -27,6 +29,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     
     @Autowired
     private PurchaseDao purchaseDao;
+    @Autowired
+    private PaymentDao paymentDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -68,7 +72,40 @@ public class TransaksiServiceImpl implements TransaksiService {
     public Long countPurchaseByDate(Date startDate, Date endDate) {
         return purchaseDao.countByPurchaseDateBetween(startDate, endDate);
     }
-    
-    
+
+    @Override
+    public Payment save(Payment payment) {
+        Payment p = paymentDao.save(payment);
+        
+        return p;
+    }
+
+    @Override
+    public Payment findPaymentById(String id) {
+        Payment p = paymentDao.findOne(id);
+        
+        return p;
+    }
+
+    @Override
+    public Page<Payment> findPaymentByApproved(boolean approved, Pageable pageable) {
+        Page<Payment> payments = paymentDao.findByApproved(approved, pageable);
+        
+        if(payments.getSize() > 0){
+            for (Payment payment : payments) {
+                if(payment.getBooking() != null) {
+                    Hibernate.initialize(payment.getBooking());
+                    Hibernate.initialize(payment.getBooking().getBookingDetails());
+                }
+            }
+        }
+        
+        return payments;
+    }
+
+    @Override
+    public Long countPaymentByApproved(boolean approved) {
+        return paymentDao.countPaymentByApproved(approved);
+    }
     
 }
