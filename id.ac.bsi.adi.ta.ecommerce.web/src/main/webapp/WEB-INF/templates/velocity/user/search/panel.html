@@ -10,13 +10,13 @@ and open the template in the editor.
     </head>
     <body>
         <div id="search_product" class="easyui-panel" style="height:800px"  
-                data-options="href:'content?page.page=1&page.size=20&cat=$!cat', method:'GET'">  
+                data-options="href:'content?page.page=1&page.size=20&cat=$!cat&key=$!key', method:'GET'">  
         </div>  
         <div id="search_pagination" class="easyui-pagination" style="border:1px solid #ccc; background: #000;"  
                 data-options="
                     pageSize: 20,
                     onSelectPage: function(pageNumber, pageSize){  
-                        $('#search_product').panel('refresh', 'content?page.page='+pageNumber+'&page.size='+pageSize+'&cat=$!cat');  
+                        $('#search_product').panel('refresh', 'content?page.page='+pageNumber+'&page.size='+pageSize+'&cat=$!cat&key=$!key');  
                     }">  
         </div>
     </body>

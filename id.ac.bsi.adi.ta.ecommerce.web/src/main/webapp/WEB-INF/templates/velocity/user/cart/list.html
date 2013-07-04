@@ -15,7 +15,8 @@ and open the template in the editor.
             #set($totalBayar = 0)
             #set($member = $shoppingCartDTO.get(0).member)
             <h2>Isi Keranjang Belanja Anda :</h2>
-            <table border="1" cellspacing="0" cellpadding="3" style="border: solid 1px #ccc;">
+            <br>
+            <table border="1" cellspacing="0" cellpadding="3" width="600px" style="border: solid 1px #ccc;">
                 <thead>
                     <tr>
                         <th>Kode Produk</th>
@@ -32,9 +33,9 @@ and open the template in the editor.
                     <tr>
                         <td>$sp.product.productCode</td>
                         <td>$sp.product.productName</td>
-                        <td>$sp.qty</td>
-                        <td>$sp.product.price</td>
-                        <td>$sp.total</td>
+                        <td align="center">$!numberTool.format('#,##0',$sp.qty)</td>
+                        <td align="right">Rp. $!numberTool.format('#,##0',$sp.product.price)</td>
+                        <td align="right">Rp. $!numberTool.format('#,##0',$sp.total)</td>
                     </tr>
                     #end
                 </tbody>
@@ -44,17 +45,16 @@ and open the template in the editor.
             <div class="ftitle">Total yang harus dibayar</div>
             <div class="fitem">  
                 <label>Total Barang : </label>  
-                <label>$totalPrice</label>  
+                <label>Rp. $!numberTool.format('#,##0',$totalPrice)</label>
             </div>
             <div class="fitem">  
                 <label>Ongkos Kirim : </label>  
-                <label>$ongkos</label>  
+                <label>Rp. $!numberTool.format('#,##0',$ongkos)</label>
             </div>
             <div class="fitem">  
                 <label>Total Dibayar: </label>  
-                <label>$totalBayar</label>  
+                <label>Rp. $!numberTool.format('#,##0',$totalBayar)</label>  
             </div>
-            <br/>
             <br/>
             <div class="ftitle">Isi dan periksa data dibawah ini untuk data pengiriman</div>
             <div class="fitem">  
@@ -69,6 +69,7 @@ and open the template in the editor.
                 <label>No. Telepon : </label>  
                 <input id="kirim_telp" class="easyui-validatebox" required="true" value="$member.mobile"/>
             </div>
+            <br>
             <div>  
                 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="checkout('$ongkos')">Checkout</a>
             </div>

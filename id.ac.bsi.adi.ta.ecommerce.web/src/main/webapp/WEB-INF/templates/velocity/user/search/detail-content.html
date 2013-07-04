@@ -10,7 +10,7 @@ and open the template in the editor.
     </head>
     <body>
         <table>
-            #set($urlImg = $product.pictures.get(0))
+            #set($urlImg = '../../'+$product.pictures.get(0))
             <tr>
                 <td>
                     <img src="$urlImg" style="width:200px; height: 200px; margin-right:20px" />
@@ -36,12 +36,12 @@ and open the template in the editor.
                                 </p>
                                 <ul>
                                     <li>Product Code : $product.productCode</li>
-                                   <li>Price : Rp. $!numberTool.format('#,##0',$product.price)</li>
+                                    <li>Price : Rp. $!numberTool.format('#,##0',$product.price)</li>
                                 </ul>
                                 
                                 <!--<a href="user/cart/add?id=$product.id">Add to Cart</a>-->
                                 Item : <input type="text" class="easyui-numberbox" style="width: 30px;" id="qty_cart" />
-                                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="addCart('$product.id')">Add to Cart</a> 
+                                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="addCart2('$product.id')">Add to Cart</a> 
                             </td>
                         </tr>
                     </table>

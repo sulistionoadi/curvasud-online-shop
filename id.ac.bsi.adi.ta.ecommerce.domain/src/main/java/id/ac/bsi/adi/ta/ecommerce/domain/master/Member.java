@@ -36,6 +36,9 @@ public class Member extends BaseEntity {
     @Column(length=15)
     private String lastname;
     
+    @Column(length=10, name="member_code", nullable=false, unique=true)
+    private String memberCode;
+    
     @Email
     @NotNull @NotEmpty
     @Column(nullable=false, length=25)
@@ -185,6 +188,14 @@ public class Member extends BaseEntity {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public String getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(String memberCode) {
+        this.memberCode = memberCode;
     }
     
 }

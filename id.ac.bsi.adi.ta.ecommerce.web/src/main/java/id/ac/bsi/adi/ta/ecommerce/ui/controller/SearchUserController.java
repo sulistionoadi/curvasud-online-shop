@@ -32,9 +32,12 @@ public class SearchUserController extends ExceptionHandlerController {
     @Autowired private MasterService masterService;
     
     @RequestMapping("/panel")
-    private ModelMap searchPanel(@RequestParam(value="cat", required=false) String cat) {
+    private ModelMap searchPanel(
+            @RequestParam(value="cat", required=false) String cat,
+            @RequestParam(value="key", required=false) String key) {
         ModelMap mm = new ModelMap();
         mm.addAttribute("cat", cat);
+        mm.addAttribute("key", key);
         return mm;
     }
     
@@ -62,6 +65,15 @@ public class SearchUserController extends ExceptionHandlerController {
         ModelMap mm = new ModelMap();
         mm.put("total", countProduct);
         mm.put("products", list);
+        return mm;
+    }
+    
+    @RequestMapping("/detail-content")
+    public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct){
+        Product p = masterService.findProductById(idProduct);
+        
+        ModelMap mm = new ModelMap();
+        mm.put("product", p);
         return mm;
     }
     

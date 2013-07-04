@@ -4,17 +4,23 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
+import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
 import id.ac.bsi.adi.ta.ecommerce.constant.StatusUser;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.City;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
+import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import org.apache.commons.lang.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +47,8 @@ public class MemberController extends ExceptionHandlerController{
     private MasterService masterService;
     @Autowired
     private SecurityService securityService;
+    @Autowired
+    private RunningNumberService runningNumberService;
     
     private final Logger logger = LoggerFactory.getLogger(MemberController.class);
     
@@ -77,6 +85,13 @@ public class MemberController extends ExceptionHandlerController{
         
         Role role = securityService.findRoleByName("MEMBER");
         String encryptedPassword = new Md5PasswordEncoder().encodePassword(member.getPassword(), member.getUsername());
+        
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yy");
+        DateTime sekarang = new DateTime();
+        
+        String memberCode = "MB" + formatter.print(sekarang) + StringUtils.leftPad(
+                runningNumberService.generateYearlyRunningNumber(sekarang.toDate(), DesignationType.MEMBER), 6, "0");
+        member.setMemberCode(memberCode);
         
         User user = new User();
         user.setUsername(member.getUsername());

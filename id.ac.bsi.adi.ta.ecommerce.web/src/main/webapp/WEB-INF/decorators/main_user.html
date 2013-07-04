@@ -69,8 +69,10 @@
             <div id="side_column">
                 <div class="side_column_box">
                     <div class="ftitle">Search...</div>
-                    <form method="GET" action="${base}/user/search/panel?page.page=1&page.size=20">  
+                    <form method="GET" action="${base}/user/search/panel">  
                         <div class="fitem">
+                            <input type="hidden" name="page.page" value="1" class="easyui-validatebox" required="true"/>  
+                            <input type="hidden" name="page.size" value="20" class="easyui-validatebox" required="true"/>
                             <input type="text" id="txtCariKey" name="key" class="easyui-validatebox" required="true"/>  
                         </div>  
                         <div class="fitem">

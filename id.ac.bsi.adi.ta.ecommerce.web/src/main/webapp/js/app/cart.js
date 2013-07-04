@@ -21,6 +21,29 @@ function addCart(idProduct){
     });
 }
 
+function addCart2(idProduct){
+    var qty = $('#qty_cart').val();
+    
+    $.ajax({
+        type: 'POST',
+        url: '../cart/add',
+        data: {
+            q: qty,
+            id: idProduct
+        },
+        success: function(data){
+            console.log(data);
+            window.location.href = "../cart/list";
+        },
+        error: function(errorResp){
+            $.messager.show({
+                title: 'Add Cart Error',
+                msg: errorResp
+            });
+        }
+    });
+}
+
 function checkout(ongkos){
     console.log("nilai ongkos " + ongkos);
     $.ajax({
