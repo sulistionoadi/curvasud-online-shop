@@ -14,6 +14,7 @@ function changePassword(){
         contentType: 'application/json',
         success: function(data){
             console.log(data);
+            window.location.href = "../../j_spring_security_logout";
         },
         error: function(errorResp){
             console.log("error");
