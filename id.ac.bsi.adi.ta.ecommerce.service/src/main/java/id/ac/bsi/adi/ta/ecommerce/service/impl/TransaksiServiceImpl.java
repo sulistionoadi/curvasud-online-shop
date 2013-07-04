@@ -5,7 +5,9 @@
 package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
 import id.ac.bsi.adi.ta.ecommerce.dao.PaymentDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.BookingDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
@@ -31,6 +33,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     private PurchaseDao purchaseDao;
     @Autowired
     private PaymentDao paymentDao;
+	@Autowired
+    private BookingDao bookingDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -74,7 +78,12 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Payment save(Payment payment) {
+    public Booking save(Booking booking) {
+        return bookingDao.save(booking);
+	}
+    
+	@Override
+	public Payment save(Payment payment) {
         Payment p = paymentDao.save(payment);
         
         return p;

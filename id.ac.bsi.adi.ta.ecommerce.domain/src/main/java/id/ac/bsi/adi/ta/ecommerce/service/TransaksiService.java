@@ -28,4 +28,5 @@ public interface TransaksiService {
     public Long countPaymentByApproved(boolean approved);
     public Page<Payment> findPaymentByApproved(boolean approved, Pageable pageable);
     
+    public Booking save(Booking booking);
 }
