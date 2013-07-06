@@ -80,7 +80,8 @@ public class MemberController extends ExceptionHandlerController{
         }
         
         if(bindingResult.hasErrors()){
-            return "/registrasi/member";
+            logger.debug("BINDING RESULT HAS ERROR");
+            return "registrasi/member";
         }
         
         Role role = securityService.findRoleByName("MEMBER");

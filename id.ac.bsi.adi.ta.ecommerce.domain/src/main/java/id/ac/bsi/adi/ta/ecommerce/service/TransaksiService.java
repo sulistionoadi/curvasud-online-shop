@@ -28,7 +28,9 @@ public interface TransaksiService {
     public Payment findPaymentById(String id);
     public Long countPaymentByApproved(boolean approved);
     public Page<Payment> findPaymentByApproved(boolean approved, Pageable pageable);
+    public List<Payment> findPaymentByBooking(Booking booking);
     
     public Booking save(Booking booking);
     public Booking findBookingById(String id);
+    public Booking findBookingByBookingCode(String kode);
 }

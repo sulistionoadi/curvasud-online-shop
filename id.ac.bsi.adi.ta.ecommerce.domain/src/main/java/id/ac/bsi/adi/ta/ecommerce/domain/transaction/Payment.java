@@ -36,9 +36,9 @@ public class Payment extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date paymentDate = new Date();
     
-    @Column(name="approve_date", nullable=false)
+    @Column(name="approve_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date approveDate = new Date();
+    private Date approveDate;
     
     @Column(name="transaction_date", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)

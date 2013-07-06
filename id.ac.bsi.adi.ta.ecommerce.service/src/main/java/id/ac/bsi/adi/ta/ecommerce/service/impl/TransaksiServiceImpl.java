@@ -33,7 +33,7 @@ public class TransaksiServiceImpl implements TransaksiService {
     private PurchaseDao purchaseDao;
     @Autowired
     private PaymentDao paymentDao;
-	@Autowired
+    @Autowired
     private BookingDao bookingDao;
 
     @Override
@@ -125,6 +125,29 @@ public class TransaksiServiceImpl implements TransaksiService {
         }
         
         return b;
+    }
+
+    @Override
+    public Booking findBookingByBookingCode(String kode) {
+        Booking b = bookingDao.findByBookingCode(kode);
+        if(b!=null){
+            Hibernate.initialize(b.getBookingDetails());
+        }
+        
+        return b;
+    }
+
+    @Override
+    public List<Payment> findPaymentByBooking(Booking booking) {
+        List<Payment> payments = paymentDao.findByBooking(booking);
+        
+        for (Payment p : payments) {
+            if(p.getBooking()!=null){
+                Hibernate.initialize(p.getBooking().getBookingDetails());
+            }
+        }
+        
+        return payments;
     }
     
 }

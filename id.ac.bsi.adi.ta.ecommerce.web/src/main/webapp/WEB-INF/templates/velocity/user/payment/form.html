@@ -1,0 +1,103 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Payment</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div class="ftitle">Cari Booking</div>
+        <form method="get" novalidate>  
+            <div class="fitem">  
+                <label>Kode Booking : </label>  
+                <input name="kode" class="easyui-validatebox" required="true" value="$!booking.bookingCode"/>
+            </div>
+            <div class="fitem">
+                <input type="submit" value="Go"/>
+            </div>
+        </form>
+        
+        #if($booking)
+            <br>
+            <br>
+            <h2>Data Pengiriman</h2>
+            <div class="fitem">  
+                <label>Nama : </label>  
+                <label>$!booking.shippingName</label>
+            </div>
+            <div class="fitem">  
+                <label>Alamat : </label>
+                <label>$!booking.shippingAddress</label>
+            </div>
+            <div class="fitem">  
+                <label>No. Telepon : </label>  
+                <label>$!booking.shippingPhone</label>
+            </div>
+            <br>
+            <h2>Detail Barang</h2>
+            <table border="1" cellspacing="0" cellpadding="3" width="600px" style="border: solid 1px #ccc;">
+                <thead>
+                    <tr>
+                        <th>Kode Produk</th>
+                        <th>Nama Produk</th>
+                        <th>Jml Beli</th>
+                        <th>Harga</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #set($totalPrice = 0)
+                    #foreach($d in $booking.bookingDetails)
+                    #set($totalPrice = $totalPrice + $d.totalAmount)
+                    <tr>
+                        <td>$d.product.productCode</td>
+                        <td>$d.product.productName</td>
+                        <td align="center">$!numberTool.format('#,##0',$d.qty)</td>
+                        <td align="right">Rp. $!numberTool.format('#,##0',$d.amount)</td>
+                        <td align="right">Rp. $!numberTool.format('#,##0',$d.totalAmount)</td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+            <br>
+            <div class="ftitle">Total yang harus dibayar</div>
+            <div class="fitem">  
+                <label>Total Barang : </label>  
+                <label>Rp. $!numberTool.format('#,##0',$totalPrice)</label>
+            </div>
+            <div class="fitem">  
+                <label>Ongkos Kirim : </label>  
+                <label>Rp. $!numberTool.format('#,##0',$booking.shippingCost)</label>
+            </div>
+            <div class="fitem">  
+                #set($totalBayar = $totalPrice + $booking.shippingCost)
+                <label>Total Dibayar: </label>
+                <label>Rp. $!numberTool.format('#,##0', $totalBayar)</label>  
+            </div>
+            
+            <br>
+            <div class="ftitle">Jumlah yang di transfer</div>
+            <form method="post" novalidate>  
+                <div class="fitem">  
+                    <label>Nama Account : </label>  
+                    <input name="kodeBooking" type="hidden" class="easyui-validatebox" required="true" value="$!booking.bookingCode"/>
+                    <input name="acname" type="text" class="easyui-validatebox" required="true"/>
+                </div>
+                <div class="fitem">  
+                    <label>Jumlah Transfer : </label>  
+                    <input name="amount" type="text" class="easyui-numberbox" required="true"/>
+                </div>
+                <div class="fitem">  
+                    <label>Tanggal Transfer : </label>  
+                    <input name="tgl" type="text" class="easyui-datebox" required="true"/>
+                </div>
+                <div class="fitem">
+                    <input type="submit" value="Submit"/>
+                </div>
+            </form>
+        #end
+    </body>
+</html>

@@ -143,7 +143,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
         Booking b = transaksiService.save(booking);
         
         Map<String,Object> result = new HashMap<String, Object>();
-        result.put("redirect", "sukses?id="+b.getId());
+        result.put("redirect", "sukses?id="+b.getId()+"&kode="+b.getBookingCode());
         return result;
     }
     
@@ -160,8 +160,13 @@ public class ShoppingCartController extends ExceptionHandlerController {
     }
     
     @RequestMapping(value="/sukses", method= RequestMethod.GET)
-    public ModelMap sukses(@RequestParam(value="id", required=true) String id) throws Exception{
-        return new ModelMap("idBooking", id);
+    public ModelMap sukses(
+            @RequestParam(value="id", required=true) String id,
+            @RequestParam(value="kode", required=true) String kode) throws Exception{
+        ModelMap mm = new ModelMap();
+        mm.addAttribute("idBooking", id);
+        mm.addAttribute("kode", kode);
+        return mm;
     }
     
     @RequestMapping("/cetak")

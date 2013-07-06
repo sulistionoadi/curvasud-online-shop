@@ -14,5 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface BookingDao extends PagingAndSortingRepository<Booking, String>, JpaRepository<Booking, String> {
     
+    public Booking findByBookingCode(String bookingCode);
     
 }
