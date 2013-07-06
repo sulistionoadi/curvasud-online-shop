@@ -54,6 +54,11 @@ public class HomeController {
         return new ModelMap();
     }
     
+    @RequestMapping("/contact")
+    public ModelMap getContact(){
+        return new ModelMap();
+    }
+    
     @RequestMapping("/content")
     public ModelMap getContent(Pageable pageable){
         Long countProduct = masterService.countAllProducts();
