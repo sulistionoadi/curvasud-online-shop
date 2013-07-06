@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Faktur Penjualan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.0000000000000018"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="216"/>
-	<parameter name="NoFaktur" class="java.lang.String"/>
-	<parameter name="Nama" class="java.lang.String"/>
-	<parameter name="Alamat" class="java.lang.String"/>
-	<parameter name="Tanggal" class="java.lang.String"/>
-	<parameter name="NomorTelepon" class="java.lang.String"/>
-	<parameter name="OngkosKirim" class="java.lang.String"/>
-	<field name="No" class="java.lang.String"/>
-	<field name="Kode" class="java.lang.String"/>
-	<field name="Product" class="java.lang.String"/>
-	<field name="Quantity" class="java.lang.String"/>
-	<field name="Harga" class="java.lang.String"/>
-	<field name="Total" class="java.lang.String"/>
-	<variable name="Jumlah" class="java.lang.String"/>
-	<variable name="GrandTotal" class="java.lang.String"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="noFaktur" class="java.lang.String"/>
+	<parameter name="nama" class="java.lang.String"/>
+	<parameter name="alamat" class="java.lang.String"/>
+	<parameter name="tanggal" class="java.util.Date"/>
+	<parameter name="nomorTelepon" class="java.lang.String"/>
+	<parameter name="ongkosKirim" class="java.math.BigDecimal"/>
+	<field name="no" class="java.lang.Integer"/>
+	<field name="kode" class="java.lang.String"/>
+	<field name="produk" class="java.lang.String"/>
+	<field name="qty" class="java.lang.Integer"/>
+	<field name="harga" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<variable name="Jumlah" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="GrandTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{Jumlah}.add($P{ongkosKirim})]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="44" splitType="Stretch">
 			<staticText>
-				<reportElement x="195" y="0" width="177" height="28"/>
-				<textElement>
-					<font size="20"/>
+				<reportElement x="0" y="0" width="555" height="28"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Faktur Penjualan]]></text>
 			</staticText>
@@ -48,7 +52,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{NoFaktur}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{noFaktur}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="26" width="36" height="16"/>
@@ -62,7 +66,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Nama}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{nama}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="74" y="0" width="2" height="16"/>
@@ -97,7 +101,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Alamat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{alamat}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="296" y="0" width="62" height="16"/>
@@ -127,65 +131,65 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd-MM-yyyy h.mm">
 				<reportElement x="420" y="0" width="124" height="16"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Tanggal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="420" y="25" width="124" height="14"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{NomorTelepon}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{nomorTelepon}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="33" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="28" width="555" height="1"/>
+				<reportElement x="0" y="23" width="555" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="2" y="0" width="20" height="18"/>
-				<textElement>
+				<reportElement x="0" y="0" width="44" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="81" y="1" width="38" height="16"/>
-				<textElement>
+				<reportElement x="44" y="0" width="121" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Kode]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="188" y="1" width="51" height="16"/>
-				<textElement>
+				<reportElement x="165" y="0" width="112" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Product]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="290" y="1" width="53" height="20"/>
-				<textElement>
+				<reportElement x="277" y="0" width="81" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Quantity]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="375" y="1" width="45" height="20"/>
-				<textElement>
+				<reportElement x="358" y="0" width="97" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Harga]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="1" width="100" height="20"/>
-				<textElement>
+				<reportElement x="455" y="0" width="100" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[Total]]></text>
@@ -193,54 +197,54 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="145" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="3" y="5" width="57" height="20"/>
-				<textElement>
+				<reportElement x="0" y="0" width="44" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{No}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{no}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="81" y="5" width="84" height="20"/>
-				<textElement>
+				<reportElement x="44" y="0" width="121" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Kode}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{kode}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="188" y="5" width="89" height="20"/>
-				<textElement>
+				<reportElement x="165" y="0" width="112" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Product}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{produk}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="290" y="5" width="53" height="20"/>
-				<textElement>
+				<reportElement x="277" y="0" width="81" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Quantity}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="372" y="5" width="76" height="20"/>
-				<textElement>
+			<textField pattern="#,##0.00">
+				<reportElement x="358" y="0" width="97" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Harga}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="455" y="5" width="100" height="20"/>
-				<textElement>
+			<textField pattern="#,##0.00">
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="83" splitType="Stretch">
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="442" y="8" width="113" height="20"/>
 				<textElement>
 					<font size="12"/>
@@ -264,12 +268,12 @@
 				</textElement>
 				<text><![CDATA[Ongkos Kirim]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="442" y="28" width="113" height="20"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{OngkosKirim}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ongkosKirim}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="322" y="48" width="84" height="20"/>
@@ -278,7 +282,7 @@
 				</textElement>
 				<text><![CDATA[Grand Total]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="442" y="48" width="106" height="20"/>
 				<textElement>
 					<font size="12"/>
@@ -309,9 +313,9 @@
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

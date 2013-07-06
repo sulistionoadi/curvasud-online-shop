@@ -4,7 +4,10 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
+import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
+import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.net.URI;
 import java.util.Date;
@@ -13,6 +16,9 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +41,10 @@ public class ApprovalPaymentController {
 
     @Autowired
     private TransaksiService transaksiService;
+    @Autowired 
+    private RunningNumberService runningNumberService;
     public static final Logger logger = LoggerFactory.getLogger(CategoryProductController.class);
+    private DateTimeFormatter formatDate = DateTimeFormat.forPattern("dd-MM-yyyy");
 
     @RequestMapping("/list")
     public ModelMap pageDataApproval() {
@@ -68,6 +77,18 @@ public class ApprovalPaymentController {
         payment.setApproveDate(new Date());
         
         transaksiService.save(payment);
+        
+        DateTime sekarang = new DateTime();
+        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyMM");
+        String invoiceCode = "PA" + formatter.print(sekarang) + org.apache.commons.lang.StringUtils.leftPad(runningNumberService.generateMonthlyRunningNumber(sekarang.toDate(), DesignationType.PAYMENT), 4, "0");
+        
+        Invoice invoice = new Invoice();
+        invoice.setInvoiceNumber(invoiceCode);
+        invoice.setTransactionDate(new Date());
+        invoice.setBooking(payment.getBooking());
+        
+        transaksiService.save(invoice);
+        
         String requestUrl = request.getRequestURL().toString();
         URI uri = new UriTemplate("{requestUrl}").expand(requestUrl);
         response.setHeader("Location", uri.toASCIIString());

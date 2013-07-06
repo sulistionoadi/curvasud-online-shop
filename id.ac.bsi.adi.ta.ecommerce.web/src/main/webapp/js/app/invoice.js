@@ -19,17 +19,12 @@ function createGridInvoice() {
         },
         columns: [[
                 {
-                    field: 'accountName',
-                    title: 'Account Name',
+                    field: 'invoiceNumber',
+                    title: 'Invoice Number',
                     width: 110
                 },
                 {
-                    field: 'transferAmount',
-                    title: 'Transfer Amount',
-                    width: 110
-                },
-                {
-                    field: 'booking',
+                    field: 'kodebooking',
                     title: 'Kode Booking',
                     width: 110,
                     formatter: function(value, row, index) {
@@ -41,14 +36,8 @@ function createGridInvoice() {
                     }
                 },
                 {
-                    field: 'paymentDate',
-                    title: 'Tanggal Payment',
-                    width: 110
-
-                },
-                {
-                    field: 'approveDate',
-                    title: 'Tanggal Approve',
+                    field: 'transactionDate',
+                    title: 'Tanggal Transaksi',
                     width: 120,
                     formatter: function(value) {
                         var result = "";
@@ -66,7 +55,7 @@ function createGridInvoice() {
                     formatter: function(value, row, index) {
                         var col;
                         if (row.id != null) {
-                            col = '<a href="do-cetak/' + row.id + '">Cetak</a>';
+                            col = '<a href="cetak/?id=' + row.id + '">Cetak</a>';
                         }
                         return col;
                     }

@@ -6,8 +6,11 @@ package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
 import id.ac.bsi.adi.ta.ecommerce.dao.PaymentDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.BookingDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.InvoiceDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
@@ -35,6 +38,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     private PaymentDao paymentDao;
     @Autowired
     private BookingDao bookingDao;
+    @Autowired
+    private InvoiceDao invoiceDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -148,6 +153,38 @@ public class TransaksiServiceImpl implements TransaksiService {
         }
         
         return payments;
+    }
+
+    @Override
+    public void save(Invoice invoice) {
+        invoiceDao.save(invoice);
+    }
+
+    @Override
+    public Long countAllInvoice() {
+        return invoiceDao.count();
+    }
+
+    @Override
+    public Page<Invoice> findAllInvoice(Pageable pageable) {
+        Page<Invoice> invoices = invoiceDao.findAll(pageable);
+        for (Invoice invoice : invoices) {
+            if(invoice.getBooking()!=null){
+                Hibernate.initialize(invoice.getBooking().getBookingDetails());
+            }
+        }
+        
+        return invoices;
+    }
+
+    @Override
+    public Invoice findInvoiceById(String id) {
+        Invoice invoice = invoiceDao.findOne(id);
+        if(invoice.getBooking() != null) {
+            Hibernate.initialize(invoice.getBooking().getBookingDetails());
+        }
+        
+        return invoice;
     }
     
 }
