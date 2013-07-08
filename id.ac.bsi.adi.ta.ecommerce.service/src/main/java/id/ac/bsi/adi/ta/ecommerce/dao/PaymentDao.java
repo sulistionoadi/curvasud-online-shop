@@ -20,9 +20,9 @@ import org.springframework.data.repository.query.Param;
 public interface PaymentDao extends JpaRepository<Payment, String>{
     
     @Query("select count(p) from Payment p where p.approved = :approved")
-    public Long countPaymentByApproved(@Param("approved") boolean approved);
+    public Long countPaymentByApproved(@Param("approved") Boolean approved);
     
-    public Page<Payment> findByApproved(boolean approved, Pageable pageable);
+    public Page<Payment> findByApproved(Boolean approved, Pageable pageable);
     
     public List<Payment> findByBooking(Booking booking);
     

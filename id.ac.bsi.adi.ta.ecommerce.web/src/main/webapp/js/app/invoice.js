@@ -55,7 +55,7 @@ function createGridInvoice() {
                     formatter: function(value, row, index) {
                         var col;
                         if (row.id != null) {
-                            col = '<a href="cetak/?id=' + row.id + '">Cetak</a>';
+                            col = '<a href="cetak?id=' + row.id + '">Cetak</a>';
                         }
                         return col;
                     }

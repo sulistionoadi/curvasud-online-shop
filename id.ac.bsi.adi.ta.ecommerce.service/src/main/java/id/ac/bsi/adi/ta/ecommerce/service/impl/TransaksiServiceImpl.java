@@ -102,13 +102,12 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Page<Payment> findPaymentByApproved(boolean approved, Pageable pageable) {
+    public Page<Payment> findPaymentByApproved(Boolean approved, Pageable pageable) {
         Page<Payment> payments = paymentDao.findByApproved(approved, pageable);
         
         if(payments.getSize() > 0){
             for (Payment payment : payments) {
                 if(payment.getBooking() != null) {
-                    Hibernate.initialize(payment.getBooking());
                     Hibernate.initialize(payment.getBooking().getBookingDetails());
                 }
             }
@@ -118,7 +117,7 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Long countPaymentByApproved(boolean approved) {
+    public Long countPaymentByApproved(Boolean approved) {
         return paymentDao.countPaymentByApproved(approved);
     }
 

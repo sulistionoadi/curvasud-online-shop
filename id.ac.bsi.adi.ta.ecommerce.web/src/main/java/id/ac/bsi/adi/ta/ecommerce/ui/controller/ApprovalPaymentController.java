@@ -5,6 +5,7 @@
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
 import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
@@ -54,11 +55,16 @@ public class ApprovalPaymentController {
     @RequestMapping(value = "/json", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> jsonDataApproval(Pageable pageable, HttpServletResponse httpServletResponse) {
-        Long countPayments = transaksiService.countPaymentByApproved(false);
+        Long countPayments = transaksiService.countPaymentByApproved(Boolean.FALSE);
         Object[] obj = {pageable.getOffset(), pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort()};
         logger.info("DEBUG VALUE PAGEABLE -- Offset[{}] PageNumber[{}] PageSize[{}] Sort[{}]", obj);
 
-        List<Payment> datas = transaksiService.findPaymentByApproved(false, pageable).getContent();
+        List<Payment> datas = transaksiService.findPaymentByApproved(Boolean.FALSE, pageable).getContent();
+        for (Payment p : datas) {
+            for (BookingDetail d : p.getBooking().getBookingDetails()) {
+                d.setBooking(null);
+            }
+        }
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("total", countPayments);
