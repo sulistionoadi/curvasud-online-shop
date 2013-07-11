@@ -44,10 +44,10 @@ public class ChangePasswordController {
     public ResponseEntity<Object> update(@RequestBody @Valid ChangePasswordHelper changePasswordHelper, BindingResult errors) {
         if(!changePasswordHelper.getConfirmNewPassword().isEmpty()){
             if(!changePasswordHelper.getNewPassword().equals(changePasswordHelper.getConfirmNewPassword())){
-                errors.rejectValue("password", "user.password.invalid", "Password not match !!");
+                errors.rejectValue("newPassword", "changePasswordHelper.newPassword.invalid", "Password not match !!");
             }
         } else {
-            errors.rejectValue("password", "user.password.required", "Please fill password confirmation !!");
+            errors.rejectValue("confirmNewPassword", "changePasswordHelper.confirmNewPassword.required", "Please fill password confirmation !!");
         }
         
         String username = SpringSecurityHelper.getCurrentUsername();
@@ -57,7 +57,7 @@ public class ChangePasswordController {
         if(user != null) {
             String oldEncrypted = new Md5PasswordEncoder().encodePassword(changePasswordHelper.getOldPassword(), user.getUsername());
             if(!oldEncrypted.equals(user.getPassword())) {
-                errors.rejectValue("password", "user.password.invalid", "Old password doesn't match");
+                errors.rejectValue("oldPassword", "changePasswordHelper.oldPassword.invalid", "Old password doesn't match");
             }
             
             if(errors.hasErrors()){

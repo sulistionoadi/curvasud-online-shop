@@ -86,7 +86,7 @@ public class ApprovalPaymentController {
         
         DateTime sekarang = new DateTime();
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyMM");
-        String invoiceCode = "PA" + formatter.print(sekarang) + org.apache.commons.lang.StringUtils.leftPad(runningNumberService.generateMonthlyRunningNumber(sekarang.toDate(), DesignationType.PAYMENT), 4, "0");
+        String invoiceCode = "IN" + formatter.print(sekarang) + org.apache.commons.lang.StringUtils.leftPad(runningNumberService.generateMonthlyRunningNumber(sekarang.toDate(), DesignationType.PAYMENT), 4, "0");
         
         Invoice invoice = new Invoice();
         invoice.setInvoiceNumber(invoiceCode);

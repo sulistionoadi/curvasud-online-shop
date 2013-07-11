@@ -1,6 +1,7 @@
 var urlUser = "json";
 var methodUser = "POST";
 var roleSelected = null;
+var memberSelected = null;
 function createDatagridUser(){
     $('#user_username').validatebox({
         required: true,
@@ -125,6 +126,8 @@ function newUser(){
     $('#formMasterUser').form('clear');  
     urlUser = "json";
     methodUser = "POST";
+    roleSelected = null;
+    memberSelected = null;
 }
 
 function saveUser(){
@@ -134,9 +137,9 @@ function saveUser(){
     
     var data = $('#formMasterUser').serializeJSON();
     data.role = roleSelected;
+    data.member = memberSelected;
     data.active = $('#user_active').is(':checked');
     data.role.permissionSet = null;
-    data.role.menuSet = null;
 
     $.ajax({
         type: methodUser,
@@ -176,6 +179,7 @@ function editUser(){
         $('#user_role').combobox('setValue', row.role.id)
         $('#user_active').prop("checked", row.active);
         roleSelected = row.role;
+        memberSelected = row.member;
         urlUser = 'json/' + row.id;
         methodUser = 'PUT';
     }

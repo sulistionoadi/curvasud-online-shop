@@ -26,12 +26,23 @@ function createGridApproval() {
                 {
                     field: 'transferAmount',
                     title: 'Transfer Amount',
-                    width: 110
+                    width: 110,
+                    align: 'right',
+                    formatter: function(value,row,index){
+                        return formatNumber(value);
+                    }
                 },
                 {
                     field: 'booking.bookingCode',
                     title: 'Kode Booking',
-                    width: 110
+                    width: 110,
+                    formatter: function(value,row,index){
+                        if (row.booking){
+                            return row.booking.bookingCode;
+                        } else {
+                            return value;
+                        }
+                    }
                 },
                 {
                     field: 'paymentDate',

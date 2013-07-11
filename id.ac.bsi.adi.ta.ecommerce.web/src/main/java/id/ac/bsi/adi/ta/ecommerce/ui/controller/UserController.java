@@ -115,6 +115,8 @@ public class UserController extends ExceptionHandlerController {
     @ResponseBody
     public ResponseEntity<Object> update(@PathVariable String id, @RequestBody @Valid User user, BindingResult errors) {
         logger.info("IN METHOD UPDATE USER");
+        User r = securityService.findUserById(id);
+        
         if(!user.getConfirm().isEmpty()){
             if(!user.getPassword().equals(user.getConfirm())){
                 errors.rejectValue("password", "user.password.invalid", "Password not match !!");
@@ -122,6 +124,8 @@ public class UserController extends ExceptionHandlerController {
                 String encrypted = new Md5PasswordEncoder().encodePassword(user.getPassword(), user.getUsername());
                 user.setPassword(encrypted);
             }
+        } else {
+            user.setPassword(r.getPassword());
         }
         
         ResponseEntity<Object> responseEntity = null;
@@ -129,7 +133,6 @@ public class UserController extends ExceptionHandlerController {
             responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
         } else {
             logger.info("SEARCH USER WITH ID " + id);
-            User r = securityService.findUserById(id);
             if(r==null){
                 logger.warn("User with id [{}] not found !!", id);
                 throw new IllegalStateException("User with id [" + id + "] not found !!");
