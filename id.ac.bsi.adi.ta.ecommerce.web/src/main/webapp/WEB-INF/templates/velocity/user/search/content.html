@@ -12,7 +12,11 @@ and open the template in the editor.
         <input id="txtTotalSearchp" type="hidden" class="easyui-numberbox" value="$total" />
         <table>
             #foreach($p in $products)
-                #set($urlImg = '../../' + $p.pictures.get(0))
+                #if($p.pictures.isEmpty())
+                    #set($urlImg = "../../img/product/noProduct.png")
+                #else
+                    #set($urlImg = '../../' + $p.pictures.get(0))
+                #end
                 <tr>
                     <td>
                             <img src="$urlImg" style="width:120px; height: 120px; margin-right:20px" />

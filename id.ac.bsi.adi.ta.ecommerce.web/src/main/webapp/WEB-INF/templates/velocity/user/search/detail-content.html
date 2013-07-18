@@ -10,7 +10,11 @@ and open the template in the editor.
     </head>
     <body>
         <table>
-            #set($urlImg = '../../'+$product.pictures.get(0))
+            #if($product.pictures.isEmpty())
+                #set($urlImg = "../../img/product/noProduct.png")
+            #else
+                #set($urlImg = '../../'+$product.pictures.get(0))
+            #end
             <tr>
                 <td>
                     <img src="$urlImg" style="width:200px; height: 200px; margin-right:20px" />
