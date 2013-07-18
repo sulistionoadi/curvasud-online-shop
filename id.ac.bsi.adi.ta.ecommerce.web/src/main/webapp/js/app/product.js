@@ -137,6 +137,7 @@ function saveProduct(){
     var data = $('#formMasterProduct').serializeJSON();
     data.category = category;
     data.productCode = $("#product_productCode").val();
+    delete data.pictures;
     $.ajax({
         type: methodProduct,
         url: urlProduct,
@@ -174,6 +175,12 @@ function editProduct(){
         category = row.category;
         $("#product_category").val(row.category.categoryCode);
         $("#categoryName").val(row.category.description);
+        $.ajax({
+            type: 'GET',
+            url: 'setPicSession/' + row.id,
+            contentType: 'application/json',
+            dataType: 'json'
+        });
     }
 }
 
@@ -215,4 +222,45 @@ function findCategory(){
             }
         });
     }
+}
+
+function addPicture(comp){
+    var obj = $(comp);
+    var parent = obj.parent().parent();
+    
+    var inc = comp.substring(comp.length - 1);
+    var newId = 'product_picture' + ++inc;
+    
+    var html = '<div class="fitem">';
+    html += '       <label>&nbsp;</label>';
+    html += '       <input onChange="uploadPicture(\'#'+newId+'\')" type="file" name="picture" id="'+newId+'" style="width: 180px">';
+    html += '       <a href="javascript:void(0)" onclick="addPicture(\'#'+newId+'\')">add</a>';
+    html += '       <a href="javascript:void(0)" onclick="deletePicture(\'#'+newId+'\')">delete</a>';
+    html += '   </div>'
+    
+    parent.append(html);
+}
+
+function deletePicture(comp){
+    var obj = $(comp);
+    var value = obj.val();
+    $.ajax({
+        type: 'GET',
+        url: 'picdel?name=' + value,
+        success: function(data){
+            obj.parent().remove();
+        },
+        error: function(errorResp){
+            alert(errorResp.responseText);
+        }
+    });
+}
+
+function uploadPicture(comp){
+    $(comp).upload('upload', function(res) {
+        if(res.msg != undefined){
+            alert(res.msg);
+            $(comp).val('');
+        }
+    }, 'json');
 }

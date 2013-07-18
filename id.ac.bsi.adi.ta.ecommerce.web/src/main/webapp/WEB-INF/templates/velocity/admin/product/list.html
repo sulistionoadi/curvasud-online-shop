@@ -16,7 +16,7 @@ and open the template in the editor.
         
         <table id="gridProduct" title="Product List" class="easyui-datagrid" toolbar="#toolbarMasterProduct"></table>
         
-        <div id="dlgFormProduct" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px" closed="true" buttons="#dlg-product-buttons">  
+        <div id="dlgFormProduct" class="easyui-dialog" style="width:500px;height:500px;padding:10px 20px" closed="true" buttons="#dlg-product-buttons">  
             <div class="ftitle">Product</div>  
             <form id="formMasterProduct" method="post" novalidate>  
                 <div class="fitem">  
@@ -42,6 +42,12 @@ and open the template in the editor.
                 <div class="fitem">  
                     <label>Price :</label>  
                     <input id="product_price" name="price" class="easyui-numberbox" required="true">  
+                </div>
+                <div class="fitem">  
+                    <label>Picture :</label>  
+                    <input id="product_picture1" onChange="uploadPicture('#product_picture1')" name="picture" type="file" style="width: 180px"><>
+                    <a href="javascript:void(0)" onclick="addPicture('#product_picture1')">add</a>
+                    <!--<a href="javascript:void(0)" onclick="deletePicture('#product_picture1')">delete</a>-->
                 </div>
             </form>  
         </div>  
