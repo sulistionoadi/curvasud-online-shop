@@ -44,6 +44,10 @@ public class ChangeOfStock extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="id_product", nullable=false)
     private Product product;
+    
+    public void calculateFinalStock(){
+        finalStock = (initialStock + stockDebet) - stockCredit;
+    }
 
     public Date getDateOfMutation() {
         return dateOfMutation;

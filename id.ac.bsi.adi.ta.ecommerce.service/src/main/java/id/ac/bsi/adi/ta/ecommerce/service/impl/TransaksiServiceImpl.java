@@ -16,6 +16,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.transaction.ChangeOfStock;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.PurchaseDetail;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.util.Date;
 import java.util.List;
@@ -50,6 +51,12 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public Purchase save(Purchase purchase) {
         Purchase p = purchaseDao.save(purchase);
+        for(PurchaseDetail pd : p.getPurchaseDetails()){
+            ChangeOfStock cos = getDataStok(pd.getProduct(), p.getPurchaseDate());
+            cos.setStockDebet(cos.getStockDebet() + pd.getQuantity());
+            cos.calculateFinalStock();
+            save(cos);
+        }
         if(p!=null){
             Hibernate.initialize(p.getPurchaseDetails());
         }
@@ -91,9 +98,9 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public Booking save(Booking booking) {
         return bookingDao.save(booking);
-	}
+    }
     
-	@Override
+    @Override
 	public Payment save(Payment payment) {
         Payment p = paymentDao.save(payment);
         
@@ -103,7 +110,9 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public Payment findPaymentById(String id) {
         Payment p = paymentDao.findOne(id);
-        
+        if(p.getBooking()!=null){
+            Hibernate.initialize(p.getBooking().getBookingDetails());
+        }
         return p;
     }
 
@@ -163,6 +172,13 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public void save(Invoice invoice) {
         invoiceDao.save(invoice);
+        
+        for(BookingDetail bd : invoice.getBooking().getBookingDetails()){
+            ChangeOfStock cos = getDataStok(bd.getProduct(), invoice.getTransactionDate());
+            cos.setStockCredit(bd.getQty());
+            cos.calculateFinalStock();
+            save(cos);
+        }
     }
 
     @Override
