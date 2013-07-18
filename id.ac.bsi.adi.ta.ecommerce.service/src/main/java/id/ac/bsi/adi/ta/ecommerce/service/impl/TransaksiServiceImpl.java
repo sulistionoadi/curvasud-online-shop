@@ -6,10 +6,13 @@ package id.ac.bsi.adi.ta.ecommerce.service.impl;
 
 import id.ac.bsi.adi.ta.ecommerce.dao.PaymentDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.BookingDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.ChangeOfStockDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.InvoiceDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
+import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.ChangeOfStock;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
@@ -17,6 +20,7 @@ import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.Hibernate;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +44,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     private BookingDao bookingDao;
     @Autowired
     private InvoiceDao invoiceDao;
+    @Autowired
+    private ChangeOfStockDao changeOfStockDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -184,6 +190,31 @@ public class TransaksiServiceImpl implements TransaksiService {
         }
         
         return invoice;
+    }
+
+    @Override
+    public ChangeOfStock getDataStok(Product product, Date periode) {
+        ChangeOfStock cos = changeOfStockDao.getByProductAndPeriode(product.getId(), periode);
+        if(cos==null){
+            cos = new ChangeOfStock();
+            cos.setDateOfMutation(new DateTime().withDayOfMonth(1).toDate());
+            cos.setFinalStock(0);
+            cos.setInitialStock(0);
+            cos.setProduct(product);
+            cos.setStockCredit(0);
+            cos.setStockDebet(0);
+        }
+        return cos;
+    }
+
+    @Override
+    public ChangeOfStock save(ChangeOfStock cos) {
+        return changeOfStockDao.save(cos);
+    }
+
+    @Override
+    public void generateChangeOfStock() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
