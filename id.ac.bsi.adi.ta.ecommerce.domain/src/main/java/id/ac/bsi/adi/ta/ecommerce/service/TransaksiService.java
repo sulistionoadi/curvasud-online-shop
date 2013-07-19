@@ -45,4 +45,6 @@ public interface TransaksiService {
     public ChangeOfStock getDataStok(Product product, Date periode);
     public ChangeOfStock save(ChangeOfStock cos);
     public void generateChangeOfStock();
+    public Long countStokByPeriode(Date tanggal);
+    public Page<ChangeOfStock> findStokByPeriode(Date tanggal, Pageable pageable);
 }

@@ -61,6 +61,26 @@ function paginationActionByDate(pn,ps,sd,ed,url,id){
     });
 }
 
+function paginationDataStock(pn,ps,tgl,url,id){
+    $.ajax({
+        type:"GET",
+        url: url,
+        data: {
+            'page.page':pn,
+            'page.size':ps,
+            'tanggal':tgl,
+        },
+        dataType:'json',
+        beforeSend: function(jqXHR, settings){
+            $(id).datagrid('loading');
+        },success: function(data){
+            $(id).datagrid('loadData',data);
+        },complete: function(jqXHR, textStatus){
+            $(id).datagrid('loaded');
+        }
+    });
+}
+
 function updateErrorMessageTooltip(err){
     var idcomp = "#" + err.objName + "_" + err.id;
     var target = $(idcomp)[0];

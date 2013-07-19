@@ -232,5 +232,15 @@ public class TransaksiServiceImpl implements TransaksiService {
     public void generateChangeOfStock() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public Long countStokByPeriode(Date tanggal) {
+        return changeOfStockDao.countByPeriode(tanggal);
+    }
+
+    @Override
+    public Page<ChangeOfStock> findStokByPeriode(Date tanggal, Pageable pageable) {
+        return changeOfStockDao.findByPeriode(tanggal, pageable);
+    }
     
 }

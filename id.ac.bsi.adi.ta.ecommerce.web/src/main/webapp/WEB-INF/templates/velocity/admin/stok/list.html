@@ -1,0 +1,22 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Data Stok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        
+        <div id="toolbarStok">
+            <div>
+                Tanggal: <input id="tanggal" class="easyui-datebox" style="width:90px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" onclick="createDatagridStok()">Cari</a>
+            </div>
+        </div>
+        
+        <table id="gridStok" title="Stok List" class="easyui-datagrid" toolbar="#toolbarStok"></table>
+    </body>
+</html>
