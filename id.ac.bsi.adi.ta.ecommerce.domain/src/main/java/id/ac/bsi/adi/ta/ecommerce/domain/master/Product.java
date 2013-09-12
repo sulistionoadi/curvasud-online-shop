@@ -13,10 +13,12 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -27,13 +29,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="mst_product")
-public class Product extends BaseEntity {
+public class Product {
     
     @ManyToOne @NotNull
     @JoinColumn(name="id_category", nullable=false)
     private CategoryProduct category;
     
-    @NotNull @NotEmpty
+    @Id @NotNull @NotEmpty
     @Column(nullable=false, name="product_code", unique=true, length=8)
     private String productCode;
     
@@ -48,6 +50,11 @@ public class Product extends BaseEntity {
     @NotNull
     @Column(nullable=false)
     private BigDecimal price;
+    
+    @NotNull
+    @Min((long) 0.01)
+    @Column(nullable=false)
+    private BigDecimal weight = new BigDecimal("0.00");
     
     @ElementCollection(fetch= FetchType.EAGER)
     @CollectionTable(name="mst_picture_product", 
@@ -101,6 +108,14 @@ public class Product extends BaseEntity {
 
     public void setPictures(List<String> pictures) {
         this.pictures = pictures;
+    }
+
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
     }
     
 }

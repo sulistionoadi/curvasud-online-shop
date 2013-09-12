@@ -210,7 +210,7 @@ public class TransaksiServiceImpl implements TransaksiService {
 
     @Override
     public ChangeOfStock getDataStok(Product product, Date periode) {
-        ChangeOfStock cos = changeOfStockDao.getByProductAndPeriode(product.getId(), periode);
+        ChangeOfStock cos = changeOfStockDao.getByProductAndPeriode(product.getProductCode(), periode);
         if(cos==null){
             cos = new ChangeOfStock();
             cos.setDateOfMutation(new DateTime().withDayOfMonth(1).toDate());

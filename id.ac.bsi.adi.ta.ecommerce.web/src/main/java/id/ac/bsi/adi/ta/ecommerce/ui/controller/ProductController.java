@@ -137,7 +137,7 @@ public class ProductController extends ExceptionHandlerController{
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Product product(@PathVariable String id) {
-        Product p = masterService.findProductById(id);
+        Product p = masterService.findProductByKode(id);
         if(p==null){
             logger.warn("Product with id [{}] not found !!", id);
             throw new IllegalStateException("Product with id [" + id + "] not found !!");
@@ -148,7 +148,7 @@ public class ProductController extends ExceptionHandlerController{
     @RequestMapping("/info")
     @ResponseStatus(HttpStatus.OK)
     public ModelMap infoDetail(@RequestParam(value="id", required=false) String id) {
-        Product p = masterService.findProductById(id);
+        Product p = masterService.findProductByKode(id);
         if(p==null){
             logger.warn("Product with id [{}] not found !!", id);
             throw new IllegalStateException("Product with id [" + id + "] not found !!");
@@ -175,12 +175,12 @@ public class ProductController extends ExceptionHandlerController{
         if(errors.hasErrors()){
             responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
         } else {
-            Product p = masterService.findProductById(id);
+            Product p = masterService.findProductByKode(id);
             if(p==null){
                 logger.warn("Product with id [{}] not found !!", id);
                 throw new IllegalStateException("Product with id [" + id + "] not found !!");
             }
-            product.setId(p.getId());
+            product.setProductCode(p.getProductCode());
             List<String> pics = new ArrayList<String>();
             List<String> newPic = new ArrayList<String>();
             if(session.getAttribute(SESSION_KEY_UPLOAD_FILE)!=null){
@@ -211,7 +211,7 @@ public class ProductController extends ExceptionHandlerController{
     @RequestMapping(value="/json/{id}", method= RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
-        Product p = masterService.findProductById(id);
+        Product p = masterService.findProductByKode(id);
         if(p==null){
             logger.warn("Product with id [{}] not found !!", id);
             throw new IllegalStateException("Product with id [" + id + "] not found !!");
@@ -222,7 +222,7 @@ public class ProductController extends ExceptionHandlerController{
     @RequestMapping(value="/setPicSession/{id}", method= RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public void setPicSession(@PathVariable String id, HttpSession session) {
-        Product p = masterService.findProductById(id);
+        Product p = masterService.findProductByKode(id);
         if(p!=null){
             List<String> pics = new ArrayList<String>();
             for(String s : p.getPictures()){

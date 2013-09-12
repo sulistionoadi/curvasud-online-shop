@@ -70,7 +70,7 @@ public class SearchUserController extends ExceptionHandlerController {
     
     @RequestMapping("/detail-content")
     public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct){
-        Product p = masterService.findProductById(idProduct);
+        Product p = masterService.findProductByKode(idProduct);
         
         ModelMap mm = new ModelMap();
         mm.put("product", p);

@@ -66,7 +66,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
             throw new Exception("invalid session or member is null");
         }
         
-        Product p = masterService.findProductById(idProduct);
+        Product p = masterService.findProductByKode(idProduct);
         if(p == null){
             throw new Exception("product is null");
         }

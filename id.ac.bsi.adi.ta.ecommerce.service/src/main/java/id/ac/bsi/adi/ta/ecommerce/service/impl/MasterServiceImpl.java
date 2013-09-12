@@ -85,17 +85,6 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public Product findProductById(String id) {
-       Product p = productDao.findOne(id);
-       
-       if(p!=null) {
-           Hibernate.initialize(p.getPictures());
-       }
-       
-       return p;
-    }
-
-    @Override
     public Product findProductByKode(String kode) {
        Product p = productDao.findProductByProductCode(kode);
        

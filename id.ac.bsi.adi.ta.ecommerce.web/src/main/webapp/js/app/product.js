@@ -22,6 +22,11 @@ function createDatagridProduct(){
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
+    $('#product_weight').validatebox({
+        required: true,
+        invalidMessage: 'value is invalid',
+        missingMessage: 'this is required'
+    });
 
     $('#gridProduct').datagrid({
         style:'width:700px; height:400px',
@@ -47,7 +52,7 @@ function createDatagridProduct(){
                 height:80,
                 border:false,
                 cache:false,
-                href:'info?id='+row.id,
+                href:'info?id='+row.productCode,
                 onLoad:function(){
                     $('#gridProduct').datagrid('fixDetailRowHeight',index);
                 }
@@ -84,6 +89,15 @@ function createDatagridProduct(){
                     align: 'right',
                     formatter: function(value,row,index){
                         return formatNumber(value);
+                    }
+                },
+                {
+                    field:'weight', 
+                    title: 'Weight (kg)', 
+                    width:110,
+                    align: 'right',
+                    formatter: function(value,row,index){
+                        return formatDecimal(value,2);
                     }
                 }
             ]],
@@ -170,14 +184,14 @@ function editProduct(){
     if (row){
         $('#dlgFormProduct').dialog('open').dialog('setTitle','Edit Product');
         $('#formMasterProduct').form('load',row);
-        urlProduct = 'json/' + row.id;
+        urlProduct = 'json/' + row.productCode;
         methodProduct = 'PUT';
         category = row.category;
         $("#product_category").val(row.category.categoryCode);
         $("#categoryName").val(row.category.description);
         $.ajax({
             type: 'GET',
-            url: 'setPicSession/' + row.id,
+            url: 'setPicSession/' + row.productCode,
             contentType: 'application/json',
             dataType: 'json'
         });
@@ -191,7 +205,7 @@ function removeProduct(){
             if (r){
                 $.ajax({
                     type: 'DELETE',
-                    url: 'json/' + row.id,
+                    url: 'json/' + row.productCode,
                     success: function(data){
                         createDatagridProduct();
                     },

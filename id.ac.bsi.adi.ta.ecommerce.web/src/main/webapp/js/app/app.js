@@ -143,6 +143,31 @@ function formatNumber(value){
     }
 }
 
+function formatDecimal(value, precision){
+    if(!value){
+        return value;
+    }
+    value=value+"";
+    var s1=value,s2="";
+    var _22=value.indexOf(".");
+    if(_22>=0){
+        s1=value.substring(0,_22);
+        s2=value.substring(_22+1,value.length);
+    }
+    
+    var p=/(\d+)(\d{3})/;
+
+    while(p.test(s1)){
+        s1=s1.replace(p,"$1,$2");
+    }
+    
+    if(s2){
+        return s1+"."+padTrailing(precision, s2, "0");
+    } else {
+        return s1+"."+padTrailing(precision, "", "0");
+    }
+}
+
 $.fn.datebox.defaults.formatter = function(date){
     var y = date.getFullYear();
     var m = date.getMonth()+1;
@@ -157,4 +182,12 @@ $.fn.datebox.defaults.parser = function(s){
     } else {
         return new Date();
     }
+}
+
+function padLeading(width, string, padding) { 
+  return (width <= string.length) ? string : padLeading(width, padding + string, padding);
+}
+
+function padTrailing(width, string, padding) { 
+  return (width <= string.length) ? string : padTrailing(width, string + padding, padding);
 }

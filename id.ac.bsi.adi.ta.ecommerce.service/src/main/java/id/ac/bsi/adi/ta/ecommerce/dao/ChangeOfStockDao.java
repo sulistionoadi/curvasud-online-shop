@@ -18,8 +18,8 @@ import org.springframework.data.repository.query.Param;
  */
 public interface ChangeOfStockDao extends PagingAndSortingRepository<ChangeOfStock, String> {
     
-    @Query("select cos from ChangeOfStock cos where cos.product.id = :product and month(dateOfMutation) = month(:tanggal) and year(dateOfMutation) = year(:tanggal)")
-    public ChangeOfStock getByProductAndPeriode(@Param("product") String product, @Param("tanggal") Date periode);
+    @Query("select cos from ChangeOfStock cos where cos.product.productCode = :kode and month(dateOfMutation) = month(:tanggal) and year(dateOfMutation) = year(:tanggal)")
+    public ChangeOfStock getByProductAndPeriode(@Param("kode") String kode, @Param("tanggal") Date periode);
     
     @Query("select count(cos) from ChangeOfStock cos where month(dateOfMutation) = month(:tanggal) and year(dateOfMutation) = year(:tanggal)")
     public Long countByPeriode(@Param("tanggal") Date Periode);

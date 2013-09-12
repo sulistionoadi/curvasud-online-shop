@@ -30,7 +30,6 @@ public interface MasterService {
     
     public Product save(Product product);
     public void delete(Product product);
-    public Product findProductById(String id);
     public Product findProductByKode(String kode);
     public Long countAllProducts();
     public Long countAllProductsByCategory(CategoryProduct cat);

@@ -22,8 +22,8 @@ and open the template in the editor.
                         <img src="$urlImg" style="width:120px; height: 120px; margin-right:20px" />
                     </td>
                     <td>
-                        <a href="detail-content?id=$p.id">$p.productCode</a><br>
-                        <a href="detail-content?id=$p.id">$p.productName</a><br>
+                        <a href="detail-content?id=$p.productCode">$p.productCode</a><br>
+                        <a href="detail-content?id=$p.productCode">$p.productName</a><br>
                         $p.productInfo <br>
                         Rp. $!numberTool.format('#,##0',$p.price) <br>
                     </td>
