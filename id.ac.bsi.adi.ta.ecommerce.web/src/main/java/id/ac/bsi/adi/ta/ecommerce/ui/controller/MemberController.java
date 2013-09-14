@@ -29,6 +29,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -81,6 +82,9 @@ public class MemberController extends ExceptionHandlerController{
         
         if(bindingResult.hasErrors()){
             logger.debug("BINDING RESULT HAS ERROR");
+            for (ObjectError o : bindingResult.getAllErrors()) {
+                logger.error("Errors Save member [{}]", o.getObjectName() + " | " + o.getDefaultMessage());    
+            }
             return "registrasi/member";
         }
         

@@ -29,7 +29,7 @@ import org.springframework.format.annotation.NumberFormat;
 @Table(name="mst_member")
 public class Member {
     
-    @Id @NotNull @NotEmpty
+    @Id
     @Column(length=10, name="member_code")
     private String memberCode;
     
