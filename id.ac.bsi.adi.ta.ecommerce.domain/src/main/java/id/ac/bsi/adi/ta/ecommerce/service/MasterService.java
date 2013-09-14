@@ -54,7 +54,6 @@ public interface MasterService {
     
     public City save(City city);
     public void delete(City city);
-    public City findCityById(String id);
     public City findCityByKode(String kode);
     public Long countAllCities();
     public Page<City> findAllCities(Pageable pageable);

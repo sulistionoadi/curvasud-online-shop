@@ -184,11 +184,6 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public City findCityById(String id) {
-        return cityDao.findOne(id);
-    }
-
-    @Override
     public City findCityByKode(String kode) {
         return cityDao.findCityByCode(kode);
     }

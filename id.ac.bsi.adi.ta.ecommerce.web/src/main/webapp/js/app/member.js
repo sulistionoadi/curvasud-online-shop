@@ -4,7 +4,7 @@ function submitRegisterMember(){
     var jsonData = $("#formRegisterasiMember").serializeJSON();
     var idCity = $('#member_city').combobox('getValue');
     jsonData.city = {
-        id: idCity
+        code: idCity
     };
     
     $.ajax({

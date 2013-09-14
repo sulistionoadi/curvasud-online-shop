@@ -76,10 +76,10 @@ public class CityController extends ExceptionHandlerController{
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public City kategori(@PathVariable String id) {
-        City cp = masterService.findCityById(id);
+        City cp = masterService.findCityByKode(id);
         if(cp==null){
-            logger.warn("City with id [{}] not found !!", id);
-            throw new IllegalStateException("City with id [" + id + "] not found !!");
+            logger.warn("City with kode [{}] not found !!", id);
+            throw new IllegalStateException("City with kode [" + id + "] not found !!");
         }
         return cp;
     }
@@ -91,12 +91,12 @@ public class CityController extends ExceptionHandlerController{
         if(errors.hasErrors()){
             responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
         } else {
-            City cp = masterService.findCityById(id);
+            City cp = masterService.findCityByKode(id);
             if(cp==null){
-                logger.warn("City with id [{}] not found !!", id);
+                logger.warn("City with Kode [{}] not found !!", id);
                 throw new IllegalStateException("City with id [" + id + "] not found !!");
             }
-            city.setId(cp.getId());
+            city.setCode(cp.getCode());
             responseEntity = new ResponseEntity<Object>(masterService.save(city), HttpStatus.OK);
         }
         return responseEntity;
@@ -105,7 +105,7 @@ public class CityController extends ExceptionHandlerController{
     @RequestMapping(value="/json/{id}", method= RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
-        City cp = masterService.findCityById(id);
+        City cp = masterService.findCityByKode(id);
         if(cp==null){
             logger.warn("City with id [{}] not found !!", id);
             throw new IllegalStateException("City with id [" + id + "] not found !!");

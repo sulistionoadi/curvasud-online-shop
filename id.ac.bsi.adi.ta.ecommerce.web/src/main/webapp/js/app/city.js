@@ -17,7 +17,7 @@ function createDatagridCity(){
         style:'width:400px; height:400px',
         method:'get',
         url:'json',
-        idField:'id',
+        idField:'code',
         fitColumns:'true',
         nowrap: false,
         pagination: true,
@@ -97,7 +97,7 @@ function editCity(){
     if (row){
         $('#dlgFormCity').dialog('open').dialog('setTitle','Edit City');
         $('#formMasterCity').form('load',row);
-        urlCity = 'json/' + row.id;
+        urlCity = 'json/' + row.code;
         methodCity = 'PUT';
     }
 }
@@ -109,7 +109,7 @@ function removeCity(){
             if (r){
                 $.ajax({
                     type: 'DELETE',
-                    url: 'json/' + row.id,
+                    url: 'json/' + row.code,
                     success: function(data){
                         createDatagridCity();
                     },
