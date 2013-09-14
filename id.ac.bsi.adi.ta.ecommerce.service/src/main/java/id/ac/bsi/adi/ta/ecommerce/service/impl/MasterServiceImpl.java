@@ -123,8 +123,8 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public Member findMemberById(String id) {
-        return memberDao.findOne(id);
+    public Member findMemberByKode(String kode) {
+        return memberDao.findByMemberCode(kode);
     }
 
     @Override

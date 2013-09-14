@@ -4,10 +4,10 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.domain.master;
 
-import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -27,7 +27,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 @Entity
 @Table(name="mst_member")
-public class Member extends BaseEntity {
+public class Member {
     
     @NotNull @NotEmpty
     @Column(nullable=false, length=10)
@@ -36,6 +36,7 @@ public class Member extends BaseEntity {
     @Column(length=15)
     private String lastname;
     
+    @Id @NotNull @NotEmpty
     @Column(length=10, name="member_code", nullable=false, unique=true)
     private String memberCode;
     

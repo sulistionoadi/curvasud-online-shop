@@ -13,4 +13,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface MemberDao extends PagingAndSortingRepository<Member, String> {
     
+    Member findByMemberCode(String kode);
+    
 }
