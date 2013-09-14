@@ -154,11 +154,6 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public Supplier findSupplierById(String id) {
-        return supplierDao.findOne(id);
-    }
-
-    @Override
     public Supplier findSupplierByKode(String kode) {
         return supplierDao.findSupplierByCode(kode);
     }

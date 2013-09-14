@@ -17,7 +17,7 @@ function createDatagridSupplier(){
         style:'width:700px; height:400px',
         method:'get',
         url:'json',
-        idField:'id',
+        idField:'code',
         fitColumns:'true',
         nowrap: false,
         pagination: true,
@@ -111,7 +111,7 @@ function editSupplier(){
     if (row){
         $('#dlgFormSupplier').dialog('open').dialog('setTitle','Edit Supplier');
         $('#formMasterSupplier').form('load',row);
-        urlSupplier = 'json/' + row.id;
+        urlSupplier = 'json/' + row.code;
         methodSupplier = 'PUT';
     }
 }
@@ -123,7 +123,7 @@ function removeSupplier(){
             if (r){
                 $.ajax({
                     type: 'DELETE',
-                    url: 'json/' + row.id,
+                    url: 'json/' + row.code,
                     success: function(data){
                         createDatagridSupplier();
                     },

@@ -76,10 +76,10 @@ public class SupplierController extends ExceptionHandlerController{
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public Supplier supplier(@PathVariable String id) {
-        Supplier sp = masterService.findSupplierById(id);
+        Supplier sp = masterService.findSupplierByKode(id);
         if(sp==null){
-            logger.warn("Supplier with id [{}] not found !!", id);
-            throw new IllegalStateException("Supplier with id [" + id + "] not found !!");
+            logger.warn("Supplier with code [{}] not found !!", id);
+            throw new IllegalStateException("Supplier with code [" + id + "] not found !!");
         }
         return sp;
     }
@@ -91,12 +91,12 @@ public class SupplierController extends ExceptionHandlerController{
         if(errors.hasErrors()){
             responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
         } else {
-            Supplier sp = masterService.findSupplierById(id);
+            Supplier sp = masterService.findSupplierByKode(id);
             if(sp==null){
-                logger.warn("Supplier with id [{}] not found !!", id);
-                throw new IllegalStateException("Supplier with id [" + id + "] not found !!");
+                logger.warn("Supplier with code [{}] not found !!", id);
+                throw new IllegalStateException("Supplier with code [" + id + "] not found !!");
             }
-            supplier.setId(sp.getId());
+            supplier.setCode(sp.getCode());
             responseEntity = new ResponseEntity<Object>(masterService.save(supplier), HttpStatus.OK);
         }
         return responseEntity;
@@ -105,10 +105,10 @@ public class SupplierController extends ExceptionHandlerController{
     @RequestMapping(value="/json/{id}", method= RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
-        Supplier sp = masterService.findSupplierById(id);
+        Supplier sp = masterService.findSupplierByKode(id);
         if(sp==null){
-            logger.warn("Supplier with id [{}] not found !!", id);
-            throw new IllegalStateException("Supplier with id [" + id + "] not found !!");
+            logger.warn("Supplier with code [{}] not found !!", id);
+            throw new IllegalStateException("Supplier with code [" + id + "] not found !!");
         }
         masterService.delete(sp);
     }

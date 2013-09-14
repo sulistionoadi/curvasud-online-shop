@@ -40,7 +40,6 @@ public interface MasterService {
     
     public Supplier save(Supplier supplier);
     public void delete(Supplier supplier);
-    public Supplier findSupplierById(String id);
     public Supplier findSupplierByKode(String kode);
     public Long countAllSupplier();
     public Page<Supplier> findAllSupplier(Pageable pageable);
