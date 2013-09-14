@@ -7,6 +7,7 @@ package id.ac.bsi.adi.ta.ecommerce.domain.master;
 import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,9 +19,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="mst_category_product")
-public class CategoryProduct extends BaseEntity {
+public class CategoryProduct {
     
-    @NotNull @NotEmpty
+    @Id @NotNull @NotEmpty
     @Column(nullable=false, name="category_code", unique=true, length=3)
     private String categoryCode;
     

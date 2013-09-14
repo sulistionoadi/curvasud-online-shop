@@ -75,10 +75,10 @@ public class CategoryProductController extends ExceptionHandlerController{
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public CategoryProduct kategori(@PathVariable String id) {
-        CategoryProduct cp = masterService.findCategoryProductById(id);
+        CategoryProduct cp = masterService.findCategoryProductByKode(id);
         if(cp==null){
-            logger.warn("CategoryProduct with id [{}] not found !!", id);
-            throw new IllegalStateException("CategoryProduct with id [" + id + "] not found !!");
+            logger.warn("CategoryProduct with kode [{}] not found !!", id);
+            throw new IllegalStateException("CategoryProduct with kode [" + id + "] not found !!");
         }
         return cp;
     }
@@ -90,12 +90,12 @@ public class CategoryProductController extends ExceptionHandlerController{
         if(errors.hasErrors()){
             responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.BAD_REQUEST);
         } else {
-            CategoryProduct cp = masterService.findCategoryProductById(id);
+            CategoryProduct cp = masterService.findCategoryProductByKode(id);
             if(cp==null){
-                logger.warn("CategoryProduct with id [{}] not found !!", id);
-                throw new IllegalStateException("CategoryProduct with id [" + id + "] not found !!");
+                logger.warn("CategoryProduct with kode [{}] not found !!", id);
+                throw new IllegalStateException("CategoryProduct with kode [" + id + "] not found !!");
             }
-            categoryProduct.setId(cp.getId());
+            categoryProduct.setCategoryCode(cp.getCategoryCode());
             responseEntity = new ResponseEntity<Object>(masterService.save(categoryProduct), HttpStatus.OK);
         }
         return responseEntity;
@@ -104,10 +104,10 @@ public class CategoryProductController extends ExceptionHandlerController{
     @RequestMapping(value="/json/{id}", method= RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable String id) {
-        CategoryProduct cp = masterService.findCategoryProductById(id);
+        CategoryProduct cp = masterService.findCategoryProductByKode(id);
         if(cp==null){
-            logger.warn("CategoryProduct with id [{}] not found !!", id);
-            throw new IllegalStateException("CategoryProduct with id [" + id + "] not found !!");
+            logger.warn("CategoryProduct with kode [{}] not found !!", id);
+            throw new IllegalStateException("CategoryProduct with kode [" + id + "] not found !!");
         }
         masterService.delete(cp);
     }

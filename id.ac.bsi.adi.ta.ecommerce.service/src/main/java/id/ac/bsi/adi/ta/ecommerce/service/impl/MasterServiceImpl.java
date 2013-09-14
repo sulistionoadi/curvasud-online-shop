@@ -55,11 +55,6 @@ public class MasterServiceImpl implements MasterService {
     }
 
     @Override
-    public CategoryProduct findCategoryProductById(String id) {
-        return categoryProductDao.findOne(id);
-    }
-
-    @Override
     public CategoryProduct findCategoryProductByKode(String kode) {
         return categoryProductDao.findCategoryProductByCategoryCode(kode);
     }

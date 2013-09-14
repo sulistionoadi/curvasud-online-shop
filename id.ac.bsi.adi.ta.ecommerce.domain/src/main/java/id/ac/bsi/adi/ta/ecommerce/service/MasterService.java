@@ -23,7 +23,6 @@ public interface MasterService {
     
     public CategoryProduct save(CategoryProduct categoryProduct);
     public void delete(CategoryProduct categoryProduct);
-    public CategoryProduct findCategoryProductById(String id);
     public CategoryProduct findCategoryProductByKode(String kode);
     public Long countAllCategoryProuducts();
     public Page<CategoryProduct> findAllCategoryProducts(Pageable pageable);

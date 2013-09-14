@@ -32,7 +32,7 @@ function createDatagridProduct(){
         style:'width:700px; height:400px',
         method:'get',
         url:'json',
-        idField:'id',
+        idField:'productCode',
         fitColumns:'true',
         nowrap: false,
         pagination: true,

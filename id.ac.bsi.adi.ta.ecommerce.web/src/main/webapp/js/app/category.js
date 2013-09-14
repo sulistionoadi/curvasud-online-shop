@@ -19,7 +19,7 @@ function createDatagridCategory(){
         style:'width:700px; height:400px',
         method:'get',
         url:'json',
-        idField:'id',
+        idField:'categoryCode',
         fitColumns:'true',
         nowrap: false,
         pagination: true,
@@ -99,7 +99,7 @@ function editCategory(){
     if (row){
         $('#dlgFormCategory').dialog('open').dialog('setTitle','Edit Category');
         $('#formMasterCategory').form('load',row);
-        urlCategory = 'json/' + row.id;
+        urlCategory = 'json/' + row.categoryCode;
         methodCategory = 'PUT';
     }
 }
@@ -111,7 +111,7 @@ function removeCategory(){
             if (r){
                 $.ajax({
                     type: 'DELETE',
-                    url: 'json/' + row.id,
+                    url: 'json/' + row.categoryCode,
                     success: function(data){
                         createDatagridCategory();
                     },
