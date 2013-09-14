@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Supplier {
     
     @Id @NotNull @NotEmpty
-    @Column(nullable=false, unique=true, length=3)
+    @Column(length=3)
     private String code;
     
     @NotNull @NotEmpty

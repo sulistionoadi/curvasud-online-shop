@@ -29,16 +29,16 @@ import org.springframework.format.annotation.NumberFormat;
 @Table(name="mst_member")
 public class Member {
     
+    @Id @NotNull @NotEmpty
+    @Column(length=10, name="member_code")
+    private String memberCode;
+    
     @NotNull @NotEmpty
     @Column(nullable=false, length=10)
     private String firstname;
     
     @Column(length=15)
     private String lastname;
-    
-    @Id @NotNull @NotEmpty
-    @Column(length=10, name="member_code", nullable=false, unique=true)
-    private String memberCode;
     
     @Email
     @NotNull @NotEmpty

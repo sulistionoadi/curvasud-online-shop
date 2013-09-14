@@ -31,13 +31,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="mst_product")
 public class Product {
     
+    @Id @NotNull @NotEmpty
+    @Column(name="product_code", length=8)
+    private String productCode;
+    
     @ManyToOne @NotNull
     @JoinColumn(name="id_category", nullable=false)
     private CategoryProduct category;
-    
-    @Id @NotNull @NotEmpty
-    @Column(nullable=false, name="product_code", unique=true, length=8)
-    private String productCode;
     
     @NotNull @NotEmpty
     @Column(nullable=false, name="product_name", length=25)

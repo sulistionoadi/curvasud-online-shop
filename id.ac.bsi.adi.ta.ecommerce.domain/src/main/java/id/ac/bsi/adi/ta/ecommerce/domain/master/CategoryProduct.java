@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class CategoryProduct {
     
     @Id @NotNull @NotEmpty
-    @Column(nullable=false, name="category_code", unique=true, length=3)
+    @Column(name="category_code", length=3)
     private String categoryCode;
     
     @NotNull @NotEmpty

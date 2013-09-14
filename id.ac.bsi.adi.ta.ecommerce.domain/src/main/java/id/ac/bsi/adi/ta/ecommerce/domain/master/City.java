@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class City {
     
     @Id @NotNull @NotEmpty
-    @Column(name="city_code", nullable=false, unique=true, length=3)
+    @Column(name="city_code", length=3)
     private String code;
     
     @NotNull @NotEmpty
