@@ -47,6 +47,7 @@ public interface MasterService {
     
     public void register(Member member, User user);
     public void delete(Member member);
+    public void save(Member member);
     public Member findMemberByKode(String kode);
     public Long countAllMembers();
     public Page<Member> findAllMembers(Pageable pageable);

@@ -7,6 +7,7 @@ package id.ac.bsi.adi.ta.ecommerce.domain.security;
 import id.ac.bsi.adi.ta.ecommerce.constant.StatusUser;
 import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -54,7 +55,7 @@ public class User extends BaseEntity {
     @JoinColumn(name = "id_role", nullable = false)
     private Role role;
     
-    @OneToOne(fetch= FetchType.EAGER)
+    @OneToOne(cascade= CascadeType.ALL, fetch= FetchType.EAGER)
     @JoinColumn(name="id_member")
     private Member member;
 

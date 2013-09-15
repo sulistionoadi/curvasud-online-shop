@@ -121,6 +121,11 @@ public class MasterServiceImpl implements MasterService {
     public void delete(Member member) {
         memberDao.delete(member);
     }
+    
+    @Override
+    public void save(Member member) {
+        memberDao.save(member);
+    }
 
     @Override
     public Member findMemberByKode(String kode) {

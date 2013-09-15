@@ -9,14 +9,16 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <form id="formRegisterasiMember" method="POST">  
+        <form id="formRegisterasiMember" action="/json" method="POST">  
             <table>  
                 <tr>  
                     <td colspan="3"><h2>IDENTITAS</h2></td>
                 </tr>  
-                <tr>  
+                <tr>
                     <td>Nama Depan : </td>  
-                    <td><input class="easyui-validatebox" type="text" name="firstname" value="$!member.firstname" data-options="required:true"/></td>
+                    <td>
+                        <input type="hidden" name="memberCode" value="$!member.memberCode"/>
+                        <input class="easyui-validatebox" type="text" name="firstname" value="$!member.firstname" data-options="required:true"/></td>
                     <td><p class="text-error">
                         #springBind("member.firstname") 
                         #springShowErrors("<br>" "")
@@ -54,7 +56,7 @@ and open the template in the editor.
                     <td>Kota : </td>  
                     <td>
                         <input id="member_city" name="city" class="easyui-combobox" 
-                           data-options="valueField:'id',textField:'name',url:'cities'" 
+                           data-options="valueField:'code',textField:'name',url:'cities'" 
                            required="true" >
                     </td>
                     <td><p class="text-error">

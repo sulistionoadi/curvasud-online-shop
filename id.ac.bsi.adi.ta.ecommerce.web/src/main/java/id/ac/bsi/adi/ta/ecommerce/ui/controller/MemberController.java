@@ -13,8 +13,10 @@ import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.apache.commons.lang.StringUtils;
@@ -71,7 +73,7 @@ public class MemberController extends ExceptionHandlerController{
     
     @RequestMapping(value="/registrasi/member", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult){
+    public void saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) throws IOException{
         
         logger.info("VALUE OBJECT MEMBER " + member);
         logger.info("VALUE OBJECT MEMBER.CONFIRM_PASSWORD " + member.getConfirmPassword());
@@ -80,36 +82,40 @@ public class MemberController extends ExceptionHandlerController{
             bindingResult.rejectValue("confirmPassword", "confirmPassword.notMatch", "Konfirmasi password invalid");
         }
         
-        if(bindingResult.hasErrors()){
-            logger.debug("BINDING RESULT HAS ERROR");
-            for (ObjectError o : bindingResult.getAllErrors()) {
-                logger.error("Errors Save member [{}]", o.getObjectName() + " | " + o.getDefaultMessage());    
+        try{
+            if(bindingResult.hasErrors()){
+                logger.debug("BINDING RESULT HAS ERROR");
+                for (ObjectError o : bindingResult.getAllErrors()) {
+                    logger.error("Errors Save member [{}]", o.getObjectName() + " | " + o.getDefaultMessage());    
+                }
+                response.sendRedirect(request.getContextPath() + "/register/member");
             }
-            return "registrasi/member";
+        
+            Role role = securityService.findRoleByName("MEMBER");
+            String encryptedPassword = new Md5PasswordEncoder().encodePassword(member.getPassword(), member.getUsername());
+
+            DateTimeFormatter formatter = DateTimeFormat.forPattern("yy");
+            DateTime sekarang = new DateTime();
+
+            String memberCode = "MB" + formatter.print(sekarang) + StringUtils.leftPad(
+                    runningNumberService.generateYearlyRunningNumber(sekarang.toDate(), DesignationType.MEMBER), 6, "0");
+            member.setMemberCode(memberCode);
+            member.setRegistrationDate(new Date());
+
+            User user = new User();
+            user.setUsername(member.getUsername());
+            user.setPassword(encryptedPassword);
+            user.setActive(Boolean.TRUE);
+            user.setStatus(StatusUser.ACTIVE);
+            user.setRole(role);
+            user.setMember(member);
+
+            securityService.save(user);
+
+            response.sendRedirect(request.getContextPath() + "/register/sukses");
+        } catch (Exception ex){
+            response.sendRedirect(request.getContextPath() + "/register/gagal");
         }
-        
-        Role role = securityService.findRoleByName("MEMBER");
-        String encryptedPassword = new Md5PasswordEncoder().encodePassword(member.getPassword(), member.getUsername());
-        
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yy");
-        DateTime sekarang = new DateTime();
-        
-        String memberCode = "MB" + formatter.print(sekarang) + StringUtils.leftPad(
-                runningNumberService.generateYearlyRunningNumber(sekarang.toDate(), DesignationType.MEMBER), 6, "0");
-        member.setMemberCode(memberCode);
-        
-        User user = new User();
-        user.setUsername(member.getUsername());
-        user.setPassword(encryptedPassword);
-        user.setActive(Boolean.TRUE);
-        user.setStatus(StatusUser.ACTIVE);
-        user.setRole(role);
-        user.setMember(member);
-        
-        member.setRegistrationDate(new Date());
-        masterService.register(member, user);
-        
-        return "redirect:/registrasi/sukses";
     }
     
 }

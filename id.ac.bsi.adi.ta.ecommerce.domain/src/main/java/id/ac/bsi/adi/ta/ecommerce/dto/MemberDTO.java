@@ -2,19 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package id.ac.bsi.adi.ta.ecommerce.domain.master;
+package id.ac.bsi.adi.ta.ecommerce.dto;
 
+import id.ac.bsi.adi.ta.ecommerce.domain.master.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -26,60 +19,43 @@ import org.springframework.format.annotation.NumberFormat;
  * @author adi
  */
 
-@Entity
-@Table(name="mst_member")
-public class Member implements Serializable {
-    
-    @Id
-    @Column(length=10, name="member_code")
-    private String memberCode;
+public class MemberDTO implements Serializable {
     
     @NotNull @NotEmpty
-    @Column(nullable=false, length=10)
     private String firstname;
-    
-    @Column(length=15)
     private String lastname;
     
     @Email
     @NotNull @NotEmpty
-    @Column(nullable=false, length=25)
     private String email;
     
     @NotNull @NotEmpty
-    @Column(nullable=false, length=50)
     private String address;
     
     @NotNull @NotEmpty
-    @Column(nullable=false, length=20)
     private String province;
     
     @NotNull @ManyToOne
-    @JoinColumn(name="id_city", nullable=false)
     private City city;
-    
-    @Column(name="zip_code", length=5)
     private String zipCode;
     
     @NotNull @NotEmpty
     @NumberFormat @Length(min=11,max=15, message="panjang minimal 11 dan maksimal 15 karakter")
-    @Column(nullable=false, length=15)
     private String mobile;
-    
-    @Column(length=15)
     private String phone;
     
-    @Column(nullable=false, name="registration_date")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date registrationDate = new Date();
     
-    @Transient
+    @NotNull @NotEmpty
+    @Length(min=6, message="panjang minimal 6 karakter")
     private String username;
     
-    @Transient
+    @NotNull @NotEmpty
+    @Length(min=8, message="panjang minimal 8 karakter")
     private String password;
     
-    @Transient
+    @NotNull @NotEmpty
+    @Length(min=8, message="panjang minimal 8 karakter")
     private String confirmPassword;
 
     public String getFirstname() {
@@ -184,14 +160,6 @@ public class Member implements Serializable {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-    }
-
-    public String getMemberCode() {
-        return memberCode;
-    }
-
-    public void setMemberCode(String memberCode) {
-        this.memberCode = memberCode;
     }
     
 }
