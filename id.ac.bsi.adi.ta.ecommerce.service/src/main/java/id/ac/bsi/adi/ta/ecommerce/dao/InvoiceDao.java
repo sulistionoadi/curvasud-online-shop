@@ -14,4 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface InvoiceDao extends PagingAndSortingRepository<Invoice, String>, JpaRepository<Invoice, String> {
     
+    public Invoice findByInvoiceNumber(String number);
+    
 }

@@ -28,7 +28,7 @@ public interface TransaksiService {
     public List<Purchase> findAllPurchaseByPurchaseNumber(String purchaseNumber);
  
     public Payment save(Payment payment);
-    public Payment findPaymentById(String id);
+    public Payment findPaymentByCode(String code);
     public Long countPaymentByApproved(Boolean approved);
     public Page<Payment> findPaymentByApproved(Boolean approved, Pageable pageable);
     public List<Payment> findPaymentByBooking(Booking booking);
@@ -37,7 +37,7 @@ public interface TransaksiService {
     public Booking findBookingByBookingCode(String kode);
     
     public void save(Invoice invoice);
-    public Invoice findInvoiceById(String id);
+    public Invoice findInvoiceByNumber(String number);
     public Long countAllInvoice();
     public Page<Invoice> findAllInvoice(Pageable pageable);
     

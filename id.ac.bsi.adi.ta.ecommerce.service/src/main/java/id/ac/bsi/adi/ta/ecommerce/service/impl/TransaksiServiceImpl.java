@@ -108,8 +108,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Payment findPaymentById(String id) {
-        Payment p = paymentDao.findOne(id);
+    public Payment findPaymentByCode(String code) {
+        Payment p = paymentDao.findByPaymentCode(code);
         if(p.getBooking()!=null){
             Hibernate.initialize(p.getBooking().getBookingDetails());
         }
@@ -189,8 +189,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Invoice findInvoiceById(String id) {
-        Invoice invoice = invoiceDao.findOne(id);
+    public Invoice findInvoiceByNumber(String number) {
+        Invoice invoice = invoiceDao.findByInvoiceNumber(number);
         if(invoice.getBooking() != null) {
             Hibernate.initialize(invoice.getBooking().getBookingDetails());
         }

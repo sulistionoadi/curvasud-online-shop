@@ -56,8 +56,8 @@ function createGridApproval() {
                     align: 'right',
                     formatter: function(value, row, index) {
                         var col;
-                        if (row.id != null) {
-                            col = '<a href="do-approve/'+row.id+'">Approve</a>';
+                        if (row.paymentCode != null) {
+                            col = '<a href="do-approve/'+row.paymentCode+'">Approve</a>';
                         }
                         return col;
                     }

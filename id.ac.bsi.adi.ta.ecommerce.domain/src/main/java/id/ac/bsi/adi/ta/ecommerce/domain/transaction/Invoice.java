@@ -8,6 +8,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.BaseEntity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,15 +23,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="trx_invoice")
-public class Invoice extends BaseEntity {
+public class Invoice {
+    
+    @Id
+    @Column(name="invoice_number", length=10, nullable=false, unique=true)
+    private String invoiceNumber;
     
     @NotNull
     @OneToOne 
     @JoinColumn(name="id_booking")
     private Booking booking;
-    
-    @Column(name="invoice_number", length=10, nullable=false)
-    private String invoiceNumber;
     
     @Column(name="transaction_date", nullable=false)
     @Temporal(TemporalType.TIMESTAMP)

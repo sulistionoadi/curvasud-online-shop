@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -26,8 +27,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name="trx_payment")
-public class Payment extends BaseEntity {
+public class Payment {
     
+    @Id
     @Column(name="payment_code", length=10, nullable=false)
     private String paymentCode;
     

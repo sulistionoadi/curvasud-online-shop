@@ -74,7 +74,7 @@ public class ApprovalPaymentController {
 
     @RequestMapping(value = "/do-approve/{id}", method = RequestMethod.GET)
     public String jsonUpdateApproval(@PathVariable String id, HttpServletRequest request, HttpServletResponse response) {
-        Payment payment = transaksiService.findPaymentById(id);
+        Payment payment = transaksiService.findPaymentByCode(id);
         if (payment == null) {
             logger.warn("Payment with id [{}] not found !!", id);
             throw new IllegalStateException("Payment with id [" + id + "] not found !!");

@@ -68,7 +68,7 @@ public class InvoiceController {
 
         String format = "pdf";
 
-        Invoice invoice = transaksiService.findInvoiceById(idInvoice);
+        Invoice invoice = transaksiService.findInvoiceByNumber(idInvoice);
 
         if (invoice == null) {
             throw new Exception("Invoice not found !");

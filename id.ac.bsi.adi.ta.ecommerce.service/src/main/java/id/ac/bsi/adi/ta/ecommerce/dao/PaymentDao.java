@@ -26,4 +26,6 @@ public interface PaymentDao extends JpaRepository<Payment, String>{
     
     public List<Payment> findByBooking(Booking booking);
     
+    public Payment findByPaymentCode(String code);
+    
 }

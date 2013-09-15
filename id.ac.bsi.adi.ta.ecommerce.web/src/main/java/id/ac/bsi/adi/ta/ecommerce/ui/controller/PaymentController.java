@@ -93,7 +93,7 @@ public class PaymentController extends ExceptionHandlerController {
         
         transaksiService.save(payment);
         
-        return "redirect:sukses?id=" + payment.getId();
+        return "redirect:sukses?id=" + payment.getPaymentCode();
     }
     
     @RequestMapping(value="/sukses", method= RequestMethod.GET)
@@ -110,7 +110,7 @@ public class PaymentController extends ExceptionHandlerController {
         
         String format = "pdf";
         
-        Payment payment = transaksiService.findPaymentById(idPayment);
+        Payment payment = transaksiService.findPaymentByCode(idPayment);
         
         if(payment==null) throw new Exception("Payment not found !");
         
@@ -125,7 +125,7 @@ public class PaymentController extends ExceptionHandlerController {
         mm.put("namaMember", payment.getBooking().getMember().getFirstname().toUpperCase() + " " + payment.getBooking().getMember().getLastname().toUpperCase());
         mm.put("jumlahPayment", payment.getTransferAmount());
         mm.put("empties", new ArrayList<Object>());
-        mm.put("remark", payment.getId() + "/" + payment.getBooking().getMember().getMemberCode() + " " + formatter.print(new DateTime()));
+        mm.put("remark", payment.getPaymentCode() + "/" + payment.getBooking().getMember().getMemberCode() + " " + formatter.print(new DateTime()));
         
         return mm;
     }
