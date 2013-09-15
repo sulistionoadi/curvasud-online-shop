@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -29,8 +30,9 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="trx_booking")
-public class Booking extends BaseEntity{
+public class Booking {
     
+    @Id
     @Column(name="booking_code", nullable=false, unique=true, length=10)
     private String bookingCode;
     

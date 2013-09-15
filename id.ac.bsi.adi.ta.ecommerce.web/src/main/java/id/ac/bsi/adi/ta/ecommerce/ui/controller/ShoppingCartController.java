@@ -143,7 +143,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
         Booking b = transaksiService.save(booking);
         
         Map<String,Object> result = new HashMap<String, Object>();
-        result.put("redirect", "sukses?id="+b.getId()+"&kode="+b.getBookingCode());
+        result.put("redirect", "sukses?kode="+b.getBookingCode());
         return result;
     }
     
@@ -161,10 +161,8 @@ public class ShoppingCartController extends ExceptionHandlerController {
     
     @RequestMapping(value="/sukses", method= RequestMethod.GET)
     public ModelMap sukses(
-            @RequestParam(value="id", required=true) String id,
             @RequestParam(value="kode", required=true) String kode) throws Exception{
         ModelMap mm = new ModelMap();
-        mm.addAttribute("idBooking", id);
         mm.addAttribute("kode", kode);
         return mm;
     }
@@ -175,7 +173,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
         
         String format = "pdf";
         
-        Booking booking = transaksiService.findBookingById(idBooking);
+        Booking booking = transaksiService.findBookingByBookingCode(idBooking);
         
         if(booking==null) throw new Exception("Booking not found !");
         
@@ -189,7 +187,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
         mm.put("namaMember", booking.getMember().getFirstname().toUpperCase() + " " + booking.getMember().getLastname().toUpperCase());
         mm.put("ongkosKirim", booking.getShippingCost());
         mm.put("pesan", "Terima kasih telah melakukan pemesanan di toko kami. Silahkan melakukan pembayaran ke rekening 1234567890 a/n ABCDEFG");
-        mm.put("remark", booking.getId() + "/" + booking.getMember().getMemberCode() + " " + formatter.print(new DateTime()));
+        mm.put("remark", booking.getBookingCode() + "/" + booking.getMember().getMemberCode() + " " + formatter.print(new DateTime()));
         
         int i = 0;
         List<BookingStruk> bookingStruks = new ArrayList<BookingStruk>();

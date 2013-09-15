@@ -29,7 +29,7 @@ and open the template in the editor.
                 <tbody>
                     #foreach($sp in $shoppingCartDTO)
                     #set($totalPrice = $totalPrice + $sp.total)
-                    #set($ongkos = $sp.ongkir)
+                    #set($ongkos = $ongkos + ($sp.ongkir * ($sp.product.weight * $sp.qty)))
                     <tr>
                         <td>$sp.product.productCode</td>
                         <td>$sp.product.productName</td>

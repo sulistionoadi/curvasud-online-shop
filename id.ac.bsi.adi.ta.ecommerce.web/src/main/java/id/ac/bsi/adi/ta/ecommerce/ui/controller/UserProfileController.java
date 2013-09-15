@@ -4,24 +4,19 @@
  */
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
-import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
-import id.ac.bsi.adi.ta.ecommerce.constant.StatusUser;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.City;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Member;
-import id.ac.bsi.adi.ta.ecommerce.domain.security.Role;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
 import id.ac.bsi.adi.ta.ecommerce.ui.helper.ChangePasswordHelper;
 import id.ac.bsi.adi.ta.ecommerce.ui.helper.SpringSecurityHelper;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -34,7 +29,6 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -34,7 +34,6 @@ public interface TransaksiService {
     public List<Payment> findPaymentByBooking(Booking booking);
     
     public Booking save(Booking booking);
-    public Booking findBookingById(String id);
     public Booking findBookingByBookingCode(String kode);
     
     public void save(Invoice invoice);

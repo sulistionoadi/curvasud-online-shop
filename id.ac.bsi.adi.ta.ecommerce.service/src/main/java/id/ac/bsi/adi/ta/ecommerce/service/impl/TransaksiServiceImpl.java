@@ -137,16 +137,6 @@ public class TransaksiServiceImpl implements TransaksiService {
     }
 
     @Override
-    public Booking findBookingById(String id) {
-        Booking b = bookingDao.findOne(id);
-        if(b!=null){
-            Hibernate.initialize(b.getBookingDetails());
-        }
-        
-        return b;
-    }
-
-    @Override
     public Booking findBookingByBookingCode(String kode) {
         Booking b = bookingDao.findByBookingCode(kode);
         if(b!=null){
