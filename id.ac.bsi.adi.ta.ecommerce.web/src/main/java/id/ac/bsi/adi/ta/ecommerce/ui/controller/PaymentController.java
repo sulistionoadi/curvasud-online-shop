@@ -6,9 +6,7 @@ package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
 import id.ac.bsi.adi.ta.ecommerce.constant.DesignationType;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
-import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
-import id.ac.bsi.adi.ta.ecommerce.dto.BookingStruk;
 import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.io.File;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;

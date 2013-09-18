@@ -22,8 +22,13 @@ function addCart(idProduct){
 }
 
 function addCart2(idProduct){
-    var qty = $('#qty_cart').val();
-    
+    var qty = parseInt($('#qty_cart').val());
+    var stok = parseInt($('#qty_stok').val());
+   
+    if(qty > stok){
+        alert("Maximum quantity order is " + stok);
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: '../cart/add',

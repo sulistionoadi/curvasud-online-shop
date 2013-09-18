@@ -7,11 +7,13 @@ package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.ChangeOfStock;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Testimoni;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import id.ac.bsi.adi.ta.ecommerce.ui.helper.SpringSecurityHelper;
+import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -85,6 +87,7 @@ public class SearchUserController extends ExceptionHandlerController {
     public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct) throws Exception {
         Product p = masterService.findProductByKode(idProduct);
         User user = securityService.findUserByUsername(SpringSecurityHelper.getCurrentUsername());
+        ChangeOfStock cos = transaksiService.getDataStok(p, new Date());
         
         if(user==null){
             throw new Exception("Session Invalid");
@@ -93,6 +96,7 @@ public class SearchUserController extends ExceptionHandlerController {
         ModelMap mm = new ModelMap();
         mm.put("product", p);
         mm.put("member", user.getMember());
+        mm.put("stok", cos.getFinalStock());
         return mm;
     }
     
