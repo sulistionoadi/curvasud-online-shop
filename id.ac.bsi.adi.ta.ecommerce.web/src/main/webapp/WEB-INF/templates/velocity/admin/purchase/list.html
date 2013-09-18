@@ -33,7 +33,7 @@ and open the template in the editor.
                 <div class="fitem">  
                     <label>Supplier:</label>  
                     <input id="purchase_supplier" name="supplier" class="easyui-combobox" 
-                           data-options="valueField:'id',textField:'name',url:'suppliers',onSelect:getObjectSupplier" 
+                           data-options="valueField:'code',textField:'name',url:'suppliers',onSelect:getObjectSupplier" 
                            required="true" >
                 </div>
             </form>
@@ -52,7 +52,7 @@ and open the template in the editor.
                 <div class="fitem">  
                     <label>Product : </label>  
                     <input id="purchaseDetail_product" name="product" class="easyui-combobox" 
-                           data-options="valueField:'id',textField:'productName',url:'products',onSelect:getObjectProduct" 
+                           data-options="valueField:'productCode',textField:'productName',url:'products',onSelect:getObjectProduct" 
                            required="true" >
                     <div class="fitem">  
                         <label>Qty : </label>  
