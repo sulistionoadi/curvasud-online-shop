@@ -135,3 +135,19 @@ a:link, a:visited {
     color: #ff9900;
     margin: 20px 0 0 0;
 }
+
+.bayar {
+	font-size: 18px;
+	font-weight: bold;
+	height: 20px;
+	border-bottom: 2px solid #000;
+	color: #000;
+	margin-top: 20px;
+}
+
+.logo_bayar {
+	float: left;
+	height: 80px;
+	width: 160px;
+	margin-top: 20px;
+}
