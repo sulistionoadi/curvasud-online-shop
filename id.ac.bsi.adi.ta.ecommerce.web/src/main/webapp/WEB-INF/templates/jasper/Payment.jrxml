@@ -12,18 +12,28 @@
 	<parameter name="remark" class="java.lang.String"/>
 	<parameter name="noPayment" class="java.lang.String"/>
 	<parameter name="jumlahPayment" class="java.math.BigDecimal"/>
+	<parameter name="logoBca" class="java.lang.String"/>
+	<parameter name="logoCurvasud" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="97" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="16" width="360" height="44"/>
+				<reportElement x="88" y="30" width="168" height="23"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BUKTI PEMBAYARAN]]></text>
 			</staticText>
+			<image>
+				<reportElement x="20" y="26" width="60" height="50"/>
+				<imageExpression><![CDATA[$P{logoCurvasud}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="262" y="30" width="98" height="46"/>
+				<imageExpression><![CDATA[$P{logoBca}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

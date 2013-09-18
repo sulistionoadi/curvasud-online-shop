@@ -17,12 +17,14 @@ import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import id.ac.bsi.adi.ta.ecommerce.ui.helper.SpringSecurityHelper;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.joda.time.DateTime;
@@ -169,7 +171,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
     
     @RequestMapping("/cetak")
     public ModelMap cetakBuktiBooking(
-            @RequestParam(value="id", required=true) String idBooking) throws Exception{
+            @RequestParam(value="id", required=true) String idBooking, HttpServletRequest request) throws Exception{
         
         String format = "pdf";
         
@@ -179,6 +181,8 @@ public class ShoppingCartController extends ExceptionHandlerController {
         
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd MMMMM yyyy HH:mm:ss");
         
+        String pathLogo = request.getSession().getServletContext().getRealPath("img") + File.separator + "logo-bca.png";
+        
         ModelMap mm = new ModelMap();
         mm.put("format", format);
         mm.put("noBooking", booking.getBookingCode());
@@ -186,6 +190,7 @@ public class ShoppingCartController extends ExceptionHandlerController {
         mm.put("kodeMember", booking.getMember().getMemberCode());
         mm.put("namaMember", booking.getMember().getFirstname().toUpperCase() + " " + booking.getMember().getLastname().toUpperCase());
         mm.put("ongkosKirim", booking.getShippingCost());
+        mm.put("pathLogo", pathLogo);
         mm.put("pesan", "Terima kasih telah melakukan pemesanan di toko kami. Silahkan melakukan pembayaran ke rekening 1234567890 a/n ABCDEFG");
         mm.put("remark", booking.getBookingCode() + "/" + booking.getMember().getMemberCode() + " " + formatter.print(new DateTime()));
         

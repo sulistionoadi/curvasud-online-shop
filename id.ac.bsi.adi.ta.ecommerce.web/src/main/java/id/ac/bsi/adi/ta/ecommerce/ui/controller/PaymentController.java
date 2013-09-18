@@ -11,10 +11,12 @@ import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.dto.BookingStruk;
 import id.ac.bsi.adi.ta.ecommerce.service.RunningNumberService;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -106,9 +108,11 @@ public class PaymentController extends ExceptionHandlerController {
     
     @RequestMapping("/cetak")
     public ModelMap cetakBuktiBooking(
-            @RequestParam(value="id", required=true) String idPayment) throws Exception{
+            @RequestParam(value="id", required=true) String idPayment, HttpServletRequest request) throws Exception{
         
         String format = "pdf";
+        String logoBca = request.getSession().getServletContext().getRealPath("img") + File.separator + "logo-bca.png";
+        String logoCurvasud = request.getSession().getServletContext().getRealPath("img") + File.separator + "product" + File.separator + "curvasud_logo.png";
         
         Payment payment = transaksiService.findPaymentByCode(idPayment);
         
@@ -125,6 +129,8 @@ public class PaymentController extends ExceptionHandlerController {
         mm.put("namaMember", payment.getBooking().getMember().getFirstname().toUpperCase() + " " + payment.getBooking().getMember().getLastname().toUpperCase());
         mm.put("jumlahPayment", payment.getTransferAmount());
         mm.put("empties", new ArrayList<Object>());
+        mm.put("logoBca", logoBca);
+        mm.put("logoCurvasud", logoCurvasud);
         mm.put("remark", payment.getPaymentCode() + "/" + payment.getBooking().getMember().getMemberCode() + " " + formatter.print(new DateTime()));
         
         return mm;

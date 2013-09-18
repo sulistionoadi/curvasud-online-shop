@@ -10,6 +10,7 @@
 	<parameter name="ongkosKirim" class="java.math.BigDecimal"/>
 	<parameter name="pesan" class="java.lang.String"/>
 	<parameter name="remark" class="java.lang.String"/>
+	<parameter name="pathLogo" class="java.lang.String"/>
 	<field name="no" class="java.lang.Integer"/>
 	<field name="kode" class="java.lang.String"/>
 	<field name="produk" class="java.lang.String"/>
@@ -310,6 +311,10 @@
 			<line>
 				<reportElement x="471" y="68" width="263" height="1"/>
 			</line>
+			<image>
+				<reportElement x="63" y="78" width="100" height="41"/>
+				<imageExpression><![CDATA[$P{pathLogo}]]></imageExpression>
+			</image>
 		</band>
 	</summary>
 </jasperReport>
