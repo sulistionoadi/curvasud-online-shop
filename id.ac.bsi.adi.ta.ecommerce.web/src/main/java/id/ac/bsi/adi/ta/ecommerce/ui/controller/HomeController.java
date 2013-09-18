@@ -5,7 +5,9 @@
 package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Testimoni;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
+import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +35,7 @@ public class HomeController {
     
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired private MasterService masterService;
+    @Autowired private TransaksiService transaksiService;
     
     @RequestMapping("/awal")
     public String getAwal(HttpServletRequest request, HttpServletResponse response){
@@ -76,6 +79,23 @@ public class HomeController {
         
         ModelMap mm = new ModelMap();
         mm.put("product", p);
+        return mm;
+    }
+    
+    @RequestMapping("/comment-list")
+    public ModelMap listComment(@RequestParam(value="id", required=true) String idProduct, Pageable pageable) throws Exception {
+        Product p = masterService.findProductByKode(idProduct);
+        
+        if(p==null){
+            throw new Exception("Product not found !!");
+        }
+        
+        Long countComment = transaksiService.countByProduct(p);
+        List<Testimoni> list = transaksiService.findTestimoniByProduct(p, pageable).getContent();
+        
+        ModelMap mm = new ModelMap();
+        mm.put("total", countComment);
+        mm.put("comments", list);
         return mm;
     }
     

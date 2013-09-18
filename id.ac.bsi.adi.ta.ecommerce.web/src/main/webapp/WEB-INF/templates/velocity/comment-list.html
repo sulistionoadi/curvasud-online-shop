@@ -1,0 +1,33 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Daftar Produk</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <input id="txtTotalCommentList" type="hidden" class="easyui-numberbox" value="$total" />
+        <table class="table-comment-list">
+            #foreach($c in $comments)
+                <tr>
+                    <td><font style="font-weight: normal; color: #00ee00;  font-size: 14px; text-decoration: underline;">$c.member.firstname $c.member.lastname</font></td>
+                </tr>
+                <tr>
+                    <td><font style="font-size: 14px;">$c.comment</font></td>
+                </tr>
+                <tr>
+                    <td><font style="font-size: 9px;">$!dateTool.format('E, dd MMM HH:mm:ss yyyy ', $c.date)</font></td>
+                </tr>
+                <tr>
+                    <td><hr /></td>
+                </tr>
+            #end
+        </table>
+        <script language="javascript">
+            $(document).ready(refreshTotalComments);
+        </script>
+    </body>
+</html>

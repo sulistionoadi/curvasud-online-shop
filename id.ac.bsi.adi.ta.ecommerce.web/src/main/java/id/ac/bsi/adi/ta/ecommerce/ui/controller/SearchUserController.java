@@ -6,16 +6,27 @@ package id.ac.bsi.adi.ta.ecommerce.ui.controller;
 
 import id.ac.bsi.adi.ta.ecommerce.domain.master.CategoryProduct;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
+import id.ac.bsi.adi.ta.ecommerce.domain.security.User;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Testimoni;
 import id.ac.bsi.adi.ta.ecommerce.service.MasterService;
+import id.ac.bsi.adi.ta.ecommerce.service.SecurityService;
+import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
+import id.ac.bsi.adi.ta.ecommerce.ui.helper.SpringSecurityHelper;
 import java.util.List;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,6 +41,8 @@ public class SearchUserController extends ExceptionHandlerController {
     
     private final Logger logger = LoggerFactory.getLogger(PageUserController.class);
     @Autowired private MasterService masterService;
+    @Autowired private SecurityService securityService;
+    @Autowired private TransaksiService transaksiService;
     
     @RequestMapping("/panel")
     private ModelMap searchPanel(
@@ -69,11 +82,47 @@ public class SearchUserController extends ExceptionHandlerController {
     }
     
     @RequestMapping("/detail-content")
-    public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct){
+    public ModelMap getInfoProduct(@RequestParam(value="id", required=true) String idProduct) throws Exception {
         Product p = masterService.findProductByKode(idProduct);
+        User user = securityService.findUserByUsername(SpringSecurityHelper.getCurrentUsername());
+        
+        if(user==null){
+            throw new Exception("Session Invalid");
+        }
         
         ModelMap mm = new ModelMap();
         mm.put("product", p);
+        mm.put("member", user.getMember());
+        return mm;
+    }
+    
+    @RequestMapping(value="/comment", method= RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> comment(@RequestBody @Valid Testimoni testimoni, BindingResult errors) throws Exception{
+        ResponseEntity<Object>  responseEntity= null;
+        if(errors.hasErrors()){
+            responseEntity = new ResponseEntity<Object>(errors.getAllErrors(), HttpStatus.OK);
+        } else {
+            transaksiService.comment(testimoni);
+            responseEntity = new ResponseEntity<Object>("Sukses", HttpStatus.OK);
+        }
+        return responseEntity;
+    }
+    
+    @RequestMapping("/comment-list")
+    public ModelMap listComment(@RequestParam(value="id", required=true) String idProduct, Pageable pageable) throws Exception {
+        Product p = masterService.findProductByKode(idProduct);
+        
+        if(p==null){
+            throw new Exception("Product not found !!");
+        }
+        
+        Long countComment = transaksiService.countByProduct(p);
+        List<Testimoni> list = transaksiService.findTestimoniByProduct(p, pageable).getContent();
+        
+        ModelMap mm = new ModelMap();
+        mm.put("total", countComment);
+        mm.put("comments", list);
         return mm;
     }
     

@@ -151,3 +151,8 @@ a:link, a:visited {
 	width: 160px;
 	margin-top: 20px;
 }
+
+.table-comment-list {
+    width: 95%;
+    margin: 10px 10px 0px 10px;
+}

@@ -17,6 +17,7 @@
         <pattern>/index.html</pattern>
         <pattern>content*</pattern>
         <pattern>/content*</pattern>
+        <pattern>*comment-list*</pattern>
         <pattern>user/search/content*</pattern>
         <pattern>/user/search/content*</pattern>
         <pattern>/admin/product/info*</pattern>

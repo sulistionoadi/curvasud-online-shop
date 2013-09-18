@@ -9,6 +9,7 @@ import id.ac.bsi.adi.ta.ecommerce.dao.BookingDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.ChangeOfStockDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.InvoiceDao;
 import id.ac.bsi.adi.ta.ecommerce.dao.PurchaseDao;
+import id.ac.bsi.adi.ta.ecommerce.dao.TestimoniDao;
 import id.ac.bsi.adi.ta.ecommerce.domain.master.Product;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Booking;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.BookingDetail;
@@ -17,6 +18,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.PurchaseDetail;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Testimoni;
 import id.ac.bsi.adi.ta.ecommerce.service.TransaksiService;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +26,9 @@ import org.hibernate.Hibernate;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +51,8 @@ public class TransaksiServiceImpl implements TransaksiService {
     private InvoiceDao invoiceDao;
     @Autowired
     private ChangeOfStockDao changeOfStockDao;
+    @Autowired
+    private TestimoniDao testimoniDao;
 
     @Override
     public Purchase save(Purchase purchase) {
@@ -231,6 +237,32 @@ public class TransaksiServiceImpl implements TransaksiService {
     @Override
     public Page<ChangeOfStock> findStokByPeriode(Date tanggal, Pageable pageable) {
         return changeOfStockDao.findByPeriode(tanggal, pageable);
+    }
+
+    @Override
+    public void comment(Testimoni testimoni) {
+        testimoniDao.save(testimoni);
+    }
+
+    @Override
+    public void delete(Testimoni testimoni) {
+        testimoniDao.delete(testimoni);
+    }
+
+    @Override
+    public Testimoni findById(String id) {
+        return testimoniDao.findOne(id);
+    }
+
+    @Override
+    public Page<Testimoni> findTestimoniByProduct(Product product, Pageable pageable) {
+        PageRequest pr= new PageRequest(pageable.getPageNumber(), pageable.getPageSize(), Sort.Direction.DESC, "date");
+        return testimoniDao.findByProduct(product, pr);
+    }
+
+    @Override
+    public Long countByProduct(Product product) {
+        return testimoniDao.countByProduct(product);
     }
     
 }

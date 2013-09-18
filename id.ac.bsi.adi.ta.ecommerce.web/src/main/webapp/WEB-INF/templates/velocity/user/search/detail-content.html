@@ -17,7 +17,7 @@ and open the template in the editor.
             #end
             <tr>
                 <td>
-                    <img src="$urlImg" style="width:200px; height: 200px; margin-right:20px" />
+                    <img src="$!urlImg" style="width:200px; height: 200px; margin-right:20px" />
                 </td>
                 <td>
                     <table>
@@ -52,5 +52,45 @@ and open the template in the editor.
                 </td>
             </tr>
         </table>
+        <br><br>
+        <div class="ftitle">Comments</div>
+        <form id="formTestimoni" method="post" novalidate>  
+            <table>
+                <tr valign="top">
+                    <td>Name</td>
+                    <td> : </td>
+                    <td>
+                        <label>$member.firstname $member.lastname</label>  
+                        <input type="hidden" name="idmember" value="$member.memberCode" />
+                        <input type="hidden" name="idproduct" value="$product.productCode" />
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td>Comments</td>
+                    <td> : </td>
+                    <td>
+                        <textarea id="testimoni_comment" name="comment" style="height:100px; width: 200px"></textarea>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="postComments()">Post</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <div id="comment_list" class="easyui-panel" style="height:500px;"
+                data-options="href:'comment-list?page.page=1&page.size=20&id=$!product.productCode', method:'GET'">  
+        </div>  
+        <div id="comment_pagination" class="easyui-pagination" style="border:1px solid #ccc; background: #000;"  
+                data-options="
+                    pageSize: 20,
+                    onSelectPage: function(pageNumber, pageSize){  
+                        $('#comment_list').panel('refresh', 'comment-list?page.page='+pageNumber+'&page.size='+pageSize+'&id=$!product.productCode');  
+                    }">  
+        </div>
     </body>
 </html>

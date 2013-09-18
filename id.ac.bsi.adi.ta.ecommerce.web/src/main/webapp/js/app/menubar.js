@@ -1,12 +1,10 @@
 function getListCategoryMenu(){
-    console.log("panggil categories");
     $.ajax({
         method: 'GET',
         url: '../search/categories',
         data: {},
         contentType: 'application/json',
         success: function(data){
-            console.log("list category : ", data);
             var shtml = "<ul>";
             
             shtml = shtml + "<li><a href=\"../search/panel\">Semua</a></li>";
@@ -24,6 +22,11 @@ function getListCategoryMenu(){
 function refreshTotalSearchp(){
     $("#search_pagination").pagination('options').total = $('#txtTotalSearchp').val();
     $("#search_pagination").pagination('refresh');
+}
+
+function refreshTotalComments(){
+    $("#comment_pagination").pagination('options').total = $('#txtTotalCommentList').val();
+    $("#comment_pagination").pagination('refresh');
 }
 
 function cari(){

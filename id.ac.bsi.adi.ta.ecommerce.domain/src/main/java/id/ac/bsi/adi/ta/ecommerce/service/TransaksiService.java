@@ -10,6 +10,7 @@ import id.ac.bsi.adi.ta.ecommerce.domain.transaction.ChangeOfStock;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Invoice;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Payment;
 import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Purchase;
+import id.ac.bsi.adi.ta.ecommerce.domain.transaction.Testimoni;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -46,4 +47,10 @@ public interface TransaksiService {
     public void generateChangeOfStock();
     public Long countStokByPeriode(Date tanggal);
     public Page<ChangeOfStock> findStokByPeriode(Date tanggal, Pageable pageable);
+    
+    public void comment(Testimoni testimoni);
+    public void delete(Testimoni testimoni);
+    public Testimoni findById(String id);
+    public Long countByProduct(Product product);
+    public Page<Testimoni> findTestimoniByProduct(Product product, Pageable pageable);
 }

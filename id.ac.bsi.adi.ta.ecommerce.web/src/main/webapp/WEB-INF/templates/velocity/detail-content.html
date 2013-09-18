@@ -13,7 +13,7 @@ and open the template in the editor.
             #if($product.pictures.isEmpty())
                 #set($urlImg = "img/product/noProduct.png")
             #else
-                #set($urlImg = $p.pictures.get(0))
+                #set($urlImg = $product.pictures.get(0))
             #end
             <tr>
                 <td>
@@ -52,5 +52,17 @@ and open the template in the editor.
                 </td>
             </tr>
         </table>
+        <br>
+        <div class="ftitle">Comments</div>
+        <div id="comment_list" class="easyui-panel" style="height:500px;"
+                data-options="href:'comment-list?page.page=1&page.size=20&id=$!product.productCode', method:'GET'">  
+        </div>  
+        <div id="comment_pagination" class="easyui-pagination" style="border:1px solid #ccc; background: #000;"  
+                data-options="
+                    pageSize: 20,
+                    onSelectPage: function(pageNumber, pageSize){  
+                        $('#comment_list').panel('refresh', 'comment-list?page.page='+pageNumber+'&page.size='+pageSize+'&id=$!product.productCode');  
+                    }">  
+        </div>
     </body>
 </html>
