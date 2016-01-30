@@ -10,7 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface BookingDao extends PagingAndSortingRepository<Booking, String>, JpaRepository<Booking, String> {
     

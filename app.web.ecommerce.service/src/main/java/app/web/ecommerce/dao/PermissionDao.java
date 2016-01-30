@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface PermissionDao extends JpaRepository<Permission, String> {
     

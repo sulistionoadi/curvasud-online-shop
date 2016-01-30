@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public abstract class SpringSecurityHelper {
     

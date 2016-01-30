@@ -10,7 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface CityDao extends PagingAndSortingRepository<City, String>, JpaRepository<City, String> {
     

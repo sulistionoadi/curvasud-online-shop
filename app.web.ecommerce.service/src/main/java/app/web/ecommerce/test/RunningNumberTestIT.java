@@ -19,7 +19,7 @@ import org.springframework.dao.CannotAcquireLockException;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public class RunningNumberTestIT {
 

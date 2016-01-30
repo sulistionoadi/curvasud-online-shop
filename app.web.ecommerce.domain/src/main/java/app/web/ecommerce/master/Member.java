@@ -23,7 +23,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 
 @Entity

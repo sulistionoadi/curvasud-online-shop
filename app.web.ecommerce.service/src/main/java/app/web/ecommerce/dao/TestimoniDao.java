@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface TestimoniDao extends PagingAndSortingRepository<Testimoni, String>, JpaRepository<Testimoni, String>{
     

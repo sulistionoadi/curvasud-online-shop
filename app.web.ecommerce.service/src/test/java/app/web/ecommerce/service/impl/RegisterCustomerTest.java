@@ -26,7 +26,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public class RegisterCustomerTest {
     

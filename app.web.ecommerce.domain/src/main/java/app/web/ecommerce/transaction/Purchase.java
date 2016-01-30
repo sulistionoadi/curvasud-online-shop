@@ -25,7 +25,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 @Entity
 @Table(name="trx_purchase")

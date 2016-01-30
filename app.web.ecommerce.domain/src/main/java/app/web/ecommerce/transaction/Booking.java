@@ -25,7 +25,7 @@ import org.hibernate.annotations.CascadeType;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 
 @Entity

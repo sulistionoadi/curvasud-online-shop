@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface RunningNumberService {
     public String generateYearlyRunningNumber(Date date, DesignationType designationType);

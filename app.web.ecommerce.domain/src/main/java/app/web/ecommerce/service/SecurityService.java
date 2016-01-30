@@ -13,7 +13,7 @@ import org.springframework.data.domain.Pageable;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface SecurityService {
     

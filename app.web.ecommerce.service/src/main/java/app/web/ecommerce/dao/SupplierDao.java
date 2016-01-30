@@ -10,7 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface SupplierDao extends PagingAndSortingRepository<Supplier, String>, JpaRepository<Supplier, String> {
     

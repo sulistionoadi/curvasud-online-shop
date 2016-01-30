@@ -6,7 +6,7 @@ package app.web.ecommerce.constant;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public enum StatusUser {
     NEW, ACTIVE, BLOCK

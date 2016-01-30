@@ -14,7 +14,7 @@ import org.springframework.data.repository.query.Param;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 public interface ChangeOfStockDao extends PagingAndSortingRepository<ChangeOfStock, String> {
     

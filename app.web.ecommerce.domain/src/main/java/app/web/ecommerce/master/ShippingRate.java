@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 
 @Entity

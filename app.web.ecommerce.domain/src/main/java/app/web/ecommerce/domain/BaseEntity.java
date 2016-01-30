@@ -12,7 +12,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 
 @MappedSuperclass

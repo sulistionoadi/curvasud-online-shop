@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
 
 /**
  *
- * @author adi
+ * @author ilham-buru2@bsi
  */
 @Entity
 @Table(name="trx_change_of_stock", 
