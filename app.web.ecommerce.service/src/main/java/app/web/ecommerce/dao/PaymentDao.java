@@ -1,0 +1,31 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package app.web.ecommerce.dao;
+
+import app.web.ecommerce.transaction.Booking;
+import app.web.ecommerce.transaction.Payment;
+import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+/**
+ *
+ * @author jimmy
+ */
+public interface PaymentDao extends JpaRepository<Payment, String>{
+    
+    @Query("select count(p) from Payment p where p.approved = :approved")
+    public Long countPaymentByApproved(@Param("approved") Boolean approved);
+    
+    public Page<Payment> findByApproved(Boolean approved, Pageable pageable);
+    
+    public List<Payment> findByBooking(Booking booking);
+    
+    public Payment findByPaymentCode(String code);
+    
+}

@@ -15,7 +15,17 @@
         </encoder>
     </appender>
 
-    <include resource="logback-${stage:-development}.xml"/>
+    <logger name="org.hibernate.type" level="TRACE">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="org.hibernate.SQL" level="TRACE">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+    </root>
 
 </configuration>
 
