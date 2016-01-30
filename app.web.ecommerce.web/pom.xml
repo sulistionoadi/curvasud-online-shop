@@ -3,34 +3,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>id.ac.bsi.adi.ta</groupId>
-        <artifactId>id.ac.bsi.adi.ta.ecommerce</artifactId>
+        <groupId>app.web.ecommerce</groupId>
+        <artifactId>app.web.ecommerce</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>id.ac.bsi.adi.ta.ecommerce.web</artifactId>
+    <artifactId>app.web.ecommerce.web</artifactId>
     <packaging>war</packaging>
-    <name>Curvasud Online Store WebApp</name>
+    <name>E-Commerce WebApp</name>
 
 
     <dependencies>
 
         <dependency>
-            <groupId>id.ac.bsi.adi.ta</groupId>
-            <artifactId>id.ac.bsi.adi.ta.ecommerce.domain</artifactId>
+            <groupId>app.web.ecommerce</groupId>
+            <artifactId>app.web.ecommerce.domain</artifactId>
             <version>1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>id.ac.bsi.adi.ta</groupId>
-            <artifactId>id.ac.bsi.adi.ta.ecommerce.service</artifactId>
+            <groupId>app.web.ecommerce</groupId>
+            <artifactId>app.web.ecommerce.service</artifactId>
             <version>1.0</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
-            <groupId>id.ac.bsi.adi.ta</groupId>
-            <artifactId>id.ac.bsi.adi.ta.ecommerce.config</artifactId>
+            <groupId>app.web.ecommerce</groupId>
+            <artifactId>app.web.ecommerce.config</artifactId>
             <version>1.0</version>
             <scope>runtime</scope>
         </dependency>
@@ -157,36 +157,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>keytool-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>clean</id>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <id>genkey</id>
-                        <goals>
-                            <goal>genkey</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <keystore>${project.build.directory}/appserver-ssl.keystore</keystore>
-                    <dname>cn=sulistiono.adi</dname>
-                    <keypass>rahasia123</keypass>
-                    <storepass>rahasia123</storepass>
-                    <alias>tomcat</alias>
-                    <keyalg>RSA</keyalg>
-                </configuration>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>

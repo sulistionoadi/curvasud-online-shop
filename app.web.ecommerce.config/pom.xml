@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>id.ac.bsi.adi.ta</groupId>
-        <artifactId>id.ac.bsi.adi.ta.ecommerce</artifactId>
+        <groupId>app.web.ecommerce</groupId>
+        <artifactId>app.web.ecommerce</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>id.ac.bsi.adi.ta.ecommerce.config</artifactId>
+    <artifactId>app.web.ecommerce.config</artifactId>
     <packaging>jar</packaging>
-    <name>Curvasud Online Store Config</name>
+    <name>E-Commerce Config</name>
 
 
     <dependencies>
@@ -66,27 +66,6 @@
                                 }
                             </source>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-			
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <target>
-                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@hibernate.dialect@" value="${hibernate.dialect}"/>
-                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.driver@" value="${db.driver}"/>
-                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.url@" value="${db.url}"/>
-                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.username@" value="${db.username}"/>
-                                <replace file="${project.build.outputDirectory}/jdbc.properties" token="@db.password@" value="${db.password}"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>

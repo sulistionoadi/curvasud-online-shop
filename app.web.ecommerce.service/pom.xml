@@ -3,25 +3,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>id.ac.bsi.adi.ta</groupId>
-        <artifactId>id.ac.bsi.adi.ta.ecommerce</artifactId>
+        <groupId>app.web.ecommerce</groupId>
+        <artifactId>app.web.ecommerce</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>id.ac.bsi.adi.ta.ecommerce.service</artifactId>
+    <artifactId>app.web.ecommerce.service</artifactId>
     <packaging>jar</packaging>
-    <name>Curvasud Online Store Service</name>
+    <name>E-Commerce Service</name>
 
     <dependencies>
         <dependency>
-            <groupId>id.ac.bsi.adi.ta</groupId>
-            <artifactId>id.ac.bsi.adi.ta.ecommerce.domain</artifactId>
+            <groupId>app.web.ecommerce</groupId>
+            <artifactId>app.web.ecommerce.domain</artifactId>
             <version>1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>id.ac.bsi.adi.ta</groupId>
-            <artifactId>id.ac.bsi.adi.ta.ecommerce.config</artifactId>
+            <groupId>app.web.ecommerce</groupId>
+            <artifactId>app.web.ecommerce.config</artifactId>
             <version>1.0</version>
         </dependency>
 
