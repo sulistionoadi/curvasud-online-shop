@@ -4,8 +4,8 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.security.Permission;
-import app.web.ecommerce.security.Role;
+import app.web.ecommerce.domain.security.Permission;
+import app.web.ecommerce.domain.security.Role;
 import app.web.ecommerce.service.SecurityService;
 import java.util.HashMap;
 import java.util.List;

@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.master;
+package app.web.ecommerce.domain.master;
 
-import app.web.ecommerce.domain.BaseEntity;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -36,7 +34,7 @@ public class Product {
     private String productCode;
     
     @ManyToOne @NotNull
-    @JoinColumn(name="id_category", nullable=false)
+    @JoinColumn(name="category_code", nullable=false, columnDefinition = "VARCHAR(3)")
     private CategoryProduct category;
     
     @NotNull @NotEmpty
@@ -51,14 +49,9 @@ public class Product {
     @Column(nullable=false)
     private BigDecimal price;
     
-    @NotNull
-    @Min((long) 0.01)
-    @Column(nullable=false)
-    private BigDecimal weight = new BigDecimal("0.00");
-    
     @ElementCollection(fetch= FetchType.EAGER)
     @CollectionTable(name="mst_picture_product", 
-            joinColumns=@JoinColumn(name="id_product"))
+            joinColumns=@JoinColumn(name="product_code"))
     @Column(name="pictures", length=50)
     private List<String> pictures = new ArrayList<String>();
 
@@ -108,14 +101,6 @@ public class Product {
 
     public void setPictures(List<String> pictures) {
         this.pictures = pictures;
-    }
-
-    public BigDecimal getWeight() {
-        return weight;
-    }
-
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
     }
     
 }

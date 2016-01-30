@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.transaction;
+package app.web.ecommerce.domain.transaction;
 
-import app.web.ecommerce.domain.BaseEntity;
-import app.web.ecommerce.master.Member;
+import app.web.ecommerce.constant.PaymentMethod;
+import app.web.ecommerce.domain.master.Member;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +42,7 @@ public class Booking {
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id_member", nullable=false)
+    @JoinColumn(name="member_code", nullable=false, columnDefinition = "VARCHAR(10)")
     private Member member;
     
     @NotNull
@@ -54,16 +54,30 @@ public class Booking {
     private String shippingAddress;
     
     @NotNull
-    @Column(name="shipping_cost", nullable=false)
-    private BigDecimal shippingCost;
-    
-    @NotNull
     @Column(name="shipping_phone", nullable=false, length=15)
     private String shippingPhone;
 
     @OneToMany(mappedBy = "booking", cascade= javax.persistence.CascadeType.ALL)
     @Cascade(CascadeType.ALL)
     private List<BookingDetail> bookingDetails = new ArrayList<BookingDetail>();
+    
+    @NotNull
+    @Column(name="total_amount", nullable=false)
+    private BigDecimal totalAmount;
+    
+    @NotNull
+    @Column(name="payment_method", nullable=false, length=8)
+    private PaymentMethod paymentMethod;
+    
+    private Integer installment;
+    
+    @OneToMany(mappedBy = "booking", cascade= javax.persistence.CascadeType.ALL)
+    @Cascade(CascadeType.ALL)
+    private List<Installment> installments = new ArrayList<Installment>();
+    
+    @NotNull
+    @Column(name="is_approve", nullable = false)
+    private Boolean approve = Boolean.FALSE;
     
     public String getBookingCode() {
         return bookingCode;
@@ -112,15 +126,7 @@ public class Booking {
     public void setBookingDetails(List<BookingDetail> bookingDetails) {
         this.bookingDetails = bookingDetails;
     }
-
-    public BigDecimal getShippingCost() {
-        return shippingCost;
-    }
-
-    public void setShippingCost(BigDecimal shippingCost) {
-        this.shippingCost = shippingCost;
-    }
-
+    
     public String getShippingName() {
         return shippingName;
     }
@@ -128,4 +134,45 @@ public class Booking {
     public void setShippingName(String shippingName) {
         this.shippingName = shippingName;
     }
+
+    public BigDecimal getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Integer getInstallment() {
+        return installment;
+    }
+
+    public void setInstallment(Integer installment) {
+        this.installment = installment;
+    }
+
+    public List<Installment> getInstallments() {
+        return installments;
+    }
+
+    public void setInstallments(List<Installment> installments) {
+        this.installments = installments;
+    }
+
+    public Boolean isApprove() {
+        return approve;
+    }
+
+    public void setApprove(Boolean approve) {
+        this.approve = approve;
+    }
+    
 }

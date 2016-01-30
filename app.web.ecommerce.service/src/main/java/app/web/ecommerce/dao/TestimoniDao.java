@@ -4,8 +4,8 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.master.Product;
-import app.web.ecommerce.transaction.Testimoni;
+import app.web.ecommerce.domain.master.Product;
+import app.web.ecommerce.domain.transaction.Testimoni;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

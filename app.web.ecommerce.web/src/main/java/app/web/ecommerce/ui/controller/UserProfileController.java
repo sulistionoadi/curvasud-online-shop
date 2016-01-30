@@ -4,15 +4,13 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.master.City;
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.security.User;
 import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.SecurityService;
 import app.web.ecommerce.ui.helper.ChangePasswordHelper;
 import app.web.ecommerce.ui.helper.SpringSecurityHelper;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,12 +48,6 @@ public class UserProfileController {
     @RequestMapping("/password")
     public ModelMap pageDataApproval() {
         return new ModelMap();
-    }
-    
-    @RequestMapping(value="/cities", method= RequestMethod.POST)
-    @ResponseBody
-    public List<City> jsonCities(HttpServletResponse httpServletResponse) {
-        return masterService.findAllCities();
     }
     
     @RequestMapping("/profile")

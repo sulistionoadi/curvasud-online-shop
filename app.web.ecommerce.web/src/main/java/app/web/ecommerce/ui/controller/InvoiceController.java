@@ -4,8 +4,7 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.transaction.BookingDetail;
-import app.web.ecommerce.transaction.Invoice;
+import app.web.ecommerce.domain.transaction.Invoice;
 import app.web.ecommerce.dto.BookingStruk;
 import app.web.ecommerce.service.TransaksiService;
 import java.util.ArrayList;
@@ -50,12 +49,6 @@ public class InvoiceController {
 
         List<Invoice> datas = transaksiService.findAllInvoice(pageable).getContent();
 
-        for (Invoice invoice : datas) {
-            for (BookingDetail bookingDetail : invoice.getBooking().getBookingDetails()) {
-                bookingDetail.setBooking(null);
-            }
-        }
-
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("total", countInvoices);
         result.put("rows", datas);
@@ -74,34 +67,25 @@ public class InvoiceController {
             throw new Exception("Invoice not found !");
         }
 
-        for (BookingDetail bookingDetail : invoice.getBooking().getBookingDetails()) {
-            bookingDetail.setBooking(null);
-        }
-        
         ModelMap mm = new ModelMap();
         mm.put("format", format);
         mm.put("noFaktur", invoice.getInvoiceNumber());
-        mm.put("nama", invoice.getBooking().getShippingName());
-        mm.put("alamat", invoice.getBooking().getShippingAddress());
         mm.put("tanggal", invoice.getTransactionDate());
-        mm.put("nomorTelepon", invoice.getBooking().getShippingPhone());
-
-        mm.put("ongkosKirim", invoice.getBooking().getShippingCost());
 
         int i = 0;
         List<BookingStruk> bookingInvoices = new ArrayList<BookingStruk>();
-        for (BookingDetail bd : invoice.getBooking().getBookingDetails()) {
-            i++;
-            BookingStruk bs = new BookingStruk();
-            bs.setNo(i);
-            bs.setKode(bd.getProduct().getProductCode());
-            bs.setProduk(bd.getProduct().getProductName().toUpperCase());
-            bs.setQty(bd.getQty());
-            bs.setHarga(bd.getAmount());
-            bs.setTotal(bd.getTotalAmount());
-
-            bookingInvoices.add(bs);
-        }
+//        for (BookingDetail bd : invoice.getBooking().getBookingDetails()) {
+//            i++;
+//            BookingStruk bs = new BookingStruk();
+//            bs.setNo(i);
+//            bs.setKode(bd.getProduct().getProductCode());
+//            bs.setProduk(bd.getProduct().getProductName().toUpperCase());
+//            bs.setQty(bd.getQty());
+//            bs.setHarga(bd.getAmount());
+//            bs.setTotal(bd.getTotalAmount());
+//
+//            bookingInvoices.add(bs);
+//        }
 
         mm.put("bookingInvoices", bookingInvoices);
 

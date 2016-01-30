@@ -4,9 +4,9 @@
  */
 package app.web.ecommerce.service;
 
-import app.web.ecommerce.security.Permission;
-import app.web.ecommerce.security.Role;
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.security.Permission;
+import app.web.ecommerce.domain.security.Role;
+import app.web.ecommerce.domain.security.User;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

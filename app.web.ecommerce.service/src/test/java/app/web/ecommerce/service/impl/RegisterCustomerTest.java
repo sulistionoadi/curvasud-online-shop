@@ -6,10 +6,9 @@ package app.web.ecommerce.service.impl;
 
 import app.web.ecommerce.constant.DesignationType;
 import app.web.ecommerce.constant.StatusUser;
-import app.web.ecommerce.master.City;
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.security.Role;
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.security.Role;
+import app.web.ecommerce.domain.security.User;
 import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.RunningNumberService;
 import app.web.ecommerce.service.SecurityService;
@@ -55,13 +54,12 @@ public class RegisterCustomerTest {
          DateTimeFormatter formatter = DateTimeFormat.forPattern("yy");
          DateTime sekarang = new DateTime();
          String memberCode = "MB" + formatter.print(sekarang) + runningNumberService.generateYearlyRunningNumber(sekarang.toDate(), DesignationType.MEMBER);
-         City c = masterService.findCityByKode("JAK");
                  
          Member member = new Member();
          member.setFirstname("AWEY");
          member.setLastname("BUSWAY");
          member.setEmail("awey@gmail.com");
-         member.setCity(c);
+         member.setCity("Jakarta Timur");
          member.setAddress("Tanah Ireng 111");
          member.setMemberCode(memberCode);
          member.setMobile("08768747877");

@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.transaction;
+package app.web.ecommerce.domain.transaction;
 
 import app.web.ecommerce.domain.BaseEntity;
-import app.web.ecommerce.master.Product;
+import app.web.ecommerce.domain.master.Product;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,16 +23,16 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="trx_booking_detail",
-        uniqueConstraints=@UniqueConstraint(columnNames={"id_booking", "id_product"}))
+        uniqueConstraints=@UniqueConstraint(columnNames={"booking_code", "product_code"}))
 public class BookingDetail extends BaseEntity {
     
     @ManyToOne
-    @JoinColumn(name="id_booking", nullable=false)
+    @JoinColumn(name="booking_code", nullable=false, columnDefinition = "VARCHAR(10)")
     private Booking booking;
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id_product", nullable=false)
+    @JoinColumn(name="product_code", nullable=false, columnDefinition = "VARCHAR(8)")
     private Product product;
     
     @NotNull

@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.security.User;
 import app.web.ecommerce.service.SecurityService;
 import app.web.ecommerce.ui.helper.SpringSecurityHelper;
 import javax.servlet.http.HttpSession;

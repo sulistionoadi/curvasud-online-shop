@@ -4,13 +4,10 @@
  */
 package app.web.ecommerce.service;
 
-import app.web.ecommerce.master.CategoryProduct;
-import app.web.ecommerce.master.City;
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.master.Product;
-import app.web.ecommerce.master.ShippingRate;
-import app.web.ecommerce.master.Supplier;
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.master.CategoryProduct;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.master.Product;
+import app.web.ecommerce.domain.security.User;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,32 +35,11 @@ public interface MasterService {
     public Page<Product> findAllProductsByKeyword(Pageable pageable, String keyword);
     public List<Product> findAllProducts();
     
-    public Supplier save(Supplier supplier);
-    public void delete(Supplier supplier);
-    public Supplier findSupplierByKode(String kode);
-    public Long countAllSupplier();
-    public Page<Supplier> findAllSupplier(Pageable pageable);
-    public List<Supplier> findAllSuppliers();
-    
     public void register(Member member, User user);
     public void delete(Member member);
     public void save(Member member);
     public Member findMemberByKode(String kode);
     public Long countAllMembers();
     public Page<Member> findAllMembers(Pageable pageable);
-    
-    public City save(City city);
-    public void delete(City city);
-    public City findCityByKode(String kode);
-    public Long countAllCities();
-    public Page<City> findAllCities(Pageable pageable);
-    public List<City> findAllCities();
-    
-    public ShippingRate save(ShippingRate shippingRate);
-    public void delete(ShippingRate shippingRate);
-    public ShippingRate findShippingRateById(String id);
-    public ShippingRate findShippingRateByCity(City city);
-    public Long countAllShippingRates();
-    public Page<ShippingRate> findAllShippingRates(Pageable pageable);
-    
+
 }

@@ -5,11 +5,10 @@
 package app.web.ecommerce.ui.controller;
 
 import app.web.ecommerce.constant.DesignationType;
-import app.web.ecommerce.master.Product;
-import app.web.ecommerce.master.ShippingRate;
-import app.web.ecommerce.security.User;
-import app.web.ecommerce.transaction.Booking;
-import app.web.ecommerce.transaction.BookingDetail;
+import app.web.ecommerce.domain.master.Product;
+import app.web.ecommerce.domain.security.User;
+import app.web.ecommerce.domain.transaction.Booking;
+import app.web.ecommerce.domain.transaction.BookingDetail;
 import app.web.ecommerce.dto.BookingStruk;
 import app.web.ecommerce.dto.ShoppingCartDTO;
 import app.web.ecommerce.service.MasterService;
@@ -73,11 +72,6 @@ public class ShoppingCartController extends ExceptionHandlerController {
             throw new Exception("product is null");
         }
         
-        ShippingRate sr = masterService.findShippingRateByCity(user.getMember().getCity());
-        if(sr == null){
-            throw new Exception("Shipping Cost is null");
-        }
-        
         List<ShoppingCartDTO> shoppingCart = new ArrayList<ShoppingCartDTO>();
         if(session.getAttribute(SESSION_KEY_CART)!=null){
             shoppingCart = (List<ShoppingCartDTO>) session.getAttribute(SESSION_KEY_CART);
@@ -87,7 +81,6 @@ public class ShoppingCartController extends ExceptionHandlerController {
         dto.setMember(user.getMember());
         dto.setProduct(p);
         dto.setQty(qty);
-        dto.setOngkir(sr.getReguler());
         dto.setTotal(new BigDecimal(dto.getQty()).multiply(p.getPrice()));
         
         shoppingCart.add(dto);
@@ -126,7 +119,6 @@ public class ShoppingCartController extends ExceptionHandlerController {
         booking.setMember(user.getMember());
         booking.setTransactionDate(new Date());
         booking.setShippingAddress(shippingAddress);
-        booking.setShippingCost(shippingCost);
         booking.setShippingName(shippingName);
         booking.setShippingPhone(shippingPhone);
         
@@ -189,7 +181,6 @@ public class ShoppingCartController extends ExceptionHandlerController {
         mm.put("tglBooking", booking.getTransactionDate());
         mm.put("kodeMember", booking.getMember().getMemberCode());
         mm.put("namaMember", booking.getMember().getFirstname().toUpperCase() + " " + booking.getMember().getLastname().toUpperCase());
-        mm.put("ongkosKirim", booking.getShippingCost());
         mm.put("pathLogo", pathLogo);
         mm.put("pesan", "Terima kasih telah melakukan pemesanan di toko kami. Silahkan melakukan pembayaran ke rekening 1234567890 a/n ABCDEFG");
         mm.put("remark", booking.getBookingCode() + "/" + booking.getMember().getMemberCode() + " " + formatter.print(new DateTime()));

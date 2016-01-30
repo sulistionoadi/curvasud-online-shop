@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.security.Role;
+import app.web.ecommerce.domain.security.Role;
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

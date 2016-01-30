@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.master.Member;
+import app.web.ecommerce.domain.master.Member;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

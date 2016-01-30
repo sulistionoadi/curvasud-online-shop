@@ -5,8 +5,8 @@
 package app.web.ecommerce.ui.controller;
 
 import app.web.ecommerce.constant.DesignationType;
-import app.web.ecommerce.transaction.Booking;
-import app.web.ecommerce.transaction.Payment;
+import app.web.ecommerce.domain.transaction.Booking;
+import app.web.ecommerce.domain.transaction.Payment;
 import app.web.ecommerce.service.RunningNumberService;
 import app.web.ecommerce.service.TransaksiService;
 import java.io.File;
@@ -75,13 +75,13 @@ public class PaymentController extends ExceptionHandlerController {
         if(b==null) throw new Exception("Booking tidak ditemukan");
             
         Payment payment = new Payment();
-        payment.setApproveDate(null);
-        payment.setApproved(Boolean.FALSE);
-        payment.setBooking(b);
-        
-        payment.setAccountName(accountName);
-        payment.setPaymentDate(formatDate.parseDateTime(tglTransfer).toDate());
-        payment.setTransferAmount(trfAmount);
+//        payment.setApproveDate(null);
+//        payment.setApproved(Boolean.FALSE);
+//        payment.setBooking(b);
+//        
+//        payment.setAccountName(accountName);
+//        payment.setPaymentDate(formatDate.parseDateTime(tglTransfer).toDate());
+//        payment.setTransferAmount(trfAmount);
         
         DateTime sekarang = new DateTime();
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyMM");
@@ -119,16 +119,16 @@ public class PaymentController extends ExceptionHandlerController {
         
         ModelMap mm = new ModelMap();
         mm.put("format", format);
-        mm.put("noBooking", payment.getBooking().getBookingCode());
+//        mm.put("noBooking", payment.getBooking().getBookingCode());
         mm.put("noPayment", payment.getPaymentCode());
         mm.put("tglPayment", payment.getTransactionDate());
-        mm.put("kodeMember", payment.getBooking().getMember().getMemberCode());
-        mm.put("namaMember", payment.getBooking().getMember().getFirstname().toUpperCase() + " " + payment.getBooking().getMember().getLastname().toUpperCase());
-        mm.put("jumlahPayment", payment.getTransferAmount());
+//        mm.put("kodeMember", payment.getBooking().getMember().getMemberCode());
+//        mm.put("namaMember", payment.getBooking().getMember().getFirstname().toUpperCase() + " " + payment.getBooking().getMember().getLastname().toUpperCase());
+//        mm.put("jumlahPayment", payment.getTransferAmount());
         mm.put("empties", new ArrayList<Object>());
         mm.put("logoBca", logoBca);
         mm.put("logoCurvasud", logoCurvasud);
-        mm.put("remark", payment.getPaymentCode() + "/" + payment.getBooking().getMember().getMemberCode() + " " + formatter.print(new DateTime()));
+//        mm.put("remark", payment.getPaymentCode() + "/" + payment.getBooking().getMember().getMemberCode() + " " + formatter.print(new DateTime()));
         
         return mm;
     }

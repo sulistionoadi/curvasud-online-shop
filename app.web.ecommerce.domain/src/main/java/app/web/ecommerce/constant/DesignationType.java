@@ -10,6 +10,6 @@ package app.web.ecommerce.constant;
  */
 public enum DesignationType {
     
-    MEMBER, BOOKING, PAYMENT, INVOICE, PRODUCT
+    MEMBER, BOOKING, PAYMENT, INVOICE, PRODUCT, DELIVERY
 
 }

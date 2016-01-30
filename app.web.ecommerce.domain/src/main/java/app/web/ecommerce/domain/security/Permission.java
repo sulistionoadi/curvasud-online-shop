@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.security;
+package app.web.ecommerce.domain.security;
 
 import app.web.ecommerce.domain.BaseEntity;
 import java.io.Serializable;

@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.master;
+package app.web.ecommerce.domain.master;
 
-import app.web.ecommerce.domain.BaseEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.security.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

@@ -2,15 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.master;
+package app.web.ecommerce.domain.master;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,9 +52,8 @@ public class Member implements Serializable {
     @Column(nullable=false, length=20)
     private String province;
     
-    @NotNull @ManyToOne
-    @JoinColumn(name="id_city", nullable=false)
-    private City city;
+    @NotNull @NotEmpty
+    private String city;
     
     @Column(name="zip_code", length=5)
     private String zipCode;
@@ -122,14 +119,6 @@ public class Member implements Serializable {
         this.province = province;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
     public String getZipCode() {
         return zipCode;
     }
@@ -192,6 +181,14 @@ public class Member implements Serializable {
 
     public void setMemberCode(String memberCode) {
         this.memberCode = memberCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
 }

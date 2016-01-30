@@ -4,7 +4,6 @@
  */
 package app.web.ecommerce.dto;
 
-import app.web.ecommerce.master.City;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.ManyToOne;
@@ -35,8 +34,10 @@ public class MemberDTO implements Serializable {
     @NotNull @NotEmpty
     private String province;
     
-    @NotNull @ManyToOne
-    private City city;
+    @NotNull @NotEmpty
+    private String city;
+    
+    @NotNull @NotEmpty
     private String zipCode;
     
     @NotNull @NotEmpty
@@ -98,11 +99,11 @@ public class MemberDTO implements Serializable {
         this.province = province;
     }
 
-    public City getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public void setCity(String city) {
         this.city = city;
     }
 

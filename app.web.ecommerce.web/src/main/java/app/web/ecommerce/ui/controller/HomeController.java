@@ -4,8 +4,8 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.master.Product;
-import app.web.ecommerce.transaction.Testimoni;
+import app.web.ecommerce.domain.master.Product;
+import app.web.ecommerce.domain.transaction.Testimoni;
 import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.TransaksiService;
 import java.net.URI;

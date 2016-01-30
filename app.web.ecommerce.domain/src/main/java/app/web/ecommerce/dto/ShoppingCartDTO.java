@@ -4,8 +4,8 @@
  */
 package app.web.ecommerce.dto;
 
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.master.Product;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.master.Product;
 import java.math.BigDecimal;
 
 /**

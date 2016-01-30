@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.transaction.Booking;
+import app.web.ecommerce.domain.transaction.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 

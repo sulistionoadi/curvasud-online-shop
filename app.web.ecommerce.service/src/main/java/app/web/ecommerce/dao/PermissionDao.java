@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.dao;
 
-import app.web.ecommerce.security.Permission;
+import app.web.ecommerce.domain.security.Permission;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

@@ -6,16 +6,14 @@ package app.web.ecommerce.ui.controller;
 
 import app.web.ecommerce.constant.DesignationType;
 import app.web.ecommerce.constant.StatusUser;
-import app.web.ecommerce.master.City;
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.security.Role;
-import app.web.ecommerce.security.User;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.security.Role;
+import app.web.ecommerce.domain.security.User;
 import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.RunningNumberService;
 import app.web.ecommerce.service.SecurityService;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -35,7 +33,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -63,12 +60,6 @@ public class MemberController extends ExceptionHandlerController{
     @RequestMapping("/registrasi/sukses")
     public ModelMap tampilFormRegistrasiSukses(){
         return new ModelMap();
-    }
-    
-    @RequestMapping(value="/registrasi/cities", method= RequestMethod.POST)
-    @ResponseBody
-    public List<City> jsonCities(HttpServletResponse httpServletResponse) {
-        return masterService.findAllCities();
     }
     
     @RequestMapping(value="/registrasi/member", method= RequestMethod.POST)

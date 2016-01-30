@@ -5,8 +5,8 @@
 package app.web.ecommerce.ui.controller;
 
 import app.web.ecommerce.constant.DesignationType;
-import app.web.ecommerce.master.CategoryProduct;
-import app.web.ecommerce.master.Product;
+import app.web.ecommerce.domain.master.CategoryProduct;
+import app.web.ecommerce.domain.master.Product;
 import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.RunningNumberService;
 import java.io.BufferedReader;

@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.transaction;
+package app.web.ecommerce.domain.transaction;
 
 import app.web.ecommerce.domain.BaseEntity;
-import app.web.ecommerce.master.Member;
-import app.web.ecommerce.master.Product;
+import app.web.ecommerce.domain.master.Member;
+import app.web.ecommerce.domain.master.Product;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,12 +33,12 @@ public class Testimoni extends BaseEntity{
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id_product", nullable=false)
+    @JoinColumn(name="product_code", nullable=false, columnDefinition = "VARCHAR(8)")
     private Product product;
     
     @NotNull
     @ManyToOne
-    @JoinColumn(name="id_member", nullable=false)
+    @JoinColumn(name="member_code", nullable=false, columnDefinition = "VARCHAR(10)")
     private Member member;
     
     @Column(name="testimoni_date", nullable=false)

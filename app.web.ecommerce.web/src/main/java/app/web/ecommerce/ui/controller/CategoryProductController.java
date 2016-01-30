@@ -4,7 +4,7 @@
  */
 package app.web.ecommerce.ui.controller;
 
-import app.web.ecommerce.master.CategoryProduct;
+import app.web.ecommerce.domain.master.CategoryProduct;
 import app.web.ecommerce.service.MasterService;
 import java.util.HashMap;
 import java.util.List;

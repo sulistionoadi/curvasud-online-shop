@@ -5,9 +5,8 @@
 package app.web.ecommerce.ui.controller;
 
 import app.web.ecommerce.constant.DesignationType;
-import app.web.ecommerce.transaction.BookingDetail;
-import app.web.ecommerce.transaction.Invoice;
-import app.web.ecommerce.transaction.Payment;
+import app.web.ecommerce.domain.transaction.Invoice;
+import app.web.ecommerce.domain.transaction.Payment;
 import app.web.ecommerce.service.RunningNumberService;
 import app.web.ecommerce.service.TransaksiService;
 import java.net.URI;
@@ -60,11 +59,6 @@ public class ApprovalPaymentController {
         logger.info("DEBUG VALUE PAGEABLE -- Offset[{}] PageNumber[{}] PageSize[{}] Sort[{}]", obj);
 
         List<Payment> datas = transaksiService.findPaymentByApproved(Boolean.FALSE, pageable).getContent();
-        for (Payment p : datas) {
-            for (BookingDetail d : p.getBooking().getBookingDetails()) {
-                d.setBooking(null);
-            }
-        }
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("total", countPayments);
@@ -79,8 +73,6 @@ public class ApprovalPaymentController {
             logger.warn("Payment with id [{}] not found !!", id);
             throw new IllegalStateException("Payment with id [" + id + "] not found !!");
         }
-        payment.setApproved(Boolean.TRUE);
-        payment.setApproveDate(new Date());
         
         transaksiService.save(payment);
         
@@ -91,7 +83,6 @@ public class ApprovalPaymentController {
         Invoice invoice = new Invoice();
         invoice.setInvoiceNumber(invoiceCode);
         invoice.setTransactionDate(new Date());
-        invoice.setBooking(payment.getBooking());
         
         transaksiService.save(invoice);
         

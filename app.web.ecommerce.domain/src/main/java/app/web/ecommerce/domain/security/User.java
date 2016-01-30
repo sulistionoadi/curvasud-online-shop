@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.web.ecommerce.security;
+package app.web.ecommerce.domain.security;
 
 import app.web.ecommerce.constant.StatusUser;
 import app.web.ecommerce.domain.BaseEntity;
-import app.web.ecommerce.master.Member;
+import app.web.ecommerce.domain.master.Member;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
