@@ -9,7 +9,6 @@ import app.web.ecommerce.constant.StatusUser;
 import app.web.ecommerce.domain.master.Member;
 import app.web.ecommerce.domain.security.Role;
 import app.web.ecommerce.domain.security.User;
-import app.web.ecommerce.service.MasterService;
 import app.web.ecommerce.service.RunningNumberService;
 import app.web.ecommerce.service.SecurityService;
 import java.io.IOException;
@@ -44,8 +43,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class MemberController extends ExceptionHandlerController{
     
     @Autowired
-    private MasterService masterService;
-    @Autowired
     private SecurityService securityService;
     @Autowired
     private RunningNumberService runningNumberService;
@@ -62,13 +59,14 @@ public class MemberController extends ExceptionHandlerController{
         return new ModelMap();
     }
     
+    @RequestMapping("/registrasi/gagal")
+    public ModelMap tampilFormRegistrasiGagal(){
+        return new ModelMap();
+    }
+    
     @RequestMapping(value="/registrasi/member", method= RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
-        logger.info("VALUE OBJECT MEMBER " + member);
-        logger.info("VALUE OBJECT MEMBER.CONFIRM_PASSWORD " + member.getConfirmPassword());
-        logger.info("VALUE OBJECT MEMBER.PASSWORD " + member.getPassword());
         if(!member.getConfirmPassword().equals(member.getPassword())){
             bindingResult.rejectValue("confirmPassword", "confirmPassword.notMatch", "Konfirmasi password invalid");
         }
@@ -105,6 +103,7 @@ public class MemberController extends ExceptionHandlerController{
 
             response.sendRedirect(request.getContextPath() + "/register/sukses");
         } catch (Exception ex){
+            logger.error(ex.getMessage(), ex);
             response.sendRedirect(request.getContextPath() + "/register/gagal");
         }
     }

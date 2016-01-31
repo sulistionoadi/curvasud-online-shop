@@ -42,22 +42,20 @@ and open the template in the editor.
                     </p></td>
                 </tr>
                 <tr>  
-                    <td>Propinsi : </td>  
-                    <td><input class="easyui-validatebox" type="text" name="province" data-options="required:true" value="$!member.province"/></td>
+                    <td>Kota : </td>  
+                    <td>
+                        <input class="easyui-validatebox" type="text" name="city" data-options="required:true" value="$!member.city"/>
+                    </td>
                     <td><p class="text-error">
-                        #springBind("member.province")
+                        #springBind("member.city")
                         #springShowErrors("<br>" "")
                     </p></td>
                 </tr>
                 <tr>  
-                    <td>Kota : </td>  
-                    <td>
-                        <input id="member_city" name="city" class="easyui-combobox" 
-                           data-options="valueField:'code',textField:'name',url:'cities'" 
-                           required="true" >
-                    </td>
+                    <td>Propinsi : </td>  
+                    <td><input class="easyui-validatebox" type="text" name="province" data-options="required:true" value="$!member.province"/></td>
                     <td><p class="text-error">
-                        #springBind("member.city")
+                        #springBind("member.province")
                         #springShowErrors("<br>" "")
                     </p></td>
                 </tr>

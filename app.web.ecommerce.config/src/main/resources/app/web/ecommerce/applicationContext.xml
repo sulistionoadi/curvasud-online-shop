@@ -13,7 +13,8 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close" p:driverClassName="${jdbc.driver}" p:url="${jdbc.url}"
           p:username="${jdbc.username}" p:password="${jdbc.password}" p:maxWait="40000"
-          p:maxActive="80" p:maxIdle="20" />
+          p:maxActive="80" p:minIdle="10" p:maxIdle="20" p:initialSize="10" 
+          p:testOnBorrow="true" p:validationQuery="SELECT 1"/>
 
     <bean class="org.springframework.orm.jpa.JpaTransactionManager"
           id="transactionManager">
