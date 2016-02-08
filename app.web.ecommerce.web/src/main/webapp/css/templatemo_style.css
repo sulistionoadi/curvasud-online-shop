@@ -9,7 +9,7 @@ body {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 12px;
 	color: #8a8a79;
-	background: #565758 ;
+	background: #eeefff ;
 }
 		
 a:link, a:visited { color: #B80000; text-decoration: none; font-weight: bold; } 
@@ -125,14 +125,14 @@ h4 {
 	width: 100%;
 	height: 250px;
 	margin: auto auto;
-        background: url(../img/banner-curvasud-wrapper.png) repeat-x scroll center center transparent;
+        background: url(../img/banner_wrapper.png) repeat-x scroll center center transparent;
 }
 
 #templatemo_site_title_bar {
 	width: 980px;
 	height: 250px;
 	margin: 0 auto;
-        background: url(../img/banner-curvasud.png) no-repeat scroll center center transparent;
+        background: url(../img/banner.png) no-repeat scroll center center transparent;
 }
 
 #templatemo_site_title_bar #site_title {
@@ -347,7 +347,7 @@ h4 {
 }
 
 #templatemo_content h2 {
-	color: #f98202;
+	color: #dc2227;
 	height: 28px;
 	padding: 5px 0 0 45px;
 	margin: 0 0 10px 0;
@@ -371,7 +371,7 @@ h4 {
 }
 
 #main_column h2 {
-	background: url(../img/templatemo_header_bg.jpg) left bottom no-repeat;	
+	background: url(../img/templatemo_header_bg.png) left bottom no-repeat;	
 }
 
 #main_column p {
