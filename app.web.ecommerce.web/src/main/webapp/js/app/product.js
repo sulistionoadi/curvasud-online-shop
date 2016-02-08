@@ -22,11 +22,6 @@ function createDatagridProduct(){
         invalidMessage: 'value is invalid',
         missingMessage: 'this is required'
     });
-    $('#product_weight').validatebox({
-        required: true,
-        invalidMessage: 'value is invalid',
-        missingMessage: 'this is required'
-    });
 
     $('#gridProduct').datagrid({
         style:'width:700px; height:400px',
@@ -89,15 +84,6 @@ function createDatagridProduct(){
                     align: 'right',
                     formatter: function(value,row,index){
                         return formatNumber(value);
-                    }
-                },
-                {
-                    field:'weight', 
-                    title: 'Weight (kg)', 
-                    width:110,
-                    align: 'right',
-                    formatter: function(value,row,index){
-                        return formatDecimal(value,2);
                     }
                 }
             ]],

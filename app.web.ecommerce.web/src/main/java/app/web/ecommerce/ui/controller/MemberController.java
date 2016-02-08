@@ -32,6 +32,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -64,9 +65,9 @@ public class MemberController extends ExceptionHandlerController{
         return new ModelMap();
     }
     
+    @ResponseBody
     @RequestMapping(value="/registrasi/member", method= RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public String saveRegistrasiMember(@RequestBody @Valid Member member, BindingResult bindingResult, HttpServletRequest request, HttpServletResponse response) throws IOException{
         if(!member.getConfirmPassword().equals(member.getPassword())){
             bindingResult.rejectValue("confirmPassword", "confirmPassword.notMatch", "Konfirmasi password invalid");
         }
@@ -77,7 +78,7 @@ public class MemberController extends ExceptionHandlerController{
                 for (ObjectError o : bindingResult.getAllErrors()) {
                     logger.error("Errors Save member [{}]", o.getObjectName() + " | " + o.getDefaultMessage());    
                 }
-                response.sendRedirect(request.getContextPath() + "/register/member");
+                return "gagal";
             }
         
             Role role = securityService.findRoleByName("MEMBER");
@@ -100,11 +101,10 @@ public class MemberController extends ExceptionHandlerController{
             user.setMember(member);
 
             securityService.save(user);
-
-            response.sendRedirect(request.getContextPath() + "/register/sukses");
+            return "sukses";
         } catch (Exception ex){
             logger.error(ex.getMessage(), ex);
-            response.sendRedirect(request.getContextPath() + "/register/gagal");
+            return "gagal";
         }
     }
     

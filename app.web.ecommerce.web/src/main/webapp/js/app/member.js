@@ -6,8 +6,17 @@ function submitRegisterMember(){
         type: "POST",
         url: "member",
         data: JSON.stringify(jsonData),
-        dataType: "json",
-        contentType: "application/json"
+        contentType: "application/json",
+        success: function(data){
+            console.log("Redirect to ", data);
+            window.location.href = data;
+        },
+        error: function(errorResp){
+            $.messager.show({
+                title: 'Error',
+                msg: errorResp.statusText
+            });
+        }
     });
 }
 

@@ -116,9 +116,10 @@ function removeCategory(){
                         createDatagridCategory();
                     },
                     error: function(errorResp){
+                        console.log(errorResp);
                         $.messager.show({
                             title: 'Delete Error',
-                            msg: errorResp.responseText
+                            msg: errorResp.statusText
                         });
                     }
                 });
