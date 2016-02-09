@@ -157,7 +157,7 @@ function saveProduct(){
             } catch(e){
                 $.messager.show({
                     title: 'Save Error',
-                    msg: errorResp.responseText
+                    msg: errorResp.statusText
                 });
             }
         },
